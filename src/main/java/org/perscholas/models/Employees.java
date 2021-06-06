@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,20 +19,22 @@ import java.time.LocalDate;
 @Entity //database
 @Component //spring boot component
 public class Employees implements Serializable {
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 990121599287231165L;
+
 
     //fields
 
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
-            name = "User_sequence", //names the table in the database
-            sequenceName = "User_sequence", // sequence name
+            name = "Employees_sequence", //names the table in the database
+            sequenceName = "Employees_sequence", // sequence name
             allocationSize = 1 // incriment by 1
     )
     @GeneratedValue(//tells what value to input
             strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
-            generator = "User_sequence" // use sequence name
+            generator = "Employees_sequence" // use sequence name
     )
+    @Column(name = "Employees_Id")
     Long eId;
     //cannot be null/blank
     @NonNull @NotBlank
@@ -40,15 +44,25 @@ public class Employees implements Serializable {
     @NonNull @NotBlank
     String eJobTitle;
     @NonNull @NotBlank
-    String eDepartment;
-    @NonNull @NotBlank
     String ePhoneNumber;
-    @NonNull @NotBlank
+    //cannot be null/blank and must be unique
+    @NonNull @NotBlank @Column(unique = true)
     String eEmail;
     @NonNull @NotBlank
-    LocalDate eDob;
+    Date eDob;
     @NonNull @NotBlank
-    LocalDate eHireDate;
+    Date eHireDate;
+    //joining employees to users table
+    @ToString.Exclude
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Users_Id")
+    Users eUser_Id;
+
+    //joining employees to departments table
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Departments_Id")
+    Departments eDepartment;
 
 
 }

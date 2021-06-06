@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -16,29 +17,31 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
-public class UserType implements Serializable {
-    private static final long serialVersionUID = 5203197473190411379L;
+public class Departments implements Serializable {
+    private static final long serialVersionUID = 8216668784100856052L;
 
 
     //fields
 
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
-            name = "UserType_sequence", //names the table in the database
-            sequenceName = "UserType_sequence", // sequence name
+            name = "Departments_sequence", //names the table in the database
+            sequenceName = "Departments_sequence", // sequence name
             allocationSize = 1 // incriment by 1
     )
     @GeneratedValue(//tells what value to input
             strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
-            generator = "UserType_sequence" // use sequence name
+            generator = "Departments_sequence" // use sequence name
     )
-    @Column(name = "User_Type_Id")
-    Long userTypeId;
-    @NonNull @NotBlank @Column(unique = true)//cannot be null/blank and must be unique
-    String userTypeName;
-    //joining userType to users table
+    @Column(name = "Departments_Id")
+    Long dId;
+    //cannot be null/blank and must be unique
+    @NonNull @NotBlank @Column(unique = true)
+    String dName;
+    //joining employees to departments table
     @ToString.Exclude
-    @OneToMany(mappedBy = "uUserType",fetch = FetchType.LAZY)
-    List<Users> userTypeToUsers;
+    @OneToMany(mappedBy = "eDepartment", fetch = FetchType.LAZY)
+    List<Employees> dEmployees;
+
 
 }

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +20,8 @@ import java.time.LocalDate;
 @Entity //database
 @Component //spring boot component
 public class Inventory implements Serializable {
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 9112337966959229253L;
+
 
     //fields
 
@@ -31,18 +35,23 @@ public class Inventory implements Serializable {
             strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
             generator = "Inventory_sequence" // use sequence name
     )
+    @Column(name = "Inventory_Id")
     Long iId;
+    //cannot be null/blank and must be unique
+    @NonNull @NotBlank @Column(unique = true)
     //cannot be null/blank
-    @NonNull @NotBlank
     String iLocation;
     @NonNull @NotBlank
     String iDescription;
     @NonNull @NotBlank
     int iQuantity;
+    //joining inventory to group table
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Inv_Group_Id")
+    InventoryGroup iInventoryGroup;
     @NonNull @NotBlank
-    String iInventoryGroup;
-    @NonNull @NotBlank
-    LocalDate iDateReceived;
+    Date iDateReceived;
 
 
 
