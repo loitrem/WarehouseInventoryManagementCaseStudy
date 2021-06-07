@@ -16,26 +16,27 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
-public class Status implements Serializable {
-    private static final long serialVersionUID = -2698976041882598361L;
+public class Permissions implements Serializable {
+    private static final long serialVersionUID = 5634285645092880262L;
 
     //fields
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
-            name = "Status_sequence", //names the table in the database
-            sequenceName = "Status_sequence", // sequence name
+            name = "Permissions_sequence", //names the table in the database
+            sequenceName = "Permissions_sequence", // sequence name
             allocationSize = 1 // incriment by 1
     )
     @GeneratedValue(//tells what value to input
             strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
-            generator = "Status_sequence" // use sequence name
+            generator = "Permissions_sequence" // use sequence name
     )
-    @Column(name = "Status_Id")
-    Long sId;
-    String status;
-    //joining status to inventory table
+    @Column(name = "Permissions_Id")
+    Long pId;
+    @NonNull @NotBlank
+    String pName;
+    //joining permissions to userType table
     @ToString.Exclude
-    @OneToOne(mappedBy = "iStatus",fetch = FetchType.LAZY)
-    Inventory inv_Status;
+    @OneToMany(mappedBy = "userTypePermissions", fetch = FetchType.LAZY)
+    List<UserType> Permissions;
 
 }

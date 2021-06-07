@@ -38,5 +38,10 @@ public class UserType implements Serializable {
     @ToString.Exclude
     @OneToMany(mappedBy = "uUserType",fetch = FetchType.LAZY)
     List<Users> userTypeToUsers;
+    //joining userType to Permissions table
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserType_Permissions")
+    Permissions userTypePermissions;
 
 }
