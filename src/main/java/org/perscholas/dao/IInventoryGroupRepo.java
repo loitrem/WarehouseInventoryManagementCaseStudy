@@ -1,6 +1,5 @@
 package org.perscholas.dao;
 
-import org.perscholas.models.Inventory;
 import org.perscholas.models.InventoryGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
