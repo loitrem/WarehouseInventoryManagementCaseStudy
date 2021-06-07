@@ -18,9 +18,7 @@ import java.util.List;
 public class Users implements Serializable {
     private static final long serialVersionUID = -989715664155322932L;
 
-
     //fields
-
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
             name = "User_sequence", //names the table in the database

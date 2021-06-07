@@ -22,9 +22,7 @@ import java.util.List;
 public class Inventory implements Serializable {
     private static final long serialVersionUID = 9112337966959229253L;
 
-
     //fields
-
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
             name = "Inventory_sequence", //names the table in the database
@@ -52,6 +50,11 @@ public class Inventory implements Serializable {
     InventoryGroup iInventoryGroup;
     @NonNull @NotBlank
     Date iDateReceived;
+    //joining inventory to status table
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Status_Id")
+    List<Status> iStatus;
 
 
 

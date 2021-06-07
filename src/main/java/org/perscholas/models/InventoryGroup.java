@@ -22,7 +22,6 @@ public class InventoryGroup implements Serializable {
     private static final long serialVersionUID = -4628411252883298196L;
 
     //fields
-
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
             name = "InventoryGroup_sequence", //names the table in the database

@@ -20,9 +20,7 @@ import java.util.List;
 public class Departments implements Serializable {
     private static final long serialVersionUID = 8216668784100856052L;
 
-
     //fields
-
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
             name = "Departments_sequence", //names the table in the database

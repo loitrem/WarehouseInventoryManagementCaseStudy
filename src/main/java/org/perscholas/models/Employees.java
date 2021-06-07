@@ -21,9 +21,7 @@ import java.util.List;
 public class Employees implements Serializable {
     private static final long serialVersionUID = 990121599287231165L;
 
-
     //fields
-
     @Id //makes this field the id
     @SequenceGenerator( //creates a sequence
             name = "Employees_sequence", //names the table in the database
