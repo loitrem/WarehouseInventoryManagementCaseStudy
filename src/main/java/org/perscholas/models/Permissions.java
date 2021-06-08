@@ -37,6 +37,6 @@ public class Permissions implements Serializable {
     //joining permissions to userType table
     @ToString.Exclude
     @OneToMany(mappedBy = "userTypePermissions", fetch = FetchType.LAZY)
-    List<UserType> Permissions;
+    List<UserType> pPermissions;
 
 }

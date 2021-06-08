@@ -63,7 +63,7 @@ public class Inventory implements Serializable {
     @JoinColumn(name = "Moved_By_Id")
     Employees iMovedBy;
     @NonNull @NotBlank
-    Date iLastMoved;
+    Date iLastDateMoved;
 
 
 

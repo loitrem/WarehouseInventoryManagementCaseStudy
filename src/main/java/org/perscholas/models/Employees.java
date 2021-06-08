@@ -58,7 +58,7 @@ public class Employees implements Serializable {
     //joining employees to inventory table
     @ToString.Exclude
     @OneToOne(mappedBy = "iMovedBy", fetch = FetchType.LAZY)
-    Inventory eInventoryMoved;
+    Inventory eInventoryMovedBy;
     //joining employees to departments table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

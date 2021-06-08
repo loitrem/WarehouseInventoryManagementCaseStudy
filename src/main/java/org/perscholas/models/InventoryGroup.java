@@ -36,8 +36,6 @@ public class InventoryGroup implements Serializable {
     Long gId;
     //cannot be null/blank and must be unique
     @NonNull @NotBlank @Column(unique = true)
-    String gCompanyAbbreviation; //to be used as inventory group field in inventory
-    @NonNull @NotBlank @Column(unique = true)
     String gCompanyName;
     //cannot be null/blank
     @NonNull @NotBlank
