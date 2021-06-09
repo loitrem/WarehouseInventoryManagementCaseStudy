@@ -20,10 +20,10 @@ public class InventoryService {
     }
 
     //Display all inventory
-    public List<Inventory> showAllInventory(){ return inventoryRepo.findAll(); }
+    public List<Inventory> findAllInventory(){ return inventoryRepo.findAll(); }
 
     //Find inventory by location
-    public Inventory showByLocation(String location){
+    public Inventory findByLocation(String location){
         if (location!=null) {
             return inventoryRepo.findByiLocation(location);
         }
@@ -31,7 +31,7 @@ public class InventoryService {
     }
 
     //find inventory by date received
-    public Optional<Inventory> showByDateReceived(Date date){
+    public Optional<Inventory> findByDateReceived(Date date){
         if (date!=null){
             Optional<Inventory> inventory = inventoryRepo.findByiDateReceived(date);
         }
@@ -39,7 +39,7 @@ public class InventoryService {
     }
 
     //find inventory by inventory group
-    public Optional<Inventory> showByIventoryGroup(int groupNumber){
+    public Optional<Inventory> findByInventoryGroup(int groupNumber){
         if (groupNumber!=0){
             return inventoryRepo.findByiInventoryGroup(groupNumber);
         }
@@ -47,7 +47,7 @@ public class InventoryService {
     }
 
     //find inventory by status
-    public Optional<Inventory> showByStatus(String status){
+    public Optional<Inventory> findByStatus(String status){
         if (status!=null){
             return inventoryRepo.findByiStatus(status);
         }
@@ -55,7 +55,7 @@ public class InventoryService {
     }
 
     //find inventory by item number
-    public Optional<Inventory> showByItemNumber(int itemNumber){
+    public Optional<Inventory> findByItemNumber(int itemNumber){
         if (itemNumber!=0){
             return inventoryRepo.findByiItemNumber(itemNumber);
         }
