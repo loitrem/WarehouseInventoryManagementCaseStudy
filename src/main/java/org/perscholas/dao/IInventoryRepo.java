@@ -12,6 +12,6 @@ public interface IInventoryRepo extends JpaRepository<Inventory, Long> {
     Inventory findByiLocation(String location);
     Optional<Inventory> findByiDateReceived(Date date);
     Optional<Inventory> findByiInventoryGroup(int group);
-    Optional<Inventory> findByiStatus(int status);
+    Optional<Inventory> findByiStatus(String status);
     Optional<Inventory> findByiItemNumber(int itemNumber);
 }
