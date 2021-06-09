@@ -50,6 +50,7 @@ public class Employees implements Serializable {
     Date eDob;
     @NonNull @NotBlank
     Date eHireDate;
+    String eProfileImage;
     //joining employees to users table
     @ToString.Exclude
     @OneToOne(fetch = FetchType.LAZY)
