@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository //makes this a repository
 public interface IInventoryRepo extends JpaRepository<Inventory, Long> {
-    Optional<Inventory> findByiLocation(String location);
+    Inventory findByiLocation(String location);
     Optional<Inventory> findByiDateReceived(Date date);
     Optional<Inventory> findByiInventoryGroup(int group);
     Optional<Inventory> findByiStatus(int status);
