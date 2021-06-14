@@ -32,10 +32,10 @@ public class Status implements Serializable {
     )
     @Column(name = "Status_Id")
     Long sId;
-    String status;
+    String sStatus;
     //joining status to inventory table
     @ToString.Exclude
     @OneToOne(mappedBy = "iStatus",fetch = FetchType.LAZY)
-    Inventory inv_Status;
+    Inventory sInv_Status;
 
 }

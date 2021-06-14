@@ -24,9 +24,9 @@ public class StatusService {
     }
 
     //find status by id
-    public Optional<Status> findBysId(String name){
-        if (name!=null){
-            return iStatusRepo.findBysName(name);
+    public Optional<Status> findBysId(String status){
+        if (status!=null){
+            return iStatusRepo.findBysStatus(status);
         }
         return Optional.empty();
     }
