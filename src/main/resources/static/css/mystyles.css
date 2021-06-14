@@ -5,3 +5,7 @@
 .form-width {
 width: 250px;
 }
+
+.gradient {
+background: linear-gradient(0deg, rgba(210,222,231,1) 0%, rgba(227,242,253,1) 25%, rgba(227,242,253,1) 75%, rgba(210,222,231,1) 100%);
+}
