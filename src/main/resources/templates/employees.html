@@ -23,14 +23,14 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3> Students </h3>
+    <h3> Employees </h3>
 
     <table class="table table-dark">
         <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col"></th>
+            <th scope="col">Job Title</th>
             <th scope="col"></th>
 
 
@@ -42,8 +42,8 @@
             <td th:text="${emp.eFirstName}"></td>
             <td th:text="${emp.eLastName}"></td>
             <td th:text="${emp.eJobTitle}"></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/edit/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-primary">Edit</button></form></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/delete/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-danger">Remove</button></form></div></td>
+<!--            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/edit/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-primary">Edit</button></form></div></td>-->
+<!--            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/delete/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-danger">Remove</button></form></div></td>-->
 
         </tr>
         </tbody>

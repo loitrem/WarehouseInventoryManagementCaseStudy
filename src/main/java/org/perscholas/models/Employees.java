@@ -6,9 +6,11 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Date;
+
 import java.util.List;
 
 @Getter
@@ -46,9 +48,9 @@ public class Employees implements Serializable {
     //cannot be null/blank and must be unique
     @NonNull @NotBlank @Column(unique = true)
     String eEmail;
-    @NonNull @NotBlank
+    @NonNull @NotNull
     Date eDob;
-    @NonNull @NotBlank
+    @NonNull @NotNull
     Date eHireDate;
     String eProfileImage;
     //joining employees to users table
