@@ -16,7 +16,11 @@ background-color:oldlace;
 }
 
 .form-width {
-width: 250px;
+    width: 250px;
+}
+
+td {
+    padding: 5px;
 }
 
 .gradient {

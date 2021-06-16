@@ -7,10 +7,13 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>
                     <div sec:authorize="isAuthenticated()">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/student/register}">inventory</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/student/register}">Employees</a></li>
                     </div>
                     <div sec:authorize="isAuthenticated()">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/course/registercourse}">employees</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/course/registercourse}">Inventory</a></li>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <li class="nav-item"><a class="nav-link" th:href="@{/course/registercourse}">Inventory Groups</a></li>
                     </div>
                     <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_DEAN')">
                         <li class="nav-item dropdown">
@@ -26,11 +29,6 @@
                     </div>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <div  sec:authorize="isAnonymous()">
-                            <a class="nav-link" th:href="@{/login}">Login</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <div sec:authorize="isAuthenticated()">
                             <a class="nav-link active" aria-current="page" th:href="@{/}">Welcome <span sec:authentication="name"></span></a>

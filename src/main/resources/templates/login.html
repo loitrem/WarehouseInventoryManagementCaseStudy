@@ -34,30 +34,58 @@
                 You have been logged out.
             </div>
             <!-- Login Form -->
+                <form th:action="@{/login/authenticate}" method="post">
+                <table class="shadow form-width bg-white mx-auto mt-3">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2">Login</td>
+                    </tr>
+                    <tr>
+                        <td><label for="username" class="form-label">Username</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="username" class="form-control" id="username"
+                                   aria-describedby="usernamehelp"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password" class="form-label">Password</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="password" class="form-control" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="form-check-label" for="remember">Remember Me</label> <input type="checkbox" class="form-check-input" id="remember"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary">Submit</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
 
-            <form th:action="@{/login/authenticate}" method="post">
-                <div class="mx-auto mt-3 form-width bg-dark center h5 pb-2">
-                    <label class="center text-white">Login</label>
-                </div>
-                <div class="mx-auto form-width">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" id="username"
-                           aria-describedby="usernamehelp">
-                </div>
-                <div class="mx-auto mt-3 form-width">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="password">
-                </div>
-                <div class="form-check mx-auto mt-3 form-width">
-                    <input type="checkbox" class="form-check-input" id="remember">
-                    <label class="form-check-label" for="remember">Remember Me</label>
-                </div>
-                <div class="mx-auto mt-3 form-width">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+                </table>
+<!--                    <form th:action="@{/login/authenticate}" method="post">-->
+<!--                        <div class="mx-auto mt-3 form-title-width bg-dark center h5 pb-2">-->
+<!--                            <label class="center text-white">Login</label>-->
+<!--                        </div>-->
+<!--                        <div class="mx-auto form-width">-->
+<!--                            <label for="username" class="form-label">Username</label>-->
+<!--                            <input type="text" name="username" class="form-control" id="username"-->
+<!--                                   aria-describedby="usernamehelp">-->
+<!--                        </div>-->
+<!--                        <div class="mx-auto mt-3 form-width">-->
+<!--                            <label for="password" class="form-label">Password</label>-->
+<!--                            <input type="password" name="password" class="form-control" id="password">-->
+<!--                        </div>-->
+<!--                        <div class="form-check mx-auto mt-3 form-width">-->
+<!--                            <input type="checkbox" class="form-check-input" id="remember">-->
+<!--                            <label class="form-check-label" for="remember">Remember Me</label>-->
+<!--                        </div>-->
+<!--                        <div class="mx-auto mt-3 mb-1 form-width">-->
+<!--                            <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+                </form>
         </div>
-
     </div>
 </div>
 <!-- Bootstrap core JS-->
