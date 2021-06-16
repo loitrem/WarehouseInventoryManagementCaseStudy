@@ -23,31 +23,6 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3> Students </h3>
-
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="emp : ${employees}">
-
-            <td th:text="${emp.eFirstName}"></td>
-            <td th:text="${emp.eLastName}"></td>
-            <td th:text="${emp.eJobTitle}"></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/edit/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-primary">Edit</button></form></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/delete/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-danger">Remove</button></form></div></td>
-
-        </tr>
-        </tbody>
-    </table>
 </div>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
