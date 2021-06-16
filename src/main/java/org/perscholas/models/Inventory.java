@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
+
 import java.time.LocalDate;
+
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +52,7 @@ public class Inventory implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Inv_Group_Id")
     InventoryGroup iInventoryGroup;
+    @Temporal(TemporalType.DATE)
     @NonNull @NotBlank
     Date iDateReceived;
     //joining inventory to status table
@@ -62,6 +65,7 @@ public class Inventory implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Moved_By_Id")
     Employees iMovedBy;
+    @Temporal(TemporalType.DATE)
     @NonNull @NotBlank
     Date iLastDateMoved;
 

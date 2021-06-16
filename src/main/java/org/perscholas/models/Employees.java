@@ -8,10 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Date;
 
-import java.util.List;
 
 @Getter
 @Setter
@@ -48,8 +46,10 @@ public class Employees implements Serializable {
     //cannot be null/blank and must be unique
     @NonNull @NotBlank @Column(unique = true)
     String eEmail;
+    @Temporal(TemporalType.DATE)
     @NonNull @NotNull
     Date eDob;
+    @Temporal(TemporalType.DATE)
     @NonNull @NotNull
     Date eHireDate;
     String eProfileImage;
@@ -67,6 +67,4 @@ public class Employees implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Departments_Id")
     Departments eDepartment;
-
-
 }
