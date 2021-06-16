@@ -34,4 +34,9 @@ public class EmployeeController {
         model.addAttribute("employees", e);
         return "employees";
     }
+
+    @GetMapping("/profile")
+    public String profile(){
+        return "profile";
+    }
 }

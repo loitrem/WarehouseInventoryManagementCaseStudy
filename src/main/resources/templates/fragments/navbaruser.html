@@ -8,7 +8,7 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>
 <!--                    *********************STANDARD USER MENU********************************-->
                     <div sec:authorize="hasAnyRole('ROLE_USER')">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/employee/}">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/employees/profile}">Profile</a></li>
                     </div>
                     <div sec:authorize="hasAnyRole('ROLE_USER')">
                         <li class="nav-item dropdown">
