@@ -39,7 +39,7 @@ public class EmployeeController {
         model.addAttribute("employees", e);
         return "employees";
     }
-    // yay it works - see i told you all along tom
+
     @GetMapping("/profile/{eId}")
     public String profile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
                           @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,

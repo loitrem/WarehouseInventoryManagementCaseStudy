@@ -26,7 +26,7 @@
             <div class="col">
                 <table class="shadow form-width bg-white mx-auto mt-5">
                     <tr>
-                        <td><img class="rounded-circle shadow" th:src="@{/assets/blank-profile.png}"style="width: 100px; height: 100px;"/>></td>
+                        <td class="mx-auto"><img th:src="@{/assets/blank-profile.png}" class="m-3 rounded-circle shadow profile-pic"/></td>
                     </tr>
                     <tr>
                         <td>image here</td>
@@ -34,39 +34,38 @@
                 </table>
             </div>
             <div class="col">
-                <table class="shadow form-width bg-white mx-auto mt-5 border1">
+                <table class="shadow bg-white mx-auto mt-5 border border-5 border-white">
                     <tr>
-                        <td class="fw-bold">Name:</td>
+                        <td class="fw-bold">First Name:</td>
                         <td th:text="${emp.eFirstName}"></td>
-                        <td th:text="${emp.eLastName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Last Name:</td>
+                        <td class="" th:text="${emp.eLastName}"></td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Date of Birth:</td>
-                        <td th:text="${emp.eDob}" colspan="2"></td>
+                        <td class="" th:text="${emp.eDob}"></td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Phone:</td>
-                        <td th:text="${emp.ePhoneNumber}" colspan="2"></td>
+                        <td class="" th:text="${emp.ePhoneNumber}"></td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Email:</td>
-                        <td th:text="${emp.eEmail}" colspan="2"></td>
+                        <td class="" th:text="${emp.eEmail}"></td>
                     </tr>
-                </table>
-            </div>
-            <div class="col">
-                <table class="shadow form-width bg-white mx-auto mt-5">
                     <tr>
                         <td class="fw-bold">Hire Date:</td>
-                        <td th:text="${emp.eHireDate}"></td>
+                        <td class="" th:text="${emp.eHireDate}"></td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Job Title:</td>
-                        <td th:text="${emp.eJobTitle}" colspan="2"></td>
+                        <td class="" th:text="${emp.eJobTitle}"></td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Department:</td>
-                        <td th:text="${dept.dName}" colspan="2"></td>
+                        <td class="" th:text="${dept.dName}"></td>
                     </tr>
                 </table>
             </div>
