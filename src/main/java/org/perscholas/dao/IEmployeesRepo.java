@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository //makes this a repository
 public interface IEmployeesRepo extends JpaRepository<Employees, Long> {
-    Optional<Employees> findByeId(int id);
+    Employees findByeId(Long id);
     Optional<Employees> findByeJobTitle(String title);
 
 }

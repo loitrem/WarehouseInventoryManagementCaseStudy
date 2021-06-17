@@ -24,7 +24,7 @@ public class PermissionsService {
     }
 
     //find permissions by id
-    public Optional<Permissions> findBypId(int id){
+    public Optional<Permissions> findBypId(Long id){
         if (id != 0){
             return iPermissionsRepo.findBypId(id);
         }

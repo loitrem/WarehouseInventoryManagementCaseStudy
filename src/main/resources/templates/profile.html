@@ -13,42 +13,65 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Bare - Start Bootstrap Template</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/styles.css" rel="stylesheet" />
-    <link href="../css/mystyles.css" rel="stylesheet"/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"  />
+    <link th:rel="stylesheet" th:href="@{/css/mystyles.css}" />
 </head>
 <body class="mx-auto">
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <div class="container">
         <div class="row">
             <div class="col">
-                <table>
+                <table class="shadow form-width bg-white mx-auto mt-5">
+                    <tr>
+                        <td>image here</td>
+                    </tr>
                     <tr>
                         <td>image here</td>
                     </tr>
                 </table>
             </div>
             <div class="col">
-                <table>
+                <table class="shadow form-width bg-white mx-auto mt-5">
                     <tr>
-                        <td>editable info here</td>
+                        <td class="fw-bold">Name:</td>
+                        <td th:text="${emp.eFirstName}"></td>
+                        <td th:text="${emp.eLastName}"></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Date of Birth:</td>
+                        <td th:text="${emp.eDob}" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Phone:</td>
+                        <td th:text="${emp.ePhoneNumber}" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Email:</td>
+                        <td th:text="${emp.eEmail}" colspan="2"></td>
                     </tr>
                 </table>
             </div>
             <div class="col">
-                <table>
+                <table class="shadow form-width bg-white mx-auto mt-5">
                     <tr>
-                        <td>non editable info here</td>
+                        <td class="fw-bold">Hire Date:</td>
+                        <td th:text="${emp.eHireDate}"></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Job Title:</td>
+                        <td th:text="${emp.eJobTitle}" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Department:</td>
+                        <td th:text="${dept.dName}" colspan="2"></td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-</div>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <!-- Core theme JS-->

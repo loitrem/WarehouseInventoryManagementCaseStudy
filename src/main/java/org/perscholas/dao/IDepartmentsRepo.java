@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository //makes this a repository
 public interface IDepartmentsRepo extends JpaRepository<Departments, Long> {
-    Optional<Departments> findBydId(int id);
+    Optional<Departments> findBydId(Long id);
 }

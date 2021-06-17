@@ -1,6 +1,8 @@
 package org.perscholas.controllers;
 
+import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
+import org.perscholas.services.DepartmentService;
 import org.perscholas.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
@@ -18,10 +21,12 @@ import java.util.List;
 public class EmployeeController {
 
     EmployeeService employeeService;
+    DepartmentService departmentService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, DepartmentService departmentService) {
         this.employeeService = employeeService;
+        this.departmentService = departmentService;
     }
 
     @ModelAttribute("employees")
@@ -34,9 +39,16 @@ public class EmployeeController {
         model.addAttribute("employees", e);
         return "employees";
     }
+    // yay it works - see i told you all along tom
+    @GetMapping("/profile/{eId}")
+    public String profile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
+                          @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,
+                          @PathVariable("eId") Long id){
 
-    @GetMapping("/profile")
-    public String profile(){
+        Employees e = employeeService.findById(id);
+        Departments d = e.getEDepartment();
+        model.addAttribute("emp", e);
+        model2.addAttribute("dept", d);
         return "profile";
     }
 }

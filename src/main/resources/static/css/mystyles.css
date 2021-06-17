@@ -5,6 +5,13 @@ background-color:oldlace;
 .carousel-bg {
     background-color: rgb(49, 49, 49);
 }
+.top {
+    align-content: flex-start;
+}
+
+.border {
+    border: 1px solid black;
+}
 
 .center {
     text-align: center;

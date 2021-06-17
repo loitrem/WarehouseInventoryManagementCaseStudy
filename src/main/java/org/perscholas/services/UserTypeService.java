@@ -22,7 +22,7 @@ public class UserTypeService {
     public List<UserType> findAllUserTypes(){ return iUserTypeRepo.findAll(); }
 
     //find user types by id
-    public Optional<UserType> findByuserTypeId(int id){
+    public Optional<UserType> findByuserTypeId(Long id){
         if (id != 0){
             return iUserTypeRepo.findByuserTypeId(id);
         }

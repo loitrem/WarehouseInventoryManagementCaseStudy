@@ -24,11 +24,11 @@ public class EmployeeService {
     }
 
     //find employees by id
-    public Optional<Employees> findById(int id){
+    public Employees findById(Long id){
         if (id != 0){
             return iEmployeesRepo.findByeId(id);
         }
-        return Optional.empty();
+        return null;
     }
 
     //find employees by job title

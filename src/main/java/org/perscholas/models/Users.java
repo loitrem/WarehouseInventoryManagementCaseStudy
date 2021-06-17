@@ -38,7 +38,7 @@ public class Users implements Serializable {
     //joining users to userType table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_Type_Id")
+    @JoinColumn(name = "User_Type")
     UserType uUserType;
     //joining users to employees table
     @ToString.Exclude

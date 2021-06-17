@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository //makes this a repository
 public interface IInventoryGroupRepo extends JpaRepository<InventoryGroup, Long> {
-    Optional<InventoryGroup> findBygId(int id);
+    Optional<InventoryGroup> findBygId(Long id);
     Optional<InventoryGroup> findBygCompanyName(String companyName);
 }

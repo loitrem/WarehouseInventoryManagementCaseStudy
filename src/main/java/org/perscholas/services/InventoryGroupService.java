@@ -25,7 +25,7 @@ public class InventoryGroupService {
     }
 
     //find inventory group by id
-    public Optional<InventoryGroup> findById(int id){
+    public Optional<InventoryGroup> findById(Long id){
         if (id != 0){
             return iInventoryGroupRepo.findBygId(id);
         }

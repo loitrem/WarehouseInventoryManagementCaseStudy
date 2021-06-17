@@ -24,7 +24,7 @@ public class DepartmentService {
     }
 
     //find department by id
-    public Optional<Departments> findById(int id){
+    public Optional<Departments> findById(Long id){
         if (id!=0){
             return iDepartmentsRepo.findBydId(id);
         }

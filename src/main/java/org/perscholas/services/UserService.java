@@ -1,6 +1,7 @@
 package org.perscholas.services;
 
 import org.perscholas.dao.IUserRepo;
+import org.perscholas.models.UserType;
 import org.perscholas.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class UserService {
     public List<Users> findAllUsers(){ return iUserRepo.findAll(); }
 
     //find users by id
-    public Optional<Users> findById(int id){
+    public Optional<Users> findById(Long id){
         if (id != 0){
             return iUserRepo.findByuId(id);
         }
@@ -38,8 +39,8 @@ public class UserService {
     }
 
     //find users by usertype
-    public Optional<Users> findByuUserType(int userType){
-        if (userType != 0){
+    public Optional<Users> findByuUserType(UserType userType){
+        if (userType!= null){
             return iUserRepo.findByuUserType(userType);
         }
         return Optional.empty();
