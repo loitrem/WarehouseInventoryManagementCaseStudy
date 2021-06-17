@@ -15,7 +15,6 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
