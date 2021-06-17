@@ -15,6 +15,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
@@ -67,4 +68,6 @@ public class Employees implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Departments_Id")
     Departments eDepartment;
+
+
 }
