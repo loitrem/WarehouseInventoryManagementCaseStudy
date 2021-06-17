@@ -26,15 +26,21 @@
             <div class="col">
                 <table class="shadow form-width bg-white mx-auto mt-5">
                     <tr>
+                        <td class="center bg-dark text-white fw-bold">Profile Picture</td>
+                    </tr>
+                    <tr>
                         <td class="mx-auto"><img th:src="@{/assets/blank-profile.png}" class="m-3 rounded-circle shadow profile-pic"/></td>
                     </tr>
                     <tr>
-                        <td>image here</td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
             <div class="col">
-                <table class="shadow bg-white mx-auto mt-5 border border-5 border-white">
+                <table class="shadow bg-white mx-auto mt-5" style="width: 325px;">
+                    <tr>
+                        <td class="center bg-dark text-white fw-bold" colspan="2">Personal Information</td>
+                    </tr>
                     <tr>
                         <td class="fw-bold">First Name:</td>
                         <td th:text="${emp.eFirstName}"></td>

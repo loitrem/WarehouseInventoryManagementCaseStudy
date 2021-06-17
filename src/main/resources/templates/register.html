@@ -34,10 +34,18 @@
                 You have been logged out.
             </div>
             <!-- Login Form -->
-                <form th:action="@{/login/authenticate}" method="post">
+            <form th:action="@{/login/authenticate}" method="post">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Login</td>
+                        <td class="bg-dark center h5 text-white pb-2">Register</td>
+                    </tr>
+                    <tr>
+                        <td><label for="name" class="form-label">Name</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select" id="name">
+                            <option th:each="emp : ${employees}" th:value="${emp.eFirstName} + ' ' + ${emp.eLastName}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td><label for="username" class="form-label">Username</label></td>
@@ -53,7 +61,10 @@
                         <td><input type="password" name="password" class="form-control" id="password"></td>
                     </tr>
                     <tr>
-                        <td><label class="form-check-label" for="remember">Remember Me</label> <input type="checkbox" class="form-check-input" id="remember"></td>
+                        <td><label for="password2" class="form-label">Re-Enter Password</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="password2" class="form-control" id="password2"></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary">Submit</button></td>
@@ -63,7 +74,7 @@
                     </tr>
 
                 </table>
-                </form>
+            </form>
         </div>
     </div>
 </div>
@@ -73,4 +84,3 @@
 <script src="../js/scripts.js"></script>
 </body>
 </html>
-
