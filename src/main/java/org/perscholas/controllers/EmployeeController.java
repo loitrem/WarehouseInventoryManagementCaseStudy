@@ -62,10 +62,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/employeesearch")
-            public String employeeSearch(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model){
+            public String employeeSearch(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model,
+                                         @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2){
 
             List<Employees> e = employeeService.findAllEmployees();
+            List<Departments> d = departmentService.findAllDepartments();
             model.addAttribute("employees", e);
+            model2.addAttribute("departments", d);
         return "employeesearch";
 }
 }

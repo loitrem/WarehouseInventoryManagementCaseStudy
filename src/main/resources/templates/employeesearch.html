@@ -32,16 +32,12 @@
                         <td class="bg-dark center h5 text-white pb-2">Find By Name</td>
                     </tr>
                     <tr>
-                        <td><label for="fname" class="form-label">First Name</label></td>
+                        <td><label for="name" class="form-label">Name</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="fname" class="form-control" id="fname"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="lname" class="form-label">Last Name</label></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="lname" class="form-control" id="lname"></td>
+                        <td><select class="form-select" id="name">
+                            <option th:each="emp : ${employees}" th:value="${emp.eFirstName} + ' ' + ${emp.eLastName}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary">Search</button></td>
@@ -58,13 +54,15 @@
             <form th:action="@{/employees/employeebyemail}" method="post">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Email</td>
+                        <td class="bg-dark center h5 text-white pb-2">Find By Job Title</td>
                     </tr>
                     <tr>
-                        <td><label for="email" class="form-label">Email</label></td>
+                        <td><label for="title" class="form-label">Email</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="email" class="form-control" id="email"></td>
+                        <td><select class="form-select" id="title">
+                            <option th:each="emp : ${employees}" th:value="${emp.eJobTitle}" th:text="${emp.eJobTitle}"></option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary">Search</button></td>
@@ -88,7 +86,7 @@
                     </tr>
                     <tr>
                         <td><select class="form-select" id="dept">
-                            <option th:each="dept : ${department}" th:value="${dept.dName}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
+                            <option th:each="dept : ${departments}" th:value="${dept.dName}" th:text="${dept.dName}"></option>
                         </select></td>
                     </tr>
                     <tr>
