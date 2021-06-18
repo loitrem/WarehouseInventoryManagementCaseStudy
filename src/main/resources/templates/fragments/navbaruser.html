@@ -8,7 +8,7 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>
 <!--                    *********************STANDARD USER MENU********************************-->
                     <div sec:authorize="hasAnyRole('ROLE_USER')">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/employees/profile/1}">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/employees/userprofile/1}">Profile</a></li>
                     </div>
                     <div sec:authorize="hasAnyRole('ROLE_USER')">
                         <li class="nav-item dropdown">
@@ -37,10 +37,7 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdownEmployees" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employees</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownEmployees">
                                 <li><a class="dropdown-item" th:href="@{/employees/showemployees}">Show All Employees</a></li>
-                                <li><a class="dropdown-item" th:href="@{/console/showcourses}">Find Employee</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Get Student By Email</a></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Get Student Courses</a></li>
+                                <li><a class="dropdown-item" th:href="@{/employees/employeesearch}">Search Employees</a></li>
                             </ul>
                         </li>
                     </div>

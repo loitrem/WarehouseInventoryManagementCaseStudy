@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -40,7 +37,19 @@ public class EmployeeController {
         return "employees";
     }
 
-    @GetMapping("/profile/{eId}")
+    @GetMapping("/userprofile/{eId}")
+    public String userProfile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
+                          @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,
+                          @PathVariable("eId") Long id){
+
+        Employees e = employeeService.findById(id);
+        Departments d = e.getEDepartment();
+        model.addAttribute("emp", e);
+        model2.addAttribute("dept", d);
+        return "profile";
+    }
+
+    @PostMapping("/profile/{eId}")
     public String profile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
                           @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,
                           @PathVariable("eId") Long id){
@@ -51,4 +60,12 @@ public class EmployeeController {
         model2.addAttribute("dept", d);
         return "profile";
     }
+
+    @GetMapping("/employeesearch")
+            public String employeeSearch(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model){
+
+            List<Employees> e = employeeService.findAllEmployees();
+            model.addAttribute("employees", e);
+        return "employeesearch";
+}
 }
