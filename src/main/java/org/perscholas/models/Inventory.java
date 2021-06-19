@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -41,11 +42,11 @@ public class Inventory implements Serializable {
     @NonNull @NotBlank @Column(unique = true)
     //cannot be null/blank
     String iLocation;
-    @NonNull @NotBlank
+    @NonNull @NotNull
     int iItemNumber;
     @NonNull @NotBlank
     String iDescription;
-    @NonNull @NotBlank
+    @NonNull @NotNull
     int iQuantity;
     //joining inventory to group table
     @ToString.Exclude

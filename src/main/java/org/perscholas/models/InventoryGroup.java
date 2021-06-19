@@ -47,8 +47,10 @@ public class InventoryGroup implements Serializable {
     @NonNull @NotBlank @Column(unique = true)
     String gContactPhone;
     @NonNull @NotBlank
+    @Temporal(TemporalType.DATE)
     Date gContractStartDate;
     @NonNull @NotBlank
+    @Temporal(TemporalType.DATE)
     Date gContractEndDate;
     //joining group to inventory table
     @ToString.Exclude
