@@ -30,7 +30,7 @@ public class InventoryController {
     public Inventory initInventory(){ return new Inventory(); }
 
     @GetMapping("/showinventory")
-    public String showInventory(@ModelAttribute("inventory") @Valid Employees employees, BindingResult result, Model model){
+    public String showInventory(Model model){
 
         List<Inventory> i = inventoryService.findAllInventory();
         model.addAttribute("inventory", i);

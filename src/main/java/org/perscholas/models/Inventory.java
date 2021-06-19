@@ -54,7 +54,7 @@ public class Inventory implements Serializable {
     @JoinColumn(name = "Inv_Group_Id")
     InventoryGroup iInventoryGroup;
     @Temporal(TemporalType.DATE)
-    @NonNull @NotBlank
+    @NonNull @NotNull
     Date iDateReceived;
     //joining inventory to status table
     @ToString.Exclude
@@ -67,7 +67,7 @@ public class Inventory implements Serializable {
     @JoinColumn(name = "Moved_By_Id")
     Employees iMovedBy;
     @Temporal(TemporalType.DATE)
-    @NonNull @NotBlank
+    @NonNull @NotNull
     Date iLastDateMoved;
 
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -46,10 +47,10 @@ public class InventoryGroup implements Serializable {
     String gContactEmail;
     @NonNull @NotBlank @Column(unique = true)
     String gContactPhone;
-    @NonNull @NotBlank
+    @NonNull @NotNull
     @Temporal(TemporalType.DATE)
     Date gContractStartDate;
-    @NonNull @NotBlank
+    @NonNull @NotNull
     @Temporal(TemporalType.DATE)
     Date gContractEndDate;
     //joining group to inventory table
