@@ -29,14 +29,158 @@
             <form th:action="@{/employees/employeebyname}" method="post">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Name</td>
+                        <td class="bg-dark center h5 text-white pb-2">Find By Item Number</td>
                     </tr>
                     <tr>
-                        <td><label for="name" class="form-label">Name</label></td>
+                        <td><label for="number" class="form-label">Item Number</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="name">
-                            <option th:each="emp : ${employees}" th:value="${emp.eFirstName} + ' ' + ${emp.eLastName}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
+                        <td><select class="form-select" id="number">
+                            <option th:each="inv : ${inventory}" th:value="${inv.iItemNumber}" th:text="${inv.iItemNumber}"></option>
                         </select></td>
                     </tr>
                     <tr>
+                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/employees/employeebyemail}" method="post">
+                <table class="shadow form-width bg-white mx-auto mt-3">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2">Find By Item Description</td>
+                    </tr>
+                    <tr>
+                        <td><label for="desc" class="form-label">Item Description</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select" id="desc">
+                            <option th:each="inv : ${inventory}" th:value="${inv.iDescription}" th:text="${inv.iDescription}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/employees/employeebyname}" method="post">
+                <table class="shadow form-width bg-white mx-auto mt-3">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2">Find By Status</td>
+                    </tr>
+                    <tr>
+                        <td><label for="status" class="form-label">Status</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select" id="status">
+                            <option th:each="inv : ${inventory}" th:value="${inv.iStatus.sStatus}" th:text="${inv.iStatus.sStatus}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/employees/employeebyname}" method="post">
+                <table class="shadow form-width bg-white mx-auto mt-3">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2">Find By Location</td>
+                    </tr>
+                    <tr>
+                        <td><label for="location" class="form-label">location</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select" id="location">
+                            <option th:each="inv : ${inventory}" th:value="${inv.iLocation}" th:text="${inv.iLocation}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/employees/employeebyemail}" method="post">
+                <table class="shadow form-width bg-white mx-auto mt-3">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2">Find By Date Received</td>
+                    </tr>
+                    <tr>
+                        <td><label for="received" class="form-label">Date Received</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select" id="received">
+                            <option th:each="inv : ${inventory}" th:value="${inv.iDateReceived}" th:text="${inv.iDateReceived}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/employees/employeebyname}" method="post">
+                <table class="shadow form-width bg-white mx-auto mt-3">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2">Find By Inventory Group</td>
+                    </tr>
+                    <tr>
+                        <td><label for="group" class="form-label">Inventory Group</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select" id="group">
+                            <option th:each="invgroup : ${inventorygroup}" th:value="${invgroup.gCompanyName}" th:text="${invgroup.gCompanyName}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>

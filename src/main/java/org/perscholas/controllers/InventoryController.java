@@ -3,8 +3,10 @@ package org.perscholas.controllers;
 import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
 import org.perscholas.models.Inventory;
+import org.perscholas.models.InventoryGroup;
 import org.perscholas.services.DepartmentService;
 import org.perscholas.services.EmployeeService;
+import org.perscholas.services.InventoryGroupService;
 import org.perscholas.services.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,12 @@ import java.util.List;
 public class InventoryController {
 
     InventoryService inventoryService;
+    InventoryGroupService inventoryGroupService;
 
     @Autowired
-    public InventoryController(InventoryService inventoryService) {
+    public InventoryController(InventoryService inventoryService, InventoryGroupService inventoryGroupService) {
         this.inventoryService = inventoryService;
+        this.inventoryGroupService = inventoryGroupService;
     }
 
     @ModelAttribute("inventory")
@@ -61,14 +65,13 @@ public class InventoryController {
 //        return "profile";
 //    }
 //
-//    @GetMapping("/employeesearch")
-//    public String employeeSearch(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model,
-//                                 @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2){
-//
-//        List<Employees> e = employeeService.findAllEmployees();
-//        List<Departments> d = departmentService.findAllDepartments();
-//        model.addAttribute("employees", e);
-//        model2.addAttribute("departments", d);
-//        return "employeesearch";
-//    }
+    @GetMapping("/inventorysearch")
+    public String inventorySearch(Model model, Model model2){
+
+        List<Inventory> i = inventoryService.findAllInventory();
+        List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+        model.addAttribute("inventory", i);
+        model2.addAttribute("inventorygroup", ig);
+        return "inventorysearch";
+    }
 }
