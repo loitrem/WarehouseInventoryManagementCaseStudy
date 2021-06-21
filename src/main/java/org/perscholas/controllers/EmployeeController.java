@@ -90,7 +90,6 @@ public class EmployeeController {
 
     @PostMapping("/employeebytitle")
     public String employeeByJobTitle(Model model, @RequestParam("title") String title){
-        System.out.println(title + "**************************************************************************************************************************");
         List<Employees> e = employeeService.findByeJobTitle(title);
         model.addAttribute("employees", e);
 

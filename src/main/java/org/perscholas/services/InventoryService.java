@@ -39,11 +39,11 @@ public class InventoryService {
     }
 
     //find inventory by date received
-    public Optional<Inventory> findByDateReceived(Date date){
-        if (date!=null){
-            Optional<Inventory> inventory = inventoryRepo.findByiDateReceived(date);
+    public List<Inventory> findByDescription(String description){
+        if (description!=null){
+            return inventoryRepo.findByiDescription(description);
         }
-        return Optional.empty();
+        return null;
     }
 
     //find inventory by inventory group
@@ -63,10 +63,10 @@ public class InventoryService {
     }
 
     //find inventory by item number
-    public Optional<Inventory> findByItemNumber(int itemNumber){
-        if (itemNumber!=0){
+    public List<Inventory> findByItemNumber(String itemNumber){
+        if (itemNumber!=null){
             return inventoryRepo.findByiItemNumber(itemNumber);
         }
-        return Optional.empty();
+        return null;
     }
 }

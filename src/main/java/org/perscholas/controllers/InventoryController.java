@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("inventory")
@@ -72,5 +73,21 @@ public class InventoryController {
         model.addAttribute("inv", i);
 
         return "inventory";
+    }
+
+    @PostMapping("/showinventoryitemnumber")
+    public String findByItemNumber(Model model, @RequestParam("number") String itemNumber){
+
+        List<Inventory> i = inventoryService.findByItemNumber(itemNumber);
+        model.addAttribute("inventory", i);
+        return "showinventory";
+    }
+
+    @PostMapping("/showinventorydesc")
+    public String findByDescription(Model model, @RequestParam("desc") String desc){
+        System.out.println(desc + "******************************************************************************************");
+        List<Inventory> i = inventoryService.findByDescription(desc);
+        model.addAttribute("inventory", i);
+        return "showinventory";
     }
 }

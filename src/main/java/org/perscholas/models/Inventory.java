@@ -43,7 +43,7 @@ public class Inventory implements Serializable {
     //cannot be null/blank
     String iLocation;
     @NonNull @NotNull
-    int iItemNumber;
+    String iItemNumber;
     @NonNull @NotBlank
     String iDescription;
     @NonNull @NotNull
