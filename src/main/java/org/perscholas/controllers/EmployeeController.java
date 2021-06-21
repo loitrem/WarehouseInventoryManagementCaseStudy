@@ -2,6 +2,7 @@ package org.perscholas.controllers;
 
 import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
+import org.perscholas.services.DateService;
 import org.perscholas.services.DepartmentService;
 import org.perscholas.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,13 @@ public class EmployeeController {
 
     EmployeeService employeeService;
     DepartmentService departmentService;
+    DateService dateService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService, DepartmentService departmentService) {
+    public EmployeeController(EmployeeService employeeService, DepartmentService departmentService, DateService dateService) {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
+        this.dateService = dateService;
     }
 
     @ModelAttribute("employees")
@@ -118,11 +121,15 @@ public class EmployeeController {
                               @RequestParam("title") String jobTitle,
                               @RequestParam("dept") Departments dept){
         //ask jafer about this
-        LocalDate birth = LocalDate.parse(dob);
-        Date birthDate = Date.from(birth.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        LocalDate hire = LocalDate.parse(hireDate);
-        Date hireD = Date.from(hire.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        employeeService.updateEmployees(id, fname, lname, birthDate, phone, email, hireD, jobTitle, dept);
+//        LocalDate birth = LocalDate.parse(dob);
+//        Date birthDate = Date.from(birth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//        LocalDate hire = LocalDate.parse(hireDate);
+//        Date hireD = Date.from(hire.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        //converts from string to Date
+        Date hire = dateService.changeToDate(hireDate);
+        Date birth = dateService.changeToDate(dob);
+        employeeService.updateEmployees(id, fname, lname, birth, phone, email, hire, jobTitle, dept);
 
         return"employeesaved";
     }
