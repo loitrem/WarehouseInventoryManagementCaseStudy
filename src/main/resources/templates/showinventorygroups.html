@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bare - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/styles.css" rel="stylesheet" />
+    <link href="../css/mystyles.css" rel="stylesheet"/>
+</head>
+<body class="mx-auto">
+<div th:replace="fragments/navbaruser"></div>
+<!-- Page content-->
+<div class="container">
+    <h3> Inventory </h3>
+
+    <table class="table table-dark table-striped table-hover fs-4">
+        <thead>
+        <tr>
+            <th scope="col">Company Name</th>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Contact Email</th>
+            <th scope="col">Contact Phone</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ig : ${inventorygroups}">
+
+            <td th:text="${ig.gCompanyName}"></td>
+            <td th:text="${ig.gContactFirstName} + ' ' + ${ig.gContactLastName}"></td>
+            <td th:text="${ig.gContactEmail}"></td>
+            <td th:text="${ig.gContactPhone}"></td>
+
+            <td><form th:action="@{'/inventorygroups/' + ${ig.gId}}" method="post"><button type="submit" class="btn btn-success">View</button></form></td>
+            <!--            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/edit/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-primary">Edit</button></form></div></td>-->
+            <!--            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/delete/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-danger">Remove</button></form></div></td>-->
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>

@@ -23,24 +23,24 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <div class="row">
+    <div class="row row-cols-2">
         <div class="col">
             <!-- Search Form -->
             <form th:action="@{/employees/employeebyname}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
+                <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Name</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Name</td>
                     </tr>
                     <tr>
-                        <td><label for="id" class="form-label">Name</label></td>
+                        <td><label for="id" class="form-label fs-4">Name</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="id" name="id">
+                        <td><select class="form-select fs-4" id="id" name="id">
                             <option th:each="emp : ${employees}" th:value=${emp.eId} th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
                         </select></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -52,18 +52,18 @@
         <div class="col">
             <!-- Search Form -->
             <form th:action="@{/employees/employeebytitle}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
+                <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Job Title</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Job Title</td>
                     </tr>
                     <tr>
-                        <td><label for="title" class="form-label">Job Title</label></td>
+                        <td><label for="title" class="form-label fs-4">Job Title</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="title" class="form-control" id="title"></td>
+                        <td><input type="text" name="title" class="form-control fs-4" id="title"></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -75,20 +75,20 @@
         <div class="col">
             <!-- Search Form -->
             <form th:action="@{/employees/employeebydept}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
+                <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Department</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Department</td>
                     </tr>
                     <tr>
-                        <td><label for="dept" class="form-label">Department Name</label></td>
+                        <td><label for="dept" class="form-label fs-4">Department Name</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="dept" name="dept">
+                        <td><select class="form-select fs-4" id="dept" name="dept">
                             <option th:each="dept : ${departments}" th:value="${dept.dId}" th:text="${dept.dName}"></option>
                         </select></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
                         <td></td>

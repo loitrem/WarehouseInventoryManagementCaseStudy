@@ -23,22 +23,22 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <div class="row">
+    <div class="row row-cols-2">
         <div class="col">
             <!-- Search Form -->
             <form th:action="@{/inventory/showinventoryitemnumber}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
+                <table class="shadow w-75 bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Item Number</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Item Number</td>
                     </tr>
                     <tr>
-                        <td><label for="number" class="form-label">Item Number</label></td>
+                        <td><label for="number" class="form-label fs-4">Item Number</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="number" class="form-control" id="number"></td>
+                        <td><input type="text" name="number" class="form-control fs-4" id="number"></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -50,18 +50,18 @@
         <div class="col">
             <!-- Search Form -->
             <form th:action="@{/inventory/showinventorydesc}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
+                <table class="shadow w-75 bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Item Description</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Item Description</td>
                     </tr>
                     <tr>
-                        <td><label for="desc" class="form-label">Item Description</label></td>
+                        <td><label for="desc" class="form-label fs-4">Item Description</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="desc" class="form-control" id="desc"></td>
+                        <td><input type="text" name="desc" class="form-control fs-4" id="desc"></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -73,22 +73,22 @@
         <div class="col">
             <!-- Search Form -->
             <form th:action="@{/inventory/showinventorystatus}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
+                <table class="shadow w-75 bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Status</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Status</td>
                     </tr>
                     <tr>
-                        <td><label for="status" class="form-label">Status</label></td>
+                        <td><label for="status" class="form-label fs-4">Status</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="status" name="status">
+                        <td><select class="form-select fs-4" id="status" name="status">
                                 <option value="Received">Received</option>
                                 <option value="In Location">In Location</option>
                                 <option value="Shipped">Shipped</option>
                             </select></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -96,28 +96,24 @@
 
                 </table>
             </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
         </div>
         <div class="col">
             <!-- Search Form -->
             <form th:action="@{/inventory/showinventorygroup}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
+                <table class="shadow w-75 bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Inventory Group</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Inventory Group</td>
                     </tr>
                     <tr>
-                        <td><label for="group" class="form-label">Inventory Group</label></td>
+                        <td><label for="group" class="form-label fs-4">Inventory Group</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="group" name="group">
+                        <td><select class="form-select fs-4" id="group" name="group">
                             <option th:each="invgroup : ${inventorygroup}" th:value="${invgroup.gId}" th:text="${invgroup.gCompanyName}"></option>
                         </select></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -125,10 +121,8 @@
 
                 </table>
             </form>
-        </div>
-        <div class="col">
-        </div>
     </div>
+</div>
 </div>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
