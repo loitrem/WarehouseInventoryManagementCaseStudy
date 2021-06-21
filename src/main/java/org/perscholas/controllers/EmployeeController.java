@@ -1,5 +1,6 @@
 package org.perscholas.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
 import org.perscholas.services.DateService;
@@ -7,6 +8,7 @@ import org.perscholas.services.DepartmentService;
 import org.perscholas.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("employees")
 public class EmployeeController {
 
@@ -54,7 +57,7 @@ public class EmployeeController {
         return "profile";
     }
 
-    @PostMapping("/profile/{eId}")
+    @GetMapping("/profile/{eId}")
     public String profile(Model model, Model model2, @PathVariable("eId") Long id){
 
         Employees e = employeeService.findById(id);
@@ -100,36 +103,56 @@ public class EmployeeController {
         return "showemployees";
     }
 
-    @PostMapping("/employeesedit/{eId}")
+    @GetMapping("/employeesedit/{eId}")
     public String employeesEdit(Model model, Model model2, @PathVariable("eId") Long id){
 
         Employees e = employeeService.findById(id);
         List<Departments> d = departmentService.findAllDepartments();
         model.addAttribute("emp", e);
+        log.warn("object is " + e.toString());
         model2.addAttribute("dept", d);
         return "employeesedit";
     }
 
-    @PostMapping("/employeesave/{eId}")
-    public String editEmployees(@PathVariable("eId") Long id,
-                              @RequestParam("fname") String fname,
-                              @RequestParam("lname") String lname,
-                              @RequestParam("dob") String dob,
-                              @RequestParam("phone") String phone,
-                              @RequestParam("email") String email,
-                              @RequestParam("hire") String hireDate,
-                              @RequestParam("title") String jobTitle,
-                              @RequestParam("dept") Departments dept){
-        //ask jafer about this
-//        LocalDate birth = LocalDate.parse(dob);
-//        Date birthDate = Date.from(birth.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//        LocalDate hire = LocalDate.parse(hireDate);
-//        Date hireD = Date.from(hire.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    @PostMapping("/employeesave")
+    public String editEmployees(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model, @RequestParam("deptId") Long id){
+        log.warn("object in POST " + employees.toString());
+        Departments d = departmentService.findById(id);
+        employees.setEDepartment(d);
+        employeeService.updateEmployees(employees);
 
-        //converts from string to Date
-        Date hire = dateService.changeToDate(hireDate);
-        Date birth = dateService.changeToDate(dob);
-        employeeService.updateEmployees(id, fname, lname, birth, phone, email, hire, jobTitle, dept);
+        return"employeesaved";
+    }
+
+    @GetMapping("/employeesadd")
+    public String showAddEmployees(Model model){
+        model.addAttribute("dept", departmentService.findAllDepartments());
+
+        return"employeesadd";
+    }
+
+    @PostMapping("/employeeadd")
+    public String addEmployees(@RequestParam("fname")String fname,
+                               @RequestParam("lname")String lname,
+                               @RequestParam("dob") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dob,
+                               @RequestParam("phone")String phone,
+                               @RequestParam("email")String email,
+                               @RequestParam("hire") @DateTimeFormat(pattern = "yyyy-MM-dd") Date hireDate,
+                               @RequestParam("title")String jobTitle,
+                               @RequestParam("deptId") Long id){
+        Employees e = new Employees();
+//        Date birth = dateService.changeToDate(dob);
+//        Date hire = dateService.changeToDate(hireDate);
+        Departments d = departmentService.findById(id);
+        e.setEFirstName(fname);
+        e.setELastName(lname);
+        e.setEDob(dob);
+        e.setEPhoneNumber(phone);
+        e.setEEmail(email);
+        e.setEHireDate(hireDate);
+        e.setEJobTitle(jobTitle);
+        e.setEDepartment(d);
+        employeeService.addEmployees(e);
 
         return"employeesaved";
     }

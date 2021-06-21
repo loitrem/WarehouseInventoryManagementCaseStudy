@@ -2,6 +2,7 @@ package org.perscholas.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -13,6 +14,8 @@ import java.util.Date;
 
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -47,9 +50,11 @@ public class Employees implements Serializable {
     @NonNull @NotBlank @Column(unique = true)
     String eEmail;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NonNull @NotNull
     Date eDob;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NonNull @NotNull
     Date eHireDate;
     String eProfileImage;

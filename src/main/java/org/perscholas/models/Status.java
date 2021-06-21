@@ -11,8 +11,10 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
@@ -32,6 +34,7 @@ public class Status implements Serializable {
     )
     @Column(name = "Status_Id")
     Long sId;
+    @NonNull @NotBlank
     String sStatus;
     //joining status to inventory table
     @ToString.Exclude

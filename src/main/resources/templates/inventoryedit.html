@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <div th:replace="fragments/css"></div>
+</head>
+<body class="mx-auto">
+<div th:replace="fragments/navbaruser"></div>
+<!-- Page content-->
+<div class="container">
+    <h3> Employees </h3>
+    <form th:action="@{'/employees/employeesave/' + ${emp.eId}}" method="post">
+        <table class="table table-dark table-striped table-hover fs-4">
+            <tr>
+                <td scope="col">Item Number</td>
+                <td><input type="text" name="item" class="form-control fs-4" id="item" th:value="${inv.iItemNumber}"></td>
+            </tr>
+            <tr>
+                <td scope="col">Item Description</td>
+                <td><input type="text" name="desc" class="form-control fs-4" id="desc" th:value="${inv.iDescription}"></td>
+            </tr>
+            <tr>
+                <td scope="col">Item Location</td>
+                <td><input type="text" name="location" class="form-control fs-4" id="location" th:value="${inv.iLocation}"></td>
+            </tr>
+            <tr>
+                <td scope="col">Item Quantity</td>
+                <td><input type="text" name="qty" class="form-control fs-4" id="qty" th:value="${inv.iQuantity}"></td>
+            </tr>
+            <tr>
+                <td scope="col">Date Received</td>
+                <td><input type="date" name="received" class="form-control fs-4" id="received" th:value="${inv.iDateReceived}"></td>
+            </tr>
+            <tr>
+                <td scope="col">Last Date Moved</td>
+                <td><input type="date" name="moved" class="form-control fs-4" id="moved" th:value="${inv.iLastDateMoved}"></td>
+            </tr>
+            <tr>
+                <td scope="col">Moved By</td>
+                <td><select class="form-select fs-4" id="movedby" name="movedby">
+                    <option th:each="e : ${emp}" th:value="${e.eId}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}" th:selected="${e.eId} == ${inv.iMovedBy.eId}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td scope="col">Inventory Group</td>
+                <td><select class="form-select fs-4" id="invgroup" name="invgroup">
+                    <option th:each="ig : ${invgroup}" th:value="${ig.gId}" th:text="${ig.gCompanyName}" th:selected="${ig.gId} == ${inv.iInventoryGroup.gId}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td scope="col">Inventory Status</td>
+                <td><select class="form-select fs-4" id="status" name="status">
+                    <option th:each="s : ${status}" th:value="${s.sId}" th:text="${s.sStatus}" th:selected="${s.sId} == ${inv.iStatus.sId}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td scope="col"><button type="save" class="btn btn-success">Save</button></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>

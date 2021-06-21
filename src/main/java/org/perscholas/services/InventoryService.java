@@ -1,11 +1,12 @@
 package org.perscholas.services;
 
 import org.perscholas.dao.IInventoryRepo;
-import org.perscholas.models.Inventory;
-import org.perscholas.models.InventoryGroup;
-import org.perscholas.models.Status;
+import org.perscholas.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
@@ -70,5 +71,24 @@ public class InventoryService {
             return inventoryRepo.findByiItemNumber(itemNumber);
         }
         return null;
+    }
+
+    // updates inventory record
+    public void updateInventory(Long id, Date dateReceived, String desc, String item, String location,
+                                int qty, InventoryGroup invGroup, Date dateMoved, Employees movedBy, Status status){
+
+        Inventory i = inventoryRepo.findByiId(id);
+        i.setIDateReceived(dateReceived);
+        i.setIDescription(desc);
+        i.setIItemNumber(item);
+        i.setILocation(location);
+        i.setIQuantity(qty);
+        i.setIInventoryGroup(invGroup);
+        i.setILastDateMoved(dateMoved);
+        i.setIMovedBy(movedBy);
+        i.setIStatus(status);
+
+        inventoryRepo.save(i);
+
     }
 }

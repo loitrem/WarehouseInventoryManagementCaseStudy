@@ -9,10 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("inventory")
@@ -92,4 +89,23 @@ public class InventoryController {
         model.addAttribute("inventory", i);
         return "showinventory";
     }
+
+//    @PostMapping("/inventorysave/{iId}")
+//    public String editEmployees(@PathVariable("iId") Long id,
+//                                @RequestParam("fname") String fname,
+//                                @RequestParam("lname") String lname,
+//                                @RequestParam("dob") String dob,
+//                                @RequestParam("phone") String phone,
+//                                @RequestParam("email") String email,
+//                                @RequestParam("hire") String hireDate,
+//                                @RequestParam("title") String jobTitle,
+//                                @RequestParam("dept") Departments dept){
+//
+//        //converts from string to Date
+//        Date hire = dateService.changeToDate(hireDate);
+//        Date birth = dateService.changeToDate(dob);
+//        employeeService.updateEmployees(id, fname, lname, birth, phone, email, hire, jobTitle, dept);
+//
+//        return"employeesaved";
+//    }
 }

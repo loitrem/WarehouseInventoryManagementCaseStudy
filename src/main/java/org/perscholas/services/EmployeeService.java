@@ -55,19 +55,13 @@ public class EmployeeService {
 
     //edit employees
     @Transactional
-    public void updateEmployees(Long id, String fname, String lname, Date dob, String phone,
-                                String email, Date hireDate, String jobTitle, Departments dept){
-        Employees e = findById(id);
-        e.setEFirstName(fname);
-        e.setELastName(lname);
-        e.setEDob(dob);
-        e.setEPhoneNumber(phone);
-        e.setEEmail(email);
-        e.setEHireDate(hireDate);
-        e.setEJobTitle(jobTitle);
-        e.setEDepartment(dept);
-
+    public void updateEmployees(Employees e){
         iEmployeesRepo.save(e);
+    }
 
+    //add employees
+    @Transactional
+    public void addEmployees(Employees e){
+        iEmployeesRepo.save(e);
     }
 }

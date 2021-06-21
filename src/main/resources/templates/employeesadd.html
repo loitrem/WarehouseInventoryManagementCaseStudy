@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <div th:replace="fragments/css"></div>
+</head>
+<body class="mx-auto">
+<div th:replace="fragments/navbaruser"></div>
+<!-- Page content-->
+<div class="container">
+    <h3> Employees </h3>
+    <form th:action="@{/employees/employeeadd}" method="post">
+        <table class="table table-dark table-striped table-hover fs-4">
+            <tr>
+                <td scope="col">First Name</td>
+                <td><input type="text" name="fname" class="form-control fs-4" id="fname"></td>
+            </tr>
+            <tr>
+                <td scope="col">Last Name</td>
+                <td><input type="text" name="lname" class="form-control fs-4" id="lname"></td>
+            </tr>
+            <tr>
+                <td scope="col">Date of Birth</td>
+                <td><input type="date" name="dob" class="form-control fs-4" id="dob"></td>
+            </tr>
+            <tr>
+                <td scope="col">Phone Number</td>
+                <td><input type="text" name="phone" class="form-control fs-4" id="phone"></td>
+            </tr>
+            <tr>
+                <td scope="col">Email</td>
+                <td><input type="text" name="email" class="form-control fs-4" id="email"></td>
+            </tr>
+            <tr>
+                <td scope="col">Hire Date</td>
+                <td><input type="date" name="hire" class="form-control fs-4" id="hire"></td>
+            </tr>
+            <tr>
+                <td scope="col">Job Title</td>
+                <td><input type="text" name="title" class="form-control fs-4" id="title"></td>
+            </tr>
+            <tr>
+                <td scope="col">Department</td>
+                <td><select class="form-select fs-4" id="deptId" name="deptId">
+                    <option th:each="d : ${dept}" th:value="${d.dId}" th:text="${d.dName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td scope="col"><button type="save" class="btn btn-success">Save</button></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>

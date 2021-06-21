@@ -22,39 +22,40 @@
 <!-- Page content-->
 <div class="container">
     <h3> Employees </h3>
-    <form th:action="@{'/employees/employeesave/' + ${emp.eId}}" method="post">
+    <form th:action="@{/employees/employeesave}" method="post">
     <table class="table table-dark table-striped table-hover fs-4">
         <tr>
             <td scope="col">First Name</td>
-            <td><input type="text" name="fname" class="form-control fs-4" id="fname" th:value="${emp.eFirstName}"></td>
+            <td><input type="text" name="fname" class="form-control fs-4" id="fname" th:field="*{emp.eFirstName}" th:value="${emp.eFirstName}">
+                <input type="hidden" name="id" class="form-control fs-4" id="id" th:field="${emp.eId}" th:value="${emp.eId}"></td>
         </tr>
         <tr>
             <td scope="col">Last Name</td>
-            <td><input type="text" name="lname" class="form-control fs-4" id="lname" th:value="${emp.eLastName}"></td>
+            <td><input type="text" name="lname" class="form-control fs-4" id="lname" th:field="*{emp.eLastName}" th:value="${emp.eLastName}"></td>
         </tr>
         <tr>
             <td scope="col">Date of Birth</td>
-            <td><input type="date" name="dob" class="form-control fs-4" id="dob" th:value="${emp.eDob}"></td>
+            <td><input type="date" name="dob" class="form-control fs-4" id="dob" th:field="*{emp.eDob}" th:value="${emp.eDob}"></td>
         </tr>
         <tr>
             <td scope="col">Phone Number</td>
-            <td><input type="text" name="phone" class="form-control fs-4" id="phone" th:value="${emp.ePhoneNumber}"></td>
+            <td><input type="text" name="phone" class="form-control fs-4" id="phone" th:field="*{emp.ePhoneNumber}" th:value="${emp.ePhoneNumber}"></td>
         </tr>
         <tr>
             <td scope="col">Email</td>
-            <td><input type="text" name="email" class="form-control fs-4" id="email" th:value="${emp.eEmail}"></td>
+            <td><input type="text" name="email" class="form-control fs-4" id="email" th:field="*{emp.eEmail}" th:value="${emp.eEmail}"></td>
         </tr>
         <tr>
             <td scope="col">Hire Date</td>
-            <td><input type="date" name="hire" class="form-control fs-4" id="hire" th:value="${emp.eHireDate}"></td>
+            <td><input type="date" name="hire" class="form-control fs-4" id="hire" th:field="*{emp.eHireDate}" th:value="${emp.eHireDate}"></td>
         </tr>
         <tr>
             <td scope="col">Job Title</td>
-            <td><input type="text" name="title" class="form-control fs-4" id="title" th:value="${emp.eJobTitle}"></td>
+            <td><input type="text" name="title" class="form-control fs-4" id="title" th:field="*{emp.eJobTitle}" th:value="${emp.eJobTitle}"></td>
         </tr>
         <tr>
             <td scope="col">Department</td>
-            <td><select class="form-select fs-4" id="dept" name="dept">
+            <td><select class="form-select fs-4" id="deptId" name="deptId">
                 <option th:each="d : ${dept}" th:value="${d.dId}" th:text="${d.dName}" th:selected="${d.dId} == ${emp.eDepartment.dId}"></option>
             </select></td>
         </tr>
