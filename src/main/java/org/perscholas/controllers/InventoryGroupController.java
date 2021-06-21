@@ -42,6 +42,15 @@ public class InventoryGroupController {
         return "inventorygroupsearch";
     }
 
+    @PostMapping("/{gId}")
+    public String inventoryGroupsDisplay(Model model, @PathVariable("gId") Long id){
+
+        InventoryGroup ig = inventoryGroupService.findById(id);
+        model.addAttribute("ig", ig);
+
+        return "inventorygroups";
+    }
+
     @PostMapping("/showinventorygroupcompanyname")
     public String findByCompanyName(Model model, @RequestParam("company") String name) {
         List<InventoryGroup> ig = inventoryGroupService.findByCompanyName(name);
