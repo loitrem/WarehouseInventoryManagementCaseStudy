@@ -5,7 +5,10 @@ import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +16,7 @@ import java.util.Optional;
 public class EmployeeService {
 
     IEmployeesRepo iEmployeesRepo;
+    DepartmentService departmentService;
 
     @Autowired
     public EmployeeService(IEmployeesRepo iEmployeesRepo) {
@@ -47,5 +51,23 @@ public class EmployeeService {
         }
 
        return null;
+    }
+
+    //edit employees
+    @Transactional
+    public void updateEmployees(Long id, String fname, String lname, Date dob, String phone,
+                                String email, Date hireDate, String jobTitle, Departments dept){
+        Employees e = findById(id);
+        e.setEFirstName(fname);
+        e.setELastName(lname);
+        e.setEDob(dob);
+        e.setEPhoneNumber(phone);
+        e.setEEmail(email);
+        e.setEHireDate(hireDate);
+        e.setEJobTitle(jobTitle);
+        e.setEDepartment(dept);
+
+        iEmployeesRepo.save(e);
+
     }
 }

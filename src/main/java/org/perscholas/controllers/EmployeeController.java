@@ -12,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -69,12 +72,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/employeebyname")
-    public String employeeByName(Model model, Model model2, @RequestParam("id") Long id){
+    public String employeeByName(Model model, @RequestParam("id") Long id){
 
         Employees e = employeeService.findById(id);
-        Departments d = e.getEDepartment();
         model.addAttribute("emp", e);
-        model2.addAttribute("dept", d);
         return "profile";
     }
 
@@ -97,10 +98,32 @@ public class EmployeeController {
     }
 
     @PostMapping("/employeesedit/{eId}")
-    public String employeesEdit(Model model, @PathVariable("eId") Long id){
+    public String employeesEdit(Model model, Model model2, @PathVariable("eId") Long id){
 
         Employees e = employeeService.findById(id);
+        List<Departments> d = departmentService.findAllDepartments();
         model.addAttribute("emp", e);
+        model2.addAttribute("dept", d);
         return "employeesedit";
+    }
+
+    @PostMapping("/employeesave/{eId}")
+    public String editEmployees(@PathVariable("eId") Long id,
+                              @RequestParam("fname") String fname,
+                              @RequestParam("lname") String lname,
+                              @RequestParam("dob") String dob,
+                              @RequestParam("phone") String phone,
+                              @RequestParam("email") String email,
+                              @RequestParam("hire") String hireDate,
+                              @RequestParam("title") String jobTitle,
+                              @RequestParam("dept") Departments dept){
+        //ask jafer about this
+        LocalDate birth = LocalDate.parse(dob);
+        Date birthDate = Date.from(birth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        LocalDate hire = LocalDate.parse(hireDate);
+        Date hireD = Date.from(hire.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        employeeService.updateEmployees(id, fname, lname, birthDate, phone, email, hireD, jobTitle, dept);
+
+        return"employeesaved";
     }
 }
