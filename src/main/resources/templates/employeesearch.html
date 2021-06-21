@@ -60,9 +60,7 @@
                         <td><label for="title" class="form-label">Email</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="title">
-                            <option th:each="emp : ${employees}" th:value="${emp.eJobTitle}" th:text="${emp.eJobTitle}"></option>
-                        </select></td>
+                        <td><input type="text" name="title" class="form-control" id="title"></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary">Search</button></td>

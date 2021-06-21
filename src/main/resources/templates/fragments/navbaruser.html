@@ -6,48 +6,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>
-<!--                    *********************STANDARD USER MENU********************************-->
                     <div sec:authorize="hasAnyRole('ROLE_USER')">
                         <li class="nav-item"><a class="nav-link" th:href="@{/employees/userprofile/1}">Profile</a></li>
-                    </div>
-                    <div sec:authorize="hasAnyRole('ROLE_USER')">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownInventoryUser" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inventory</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownInventoryUser">
-                                <li><a class="dropdown-item" th:href="@{/console/showstudents}">Show All Inventory</a></li>
-                                <li><a class="dropdown-item" th:href="@{/console/showcourses}">Show All Inventory Movement</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Search By Location</a></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Search By Item Number</a></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Search By Status</a></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Search By Date Received</a></li>
-                                <li><a class="dropdown-item" th:href="@{#}">Search By Inventory Group</a></li>
-                            </ul>
-                        </li>
-                    </div>
-<!--                    *********************AUTHORIZED USER MENU********************************-->
-
-
-<!--                    *********************MANAGER MENU********************************-->
-
-
-<!--                    *********************ADMIN MENU********************************-->
-                    <div sec:authorize="hasAnyRole('ADMIN')">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownEmployees" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employees</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownEmployees">
-                                <li><a class="dropdown-item" th:href="@{/employees/showemployees}">Show All Employees</a></li>
-                                <li><a class="dropdown-item" th:href="@{/employees/employeesearch}">Search Employees</a></li>
-                            </ul>
-                        </li>
                     </div>
                     <div sec:authorize="hasAnyRole('ADMIN')">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownInventoryAdmin" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inventory</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownInventoryAdmin">
                                 <li><a class="dropdown-item" th:href="@{/inventory/showinventory}">Show All Inventory</a></li>
-                                <li><a class="dropdown-item" th:href="@{/console/showcourses}">Show All Inventory Movement</a></li>
-                                <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" th:href="@{/inventory/inventorysearch}">Search Inventory</a></li>
                             </ul>
                         </li>
@@ -61,6 +27,15 @@
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" th:href="@{#}">Search By Company Name</a></li>
                                 <li><a class="dropdown-item" th:href="@{#}">Get Student Courses</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div sec:authorize="hasAnyRole('ADMIN')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownEmployees" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employees</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownEmployees">
+                                <li><a class="dropdown-item" th:href="@{/employees/showemployees}">Show All Employees</a></li>
+                                <li><a class="dropdown-item" th:href="@{/employees/employeesearch}">Search Employees</a></li>
                             </ul>
                         </li>
                     </div>

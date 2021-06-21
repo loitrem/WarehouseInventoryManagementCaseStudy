@@ -35,9 +35,7 @@
                         <td><label for="number" class="form-label">Item Number</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="number">
-                            <option th:each="inv : ${inventory}" th:value="${inv.iItemNumber}" th:text="${inv.iItemNumber}"></option>
-                        </select></td>
+                        <td><input type="text" name="number" class="form-control" id="number"></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary">Search</button></td>
@@ -60,9 +58,7 @@
                         <td><label for="desc" class="form-label">Item Description</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="desc">
-                            <option th:each="inv : ${inventory}" th:value="${inv.iDescription}" th:text="${inv.iDescription}"></option>
-                        </select></td>
+                        <td><input type="text" name="desc" class="form-control" id="desc"></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary">Search</button></td>
@@ -86,8 +82,10 @@
                     </tr>
                     <tr>
                         <td><select class="form-select" id="status">
-                            <option th:each="inv : ${inventory}" th:value="${inv.iStatus.sStatus}" th:text="${inv.iStatus.sStatus}"></option>
-                        </select></td>
+                                <option value="Received">Received</option>
+                                <option value="In Location">In Location</option>
+                                <option value="Shipped">Shipped</option>
+                            </select></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary">Search</button></td>
@@ -102,54 +100,6 @@
     </div>
     <div class="row">
         <div class="col">
-            <!-- Search Form -->
-            <form th:action="@{/employees/employeebyname}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
-                    <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Location</td>
-                    </tr>
-                    <tr>
-                        <td><label for="location" class="form-label">location</label></td>
-                    </tr>
-                    <tr>
-                        <td><select class="form-select" id="location">
-                            <option th:each="inv : ${inventory}" th:value="${inv.iLocation}" th:text="${inv.iLocation}"></option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </form>
-        </div>
-        <div class="col">
-            <!-- Search Form -->
-            <form th:action="@{/employees/employeebyemail}" method="post">
-                <table class="shadow form-width bg-white mx-auto mt-3">
-                    <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Find By Date Received</td>
-                    </tr>
-                    <tr>
-                        <td><label for="received" class="form-label">Date Received</label></td>
-                    </tr>
-                    <tr>
-                        <td><select class="form-select" id="received">
-                            <option th:each="inv : ${inventory}" th:value="${inv.iDateReceived}" th:text="${inv.iDateReceived}"></option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td><button type="submit" class="btn btn-primary">Search</button></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </form>
         </div>
         <div class="col">
             <!-- Search Form -->
@@ -175,6 +125,8 @@
 
                 </table>
             </form>
+        </div>
+        <div class="col">
         </div>
     </div>
 </div>
