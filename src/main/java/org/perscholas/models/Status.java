@@ -35,7 +35,7 @@ public class Status implements Serializable {
     String sStatus;
     //joining status to inventory table
     @ToString.Exclude
-    @OneToOne(mappedBy = "iStatus",fetch = FetchType.LAZY)
-    Inventory sInv_Status;
+    @OneToMany(mappedBy = "iStatus",fetch = FetchType.LAZY)
+    List<Inventory> sInv_Status;
 
 }

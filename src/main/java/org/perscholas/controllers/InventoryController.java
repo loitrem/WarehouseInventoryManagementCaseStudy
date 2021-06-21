@@ -85,8 +85,23 @@ public class InventoryController {
 
     @PostMapping("/showinventorydesc")
     public String findByDescription(Model model, @RequestParam("desc") String desc){
-        System.out.println(desc + "******************************************************************************************");
         List<Inventory> i = inventoryService.findByDescription(desc);
+        model.addAttribute("inventory", i);
+        return "showinventory";
+    }
+
+    @PostMapping("/showinventorystatus")
+    public String findByStatus(Model model, @RequestParam("status") String status){
+        Status s = statusService.findBysStatus(status);
+        List<Inventory> i = inventoryService.findByStatus(s);
+        model.addAttribute("inventory", i);
+        return "showinventory";
+    }
+
+    @PostMapping("/showinventorygroup")
+    public String findByGroup(Model model, @RequestParam("group") Long id){
+        InventoryGroup ig = inventoryGroupService.findById(id);
+        List<Inventory> i = inventoryService.findByInventoryGroup(ig);
         model.addAttribute("inventory", i);
         return "showinventory";
     }

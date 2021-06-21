@@ -58,7 +58,7 @@ public class Inventory implements Serializable {
     Date iDateReceived;
     //joining inventory to status table
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Status_Id")
     Status iStatus;
     //joining inventory to employees table

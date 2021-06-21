@@ -2,6 +2,8 @@ package org.perscholas.services;
 
 import org.perscholas.dao.IInventoryRepo;
 import org.perscholas.models.Inventory;
+import org.perscholas.models.InventoryGroup;
+import org.perscholas.models.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,19 +49,19 @@ public class InventoryService {
     }
 
     //find inventory by inventory group
-    public Optional<Inventory> findByInventoryGroup(int groupNumber){
-        if (groupNumber!=0){
+    public List<Inventory> findByInventoryGroup(InventoryGroup groupNumber){
+        if (groupNumber!=null){
             return inventoryRepo.findByiInventoryGroup(groupNumber);
         }
-        return Optional.empty();
+        return null;
     }
 
     //find inventory by status
-    public Optional<Inventory> findByStatus(String status){
+    public List<Inventory> findByStatus(Status status){
         if (status!=null){
             return inventoryRepo.findByiStatus(status);
         }
-        return Optional.empty();
+        return null;
     }
 
     //find inventory by item number

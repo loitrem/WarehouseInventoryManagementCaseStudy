@@ -72,7 +72,7 @@
         </div>
         <div class="col">
             <!-- Search Form -->
-            <form th:action="@{/employees/employeebyname}" method="post">
+            <form th:action="@{/inventory/showinventorystatus}" method="post">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
                         <td class="bg-dark center h5 text-white pb-2">Find By Status</td>
@@ -81,7 +81,7 @@
                         <td><label for="status" class="form-label">Status</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="status">
+                        <td><select class="form-select" id="status" name="status">
                                 <option value="Received">Received</option>
                                 <option value="In Location">In Location</option>
                                 <option value="Shipped">Shipped</option>
@@ -103,7 +103,7 @@
         </div>
         <div class="col">
             <!-- Search Form -->
-            <form th:action="@{/employees/employeebyname}" method="post">
+            <form th:action="@{/inventory/showinventorygroup}" method="post">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
                         <td class="bg-dark center h5 text-white pb-2">Find By Inventory Group</td>
@@ -112,8 +112,8 @@
                         <td><label for="group" class="form-label">Inventory Group</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="group">
-                            <option th:each="invgroup : ${inventorygroup}" th:value="${invgroup.gCompanyName}" th:text="${invgroup.gCompanyName}"></option>
+                        <td><select class="form-select" id="group" name="group">
+                            <option th:each="invgroup : ${inventorygroup}" th:value="${invgroup.gId}" th:text="${invgroup.gCompanyName}"></option>
                         </select></td>
                     </tr>
                     <tr>

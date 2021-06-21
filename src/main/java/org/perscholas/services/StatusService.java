@@ -30,4 +30,12 @@ public class StatusService {
         }
         return null;
     }
+
+    //find status by status
+    public Status findBysStatus(String status){
+        if (status!=null){
+            return iStatusRepo.findBysStatus(status);
+        }
+        return null;
+    }
 }

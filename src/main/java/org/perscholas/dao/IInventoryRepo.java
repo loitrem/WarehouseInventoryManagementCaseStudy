@@ -2,6 +2,8 @@ package org.perscholas.dao;
 
 import org.perscholas.models.Employees;
 import org.perscholas.models.Inventory;
+import org.perscholas.models.InventoryGroup;
+import org.perscholas.models.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,7 +19,7 @@ public interface IInventoryRepo extends JpaRepository<Inventory, Long> {
     Inventory findByiLocation(String location);
     @Query("SELECT i FROM Inventory i WHERE i.iDescription LIKE %:desc%")
     List<Inventory> findByiDescription(@Param("desc") String description);
-    Optional<Inventory> findByiInventoryGroup(int group);
-    Optional<Inventory> findByiStatus(String status);
+    List<Inventory> findByiInventoryGroup(InventoryGroup group);
+    List<Inventory> findByiStatus(Status status);
     List<Inventory> findByiItemNumber(String itemNumber);
 }
