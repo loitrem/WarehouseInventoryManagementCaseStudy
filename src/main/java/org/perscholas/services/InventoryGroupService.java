@@ -33,10 +33,10 @@ public class InventoryGroupService {
     }
 
     //find inventory group by company name
-    public Optional<InventoryGroup> findByCompanyName(String companyName){
+    public List<InventoryGroup> findByCompanyName(String companyName){
         if (companyName != null){
             return iInventoryGroupRepo.findBygCompanyName(companyName);
         }
-        return Optional.empty();
+        return null;
     }
 }

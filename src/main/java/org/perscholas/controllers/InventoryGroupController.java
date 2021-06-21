@@ -7,9 +7,7 @@ import org.perscholas.services.InventoryGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,29 @@ public class InventoryGroupController {
     public String showInventoryGroups(Model model){
 
         List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+        model.addAttribute("inventorygroups", ig);
+        return "showinventorygroups";
+    }
+
+    @GetMapping("/inventorygroupsearch")
+    public String inventoryGroupSearch(Model model){
+
+        List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+
+        model.addAttribute("invgroup", ig);
+        return "inventorygroupsearch";
+    }
+
+    @PostMapping("/showinventorygroupcompanyname")
+    public String findByCompanyName(Model model, @RequestParam("company") String name) {
+        List<InventoryGroup> ig = inventoryGroupService.findByCompanyName(name);
+        model.addAttribute("inventorygroups", ig);
+        return "showinventorygroups";
+    }
+
+    @PostMapping("/showinventorygroupcontactname")
+    public String findByContactName(Model model, @RequestParam("contact") Long id) {
+        InventoryGroup ig = inventoryGroupService.findById(id);
         model.addAttribute("inventorygroups", ig);
         return "showinventorygroups";
     }

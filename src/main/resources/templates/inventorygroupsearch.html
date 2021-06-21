@@ -25,18 +25,16 @@
     <div class="row row-cols-2">
         <div class="col">
             <!-- Search Form -->
-            <form th:action="@{/employees/employeebyname}" method="post">
+            <form th:action="@{/inventorygroups/showinventorygroupcompanyname}" method="post">
                 <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Name</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Company Name</td>
                     </tr>
                     <tr>
-                        <td><label for="id" class="form-label fs-4">Name</label></td>
+                        <td><label for="company" class="form-label fs-4">Company Name</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select fs-4" id="id" name="id">
-                            <option th:each="emp : ${employees}" th:value=${emp.eId} th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
-                        </select></td>
+                        <td><input type="text" name="company" class="form-control fs-4" id="company"></td>
                     </tr>
                     <tr>
                         <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
@@ -50,40 +48,17 @@
         </div>
         <div class="col">
             <!-- Search Form -->
-            <form th:action="@{/employees/employeebytitle}" method="post">
+            <form th:action="@{/inventorygroups/showinventorygroupcontactname}" method="post">
                 <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Job Title</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Contact Name</td>
                     </tr>
                     <tr>
-                        <td><label for="title" class="form-label fs-4">Job Title</label></td>
+                        <td><label for="contact" class="form-label fs-4">Job Title</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="title" class="form-control fs-4" id="title"></td>
-                    </tr>
-                    <tr>
-                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </form>
-        </div>
-        <div class="col">
-            <!-- Search Form -->
-            <form th:action="@{/employees/employeebydept}" method="post">
-                <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
-                    <tr>
-                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Department</td>
-                    </tr>
-                    <tr>
-                        <td><label for="dept" class="form-label fs-4">Department Name</label></td>
-                    </tr>
-                    <tr>
-                        <td><select class="form-select fs-4" id="dept" name="dept">
-                            <option th:each="dept : ${departments}" th:value="${dept.dId}" th:text="${dept.dName}"></option>
+                        <td><select class="form-select fs-4" id="contact" name="contact">
+                            <option th:each="ig : ${invgroup}" th:value=${ig.gId} th:text="${ig.gContactFirstName} + ' ' + ${ig.gContactLastName}"></option>
                         </select></td>
                     </tr>
                     <tr>

@@ -42,19 +42,6 @@ public class InventoryController {
         return "showinventory";
     }
 
-//    @GetMapping("/userprofile/{eId}")
-//    public String userProfile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
-//                              @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,
-//                              @PathVariable("eId") Long id){
-//
-//        Employees e = employeeService.findById(id);
-//        Departments d = e.getEDepartment();
-//        model.addAttribute("emp", e);
-//        model2.addAttribute("dept", d);
-//        return "profile";
-//    }
-//
-//
     @GetMapping("/inventorysearch")
     public String inventorySearch(Model model, Model model2){
 
