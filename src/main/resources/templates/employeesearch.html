@@ -83,7 +83,7 @@
                         <td><label for="dept" class="form-label">Department Name</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="dept">
+                        <td><select class="form-select" id="dept" name="dept">
                             <option th:each="dept : ${departments}" th:value="${dept.dId}" th:text="${dept.dName}"></option>
                         </select></td>
                     </tr>
