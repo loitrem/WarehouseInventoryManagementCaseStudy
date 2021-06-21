@@ -22,6 +22,14 @@ public class InventoryService {
     //Display all inventory
     public List<Inventory> findAllInventory(){ return inventoryRepo.findAll(); }
 
+    //Find inventory by id
+    public Inventory findById(Long id){
+        if (id!=0) {
+            return inventoryRepo.findByiId(id);
+        }
+        return null;
+    }
+
     //Find inventory by location
     public Inventory findByLocation(String location){
         if (location!=null) {

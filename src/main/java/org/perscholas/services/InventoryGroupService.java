@@ -25,11 +25,11 @@ public class InventoryGroupService {
     }
 
     //find inventory group by id
-    public Optional<InventoryGroup> findById(Long id){
+    public InventoryGroup findById(Long id){
         if (id != 0){
             return iInventoryGroupRepo.findBygId(id);
         }
-        return Optional.empty();
+        return null;
     }
 
     //find inventory group by company name

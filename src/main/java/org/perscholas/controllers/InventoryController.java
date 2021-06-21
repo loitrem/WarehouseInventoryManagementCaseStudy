@@ -1,13 +1,7 @@
 package org.perscholas.controllers;
 
-import org.perscholas.models.Departments;
-import org.perscholas.models.Employees;
-import org.perscholas.models.Inventory;
-import org.perscholas.models.InventoryGroup;
-import org.perscholas.services.DepartmentService;
-import org.perscholas.services.EmployeeService;
-import org.perscholas.services.InventoryGroupService;
-import org.perscholas.services.InventoryService;
+import org.perscholas.models.*;
+import org.perscholas.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +19,15 @@ public class InventoryController {
 
     InventoryService inventoryService;
     InventoryGroupService inventoryGroupService;
+    EmployeeService employeeService;
+    StatusService statusService;
 
     @Autowired
-    public InventoryController(InventoryService inventoryService, InventoryGroupService inventoryGroupService) {
+    public InventoryController(InventoryService inventoryService, InventoryGroupService inventoryGroupService, EmployeeService employeeService, StatusService statusService) {
         this.inventoryService = inventoryService;
         this.inventoryGroupService = inventoryGroupService;
+        this.employeeService = employeeService;
+        this.statusService = statusService;
     }
 
     @ModelAttribute("inventory")
@@ -40,7 +38,7 @@ public class InventoryController {
 
         List<Inventory> i = inventoryService.findAllInventory();
         model.addAttribute("inventory", i);
-        return "inventory";
+        return "showinventory";
     }
 
 //    @GetMapping("/userprofile/{eId}")
@@ -55,17 +53,6 @@ public class InventoryController {
 //        return "profile";
 //    }
 //
-//    @PostMapping("/profile/{eId}")
-//    public String profile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
-//                          @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,
-//                          @PathVariable("eId") Long id){
-//
-//        Employees e = employeeService.findById(id);
-//        Departments d = e.getEDepartment();
-//        model.addAttribute("emp", e);
-//        model2.addAttribute("dept", d);
-//        return "profile";
-//    }
 //
     @GetMapping("/inventorysearch")
     public String inventorySearch(Model model, Model model2){
@@ -76,5 +63,14 @@ public class InventoryController {
         model.addAttribute("inventory", i);
         model2.addAttribute("inventorygroup", ig);
         return "inventorysearch";
+    }
+
+    @PostMapping("/{iId}")
+    public String inventoryDisplay(Model model, @PathVariable("iId") Long id){
+
+        Inventory i = inventoryService.findById(id);
+        model.addAttribute("inv", i);
+
+        return "inventory";
     }
 }

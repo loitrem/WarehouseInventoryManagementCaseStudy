@@ -24,10 +24,10 @@ public class StatusService {
     }
 
     //find status by id
-    public Optional<Status> findBysId(String status){
-        if (status!=null){
-            return iStatusRepo.findBysStatus(status);
+    public Status findBysId(Long id){
+        if (id!=0){
+            return iStatusRepo.findBysId(id);
         }
-        return Optional.empty();
+        return null;
     }
 }

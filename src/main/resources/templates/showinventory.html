@@ -25,43 +25,33 @@
 <div class="container">
     <h3> Inventory </h3>
 
-    <table class="table table-dark table-striped table-hover mt-3 fs-4">
+    <table class="table table-dark table-striped table-hover fs-4">
+        <thead>
         <tr>
-            <td>Item Number</td>
+            <th scope="col">Item Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Location</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Status</th>
+            <th></th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="inv : ${inventory}">
+
             <td th:text="${inv.iItemNumber}"></td>
-        </tr>
-        <tr>
-            <td>Description</td>
             <td th:text="${inv.iDescription}"></td>
-        </tr>
-        <tr>
-            <td>Location</td>
             <td th:text="${inv.iLocation}"></td>
-        </tr>
-        <tr>
-            <td>Quantity</td>
             <td th:text="${inv.iQuantity}"></td>
-        </tr>
-        <tr>
-            <td>Status</td>
             <td th:text="${inv.iStatus.sStatus}"></td>
+            <td><form th:action="@{'/inventory/' + ${inv.iId}}" method="post"><button type="submit" class="btn btn-success">View</button></form></td>
+            <!--            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/edit/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-primary">Edit</button></form></div></td>-->
+            <!--            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/console/delete/' + ${student.studentId}}" method="post"><button type="submit" class="btn btn-danger">Remove</button></form></div></td>-->
+
         </tr>
-        <tr>
-            <td>Date Received</td>
-            <td th:text="${inv.iDateReceived}"></td>
-        </tr>
-        <tr>
-            <td>Last Date Moved</td>
-            <td th:text="${inv.iLastDateMoved}"></td>
-        </tr>
-        <tr>
-            <td>Moved By</td>
-            <td th:text="${inv.iMovedBy.eFirstName} + ' ' + ${inv.iMovedBy.eLastName}"></td>
-        </tr>
-        <tr>
-            <td>Inventory Group Company Name</td>
-            <td th:text="${inv.iInventoryGroup.gCompanyName}"></td>
-        </tr>
+        </tbody>
     </table>
 </div>
 <!-- Bootstrap core JS-->
