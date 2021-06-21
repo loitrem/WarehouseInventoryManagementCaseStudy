@@ -95,4 +95,12 @@ public class EmployeeController {
 
         return "showemployees";
     }
+
+    @PostMapping("/employeesedit/{eId}")
+    public String employeesEdit(Model model, @PathVariable("eId") Long id){
+
+        Employees e = employeeService.findById(id);
+        model.addAttribute("emp", e);
+        return "employeesedit";
+    }
 }

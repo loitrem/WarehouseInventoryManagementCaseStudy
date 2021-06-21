@@ -13,8 +13,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Bare - Start Bootstrap Template</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <div th:replace="fragments/css"></div>
 </head>
@@ -27,26 +26,32 @@
     <table class="table table-dark table-striped table-hover fs-4">
         <thead>
         <tr>
-            <th scope="col">Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Phone Number</th>
             <th scope="col">Email</th>
+            <th scope="col">Hire Date</th>
             <th scope="col">Job Title</th>
+            <th scope="col">Department</th>
             <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+
 
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="emp : ${employees}">
-
-            <td th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></td>
-            <td th:text="${emp.eEmail}"></td>
+        <tr>
+            <td><input type="text" name="fname" class="form-control fs-4" id="fname" th:value="${emp.eFirstName}"></td>
+            <td><input type="text" name="lname" class="form-control fs-4" id="lname" th:value="${emp.eLastName}"></td>
+            <td><input type="date" name="dob" class="form-control fs-4" id="dob" th:value="${emp.eDob}"></td>
+            <td><input type="text" name="phone" class="form-control fs-4" id="phone" th:value="${emp.ePhoneNumber}"></td>
+            <td><input type="text" name="email" class="form-control fs-4" id="email" th:value="${emp.eEmail}"></td>
+            <td th:text="${emp.eHireDate}"></td>
             <td th:text="${emp.eJobTitle}"></td>
-            <td><form th:action="@{'/employees/profile/' + ${emp.eId}}" method="post"><button type="submit" class="btn btn-success">View</button></form></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/employees/employeesedit/' + ${emp.eId}}" method="post"><button type="submit" class="btn btn-primary">Edit</button></form></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/employees/employeesremove/' + ${emp.eId}}" method="post"><button type="submit" class="btn btn-danger">Remove</button></form></div></td>
-        </tr>
+            <td th:text="${emp.eDepartment.dName}"></td>
+            <td><form th:action="@{'/employees/profile/' + ${emp.eId}}" method="post"><button type="save" class="btn btn-success">View</button></form></td>
+          </tr>
         </tbody>
     </table>
 </div>
