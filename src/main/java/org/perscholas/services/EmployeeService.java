@@ -1,6 +1,7 @@
 package org.perscholas.services;
 
 import org.perscholas.dao.IEmployeesRepo;
+import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,14 @@ public class EmployeeService {
             return iEmployeesRepo.findByeJobTitle(title);
         }
         return Optional.empty();
+    }
+
+    //find employees by department
+    public List<Employees> findByDept(Departments department){
+        if (department != null) {
+            return iEmployeesRepo.findByeDepartment(department);
+        }
+
+       return null;
     }
 }

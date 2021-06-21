@@ -30,7 +30,7 @@ public class EmployeeController {
     public Employees initEmployees(){ return new Employees(); }
 
     @GetMapping("/showemployees")
-    public String showEmployees(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model){
+    public String showEmployees(Model model){
 
         List<Employees> e = employeeService.findAllEmployees();
         model.addAttribute("employees", e);
@@ -38,9 +38,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/userprofile/{eId}")
-    public String userProfile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
-                          @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,
-                          @PathVariable("eId") Long id){
+    public String userProfile(Model model, Model model2, @PathVariable("eId") Long id){
 
         Employees e = employeeService.findById(id);
         Departments d = e.getEDepartment();
@@ -50,9 +48,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/profile/{eId}")
-    public String profile(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model,
-                          @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2,
-                          @PathVariable("eId") Long id){
+    public String profile(Model model, Model model2, @PathVariable("eId") Long id){
 
         Employees e = employeeService.findById(id);
         Departments d = e.getEDepartment();
@@ -62,13 +58,32 @@ public class EmployeeController {
     }
 
     @GetMapping("/employeesearch")
-            public String employeeSearch(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model,
-                                         @ModelAttribute("dept") @Valid Departments dept, BindingResult result2, Model model2){
+            public String employeeSearch(Model model, Model model2){
 
             List<Employees> e = employeeService.findAllEmployees();
             List<Departments> d = departmentService.findAllDepartments();
             model.addAttribute("employees", e);
             model2.addAttribute("departments", d);
         return "employeesearch";
-}
+    }
+
+    @PostMapping("/employeebyname")
+    public String employeeByName(Model model, Model model2, @RequestParam("id") Long id){
+
+        Employees e = employeeService.findById(id);
+        Departments d = e.getEDepartment();
+        model.addAttribute("emp", e);
+        model2.addAttribute("dept", d);
+        return "profile";
+    }
+
+    @PostMapping("/employeebydept")
+    public String employeeByDept(Model model, @RequestParam("dept") Long id){
+
+        Departments d = departmentService.findById(id);
+        List<Employees> e = employeeService.findByDept(d);
+        model.addAttribute("employees", e);
+
+        return "employees";
+    }
 }

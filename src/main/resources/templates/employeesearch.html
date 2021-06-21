@@ -32,11 +32,11 @@
                         <td class="bg-dark center h5 text-white pb-2">Find By Name</td>
                     </tr>
                     <tr>
-                        <td><label for="name" class="form-label">Name</label></td>
+                        <td><label for="id" class="form-label">Name</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="name">
-                            <option th:each="emp : ${employees}" th:value="${emp.eFirstName} + ' ' + ${emp.eLastName}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
+                        <td><select class="form-select" id="id" name="id">
+                            <option th:each="emp : ${employees}" th:value=${emp.eId} th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
                         </select></td>
                     </tr>
                     <tr>
@@ -74,7 +74,7 @@
         </div>
         <div class="col">
             <!-- Search Form -->
-            <form th:action="@{/employees/employeebyname}" method="post">
+            <form th:action="@{/employees/employeebydept}" method="post">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
                         <td class="bg-dark center h5 text-white pb-2">Find By Department</td>
@@ -84,7 +84,7 @@
                     </tr>
                     <tr>
                         <td><select class="form-select" id="dept">
-                            <option th:each="dept : ${departments}" th:value="${dept.dName}" th:text="${dept.dName}"></option>
+                            <option th:each="dept : ${departments}" th:value="${dept.dId}" th:text="${dept.dName}"></option>
                         </select></td>
                     </tr>
                     <tr>
