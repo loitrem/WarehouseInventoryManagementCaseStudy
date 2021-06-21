@@ -35,7 +35,7 @@ public class EmployeeController {
 
         List<Employees> e = employeeService.findAllEmployees();
         model.addAttribute("employees", e);
-        return "employees";
+        return "showemployees";
     }
 
     @GetMapping("/userprofile/{eId}")
@@ -85,7 +85,7 @@ public class EmployeeController {
         List<Employees> e = employeeService.findByDept(d);
         model.addAttribute("employees", e);
 
-        return "employees";
+        return "showemployees";
     }
 
     @PostMapping("/employeebytitle")
@@ -93,6 +93,6 @@ public class EmployeeController {
         List<Employees> e = employeeService.findByeJobTitle(title);
         model.addAttribute("employees", e);
 
-        return "employees";
+        return "showemployees";
     }
 }
