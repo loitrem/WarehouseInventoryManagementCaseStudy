@@ -51,13 +51,13 @@
         </div>
         <div class="col">
             <!-- Search Form -->
-            <form th:action="@{/employees/employeebyemail}" method="post">
+            <form th:action="@{/employees/employeebytitle}" method="post">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
                         <td class="bg-dark center h5 text-white pb-2">Find By Job Title</td>
                     </tr>
                     <tr>
-                        <td><label for="title" class="form-label">Email</label></td>
+                        <td><label for="title" class="form-label">Job Title</label></td>
                     </tr>
                     <tr>
                         <td><input type="text" name="title" class="form-control" id="title"></td>

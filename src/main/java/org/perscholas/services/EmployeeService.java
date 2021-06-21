@@ -33,11 +33,11 @@ public class EmployeeService {
     }
 
     //find employees by job title
-    public Optional<Employees> findByeJobTitle(String title){
+    public List<Employees> findByeJobTitle(String title){
         if (title != null){
             return iEmployeesRepo.findByeJobTitle(title);
         }
-        return Optional.empty();
+        return null;
     }
 
     //find employees by department

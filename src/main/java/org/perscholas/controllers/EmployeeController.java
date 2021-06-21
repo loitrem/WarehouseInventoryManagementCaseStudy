@@ -5,6 +5,7 @@ import org.perscholas.models.Employees;
 import org.perscholas.services.DepartmentService;
 import org.perscholas.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -82,6 +83,15 @@ public class EmployeeController {
 
         Departments d = departmentService.findById(id);
         List<Employees> e = employeeService.findByDept(d);
+        model.addAttribute("employees", e);
+
+        return "employees";
+    }
+
+    @PostMapping("/employeebytitle")
+    public String employeeByJobTitle(Model model, @RequestParam("title") String title){
+        System.out.println(title + "**************************************************************************************************************************");
+        List<Employees> e = employeeService.findByeJobTitle(title);
         model.addAttribute("employees", e);
 
         return "employees";
