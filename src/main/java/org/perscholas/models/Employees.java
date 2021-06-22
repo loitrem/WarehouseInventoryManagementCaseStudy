@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -65,8 +66,8 @@ public class Employees implements Serializable {
     Users eUser_Id;
     //joining employees to inventory table
     @ToString.Exclude
-    @OneToOne(mappedBy = "iMovedBy", fetch = FetchType.LAZY)
-    Inventory eInventoryMovedBy;
+    @OneToMany(mappedBy = "iMovedBy", fetch = FetchType.LAZY)
+    List<Inventory> eInventoryMovedBy;
     //joining employees to departments table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

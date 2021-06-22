@@ -60,7 +60,7 @@ public class InventoryGroup implements Serializable {
     Date gContractEndDate;
     //joining group to inventory table
     @ToString.Exclude
-    @OneToMany(mappedBy = "iInventoryGroup", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "iInventoryGroup", fetch = FetchType.LAZY)
     List<Inventory> gInventory;
 
 

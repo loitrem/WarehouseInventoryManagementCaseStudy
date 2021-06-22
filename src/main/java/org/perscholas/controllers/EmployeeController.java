@@ -39,7 +39,7 @@ public class EmployeeController {
     @ModelAttribute("employees")
     public Employees initEmployees(){ return new Employees(); }
 
-    @GetMapping("/showemployees")
+    @GetMapping("/show")
     public String showEmployees(Model model){
 
         List<Employees> e = employeeService.findAllEmployees();
@@ -67,7 +67,7 @@ public class EmployeeController {
         return "profile";
     }
 
-    @GetMapping("/employeesearch")
+    @GetMapping("/search")
             public String employeeSearch(Model model, Model model2){
 
             List<Employees> e = employeeService.findAllEmployees();
@@ -128,7 +128,7 @@ public class EmployeeController {
     }
 
     //show add new employee record page
-    @GetMapping("/employeesadd")
+    @GetMapping("/add")
     public String showAddEmployees(Model model, Model model2){
         model.addAttribute("dept", departmentService.findAllDepartments());
         Employees emp = new Employees();
@@ -137,7 +137,7 @@ public class EmployeeController {
     }
 
     //save a new employee record
-    @PostMapping("/employeeadd")
+    @PostMapping("/add")
     public String addEmployees(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model, @RequestParam("deptId") Long id){
 
         Departments d = departmentService.findById(id);

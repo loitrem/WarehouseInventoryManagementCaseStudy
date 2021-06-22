@@ -21,8 +21,8 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3> Employees </h3>
-    <form th:action="@{/inventory/inventoryadd}" method="post" th:object="${inventory}">
+    <h3> Inventory </h3>
+    <form th:action="@{/inventory/add}" method="post" th:object="${inventory}">
         <table class="table table-dark table-striped table-hover fs-4">
             <tr>
                 <td scope="col">Item Number</td>

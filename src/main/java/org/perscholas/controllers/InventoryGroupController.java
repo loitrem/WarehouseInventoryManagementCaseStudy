@@ -29,7 +29,7 @@ public class InventoryGroupController {
     @ModelAttribute("inventorygroups")
     public InventoryGroup initInventoryGroup(){ return new InventoryGroup(); }
 
-    @GetMapping("/showinventorygroups")
+    @GetMapping("/show")
     public String showInventoryGroups(Model model){
 
         List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
@@ -37,7 +37,7 @@ public class InventoryGroupController {
         return "showinventorygroups";
     }
 
-    @GetMapping("/inventorygroupsearch")
+    @GetMapping("/search")
     public String inventoryGroupSearch(Model model){
 
         List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
@@ -67,6 +67,26 @@ public class InventoryGroupController {
         InventoryGroup ig = inventoryGroupService.findById(id);
         model.addAttribute("inventorygroups", ig);
         return "showinventorygroups";
+    }
+
+    //show add a new inventory group record page
+    @GetMapping("/add")
+    public String showAddInventory(Model model){
+
+        InventoryGroup ig = new InventoryGroup();
+
+        model.addAttribute("ig", ig);
+
+        return"inventorygroupadd";
+    }
+
+    //save a new inventory group record
+    @PostMapping("/add")
+    public String addInventory(@ModelAttribute("ig") @Valid InventoryGroup inventoryGroup, BindingResult result){
+
+        inventoryGroupService.addInventoryGroup(inventoryGroup);
+
+        return"inventorygroupadd";
     }
 
     //displays the edit page for inventory group record

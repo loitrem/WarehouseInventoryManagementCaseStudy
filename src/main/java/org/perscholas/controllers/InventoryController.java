@@ -11,6 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -34,7 +37,7 @@ public class InventoryController {
     @ModelAttribute("inventory")
     public Inventory initInventory(){ return new Inventory(); }
 
-    @GetMapping("/showinventory")
+    @GetMapping("/show")
     public String showInventory(Model model){
 
         List<Inventory> i = inventoryService.findAllInventory();
@@ -42,7 +45,7 @@ public class InventoryController {
         return "showinventory";
     }
 
-    @GetMapping("/inventorysearch")
+    @GetMapping("/search")
     public String inventorySearch(Model model, Model model2){
 
         List<Inventory> i = inventoryService.findAllInventory();
@@ -57,6 +60,23 @@ public class InventoryController {
     public String inventoryDisplay(Model model, @PathVariable("iId") Long id){
 
         Inventory i = inventoryService.findById(id);
+        if (i.getIMovedBy()==null){
+            Employees e = new Employees();
+            e.setEDob(Date.from((LocalDate.parse("2021-01-01")).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            e.setEHireDate(Date.from((LocalDate.parse("2021-01-01")).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            e.setEFirstName("Record");
+            e.setELastName("Removed");
+            i.setIMovedBy(e);
+        }
+
+        if (i.getIInventoryGroup()==null){
+            InventoryGroup ig = new InventoryGroup();
+            ig.setGContractEndDate(Date.from((LocalDate.parse("2021-01-01")).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            ig.setGContractStartDate(Date.from((LocalDate.parse("2021-01-01")).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            ig.setGCompanyName("Record Removed");
+
+            i.setIInventoryGroup(ig);
+        }
         model.addAttribute("inv", i);
 
         return "inventory";
@@ -94,7 +114,7 @@ public class InventoryController {
     }
 
     //shows add new inventory page
-    @GetMapping("/inventoryadd")
+    @GetMapping("/add")
     public String showAddInventory(Model model, Model model2, Model model3, Model model4){
         Inventory inventory = new Inventory();
         List<Employees> e = employeeService.findAllEmployees();
@@ -110,7 +130,7 @@ public class InventoryController {
     }
 
     //save a new inventory record
-    @PostMapping("/inventoryadd")
+    @PostMapping("/add")
     public String addInventory(@ModelAttribute("inventory") @Valid Inventory inventory, BindingResult result,
                                @RequestParam("movedby") Long eId, @RequestParam("invgroup") Long gId, @RequestParam("status") Long sId){
 

@@ -42,6 +42,12 @@ public class InventoryGroupService {
         return null;
     }
 
+    //add inventory group
+    @Transactional
+    public void addInventoryGroup(InventoryGroup ig){
+        iInventoryGroupRepo.save(ig);
+    }
+
     // updates inventory groups record
     @Transactional
     public void updateInventoryGroups(InventoryGroup ig){
