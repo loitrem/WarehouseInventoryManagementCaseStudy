@@ -44,9 +44,9 @@
             <td th:text="${ig.gContactEmail}"></td>
             <td th:text="${ig.gContactPhone}"></td>
 
-            <td><form th:action="@{'/inventorygroups/' + ${ig.gId}}" method="post"><button type="submit" class="btn btn-success">View</button></form></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/inventorygroups/inventorygroupsedit/' + ${ig.gId}}" method="post"><button type="submit" class="btn btn-primary">Edit</button></form></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><form th:action="@{'/inventorygroups/inventorygroupsremove/' + ${ig.gId}}" method="post"><button type="submit" class="btn btn-danger">Remove</button></form></div></td>
+            <td><a th:href="@{'/inventorygroups/' + ${ig.gId}}"><button type="submit" class="btn btn-success">View</button></a></td>
+            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/inventorygroups/edit/' + ${ig.gId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
+            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/inventorygroups/remove/' + ${ig.gId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
         </tr>
         </tbody>
     </table>

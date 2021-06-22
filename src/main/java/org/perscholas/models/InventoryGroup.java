@@ -2,6 +2,7 @@ package org.perscholas.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -51,9 +52,11 @@ public class InventoryGroup implements Serializable {
     String gContactPhone;
     @NonNull @NotNull
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date gContractStartDate;
     @NonNull @NotNull
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date gContractEndDate;
     //joining group to inventory table
     @ToString.Exclude

@@ -81,7 +81,7 @@ public class EmployeeController {
     public String employeeByName(Model model, @RequestParam("id") Long id){
 
         Employees e = employeeService.findById(id);
-        model.addAttribute("emp", e);
+        model.addAttribute("e", e);
         return "profile";
     }
 
@@ -103,7 +103,7 @@ public class EmployeeController {
         return "showemployees";
     }
 
-    @GetMapping("/employeesedit/{eId}")
+    @GetMapping("/edit/{eId}")
     public String employeesEdit(Model model, Model model2, @PathVariable("eId") Long id){
 
         Employees e = employeeService.findById(id);
@@ -121,44 +121,44 @@ public class EmployeeController {
         employees.setEDepartment(d);
         employeeService.updateEmployees(employees);
 
-        return"saved";
+        List<Employees> e = employeeService.findAllEmployees();
+        model.addAttribute("employees", e);
+
+        return"showemployees";
     }
 
+    //add new employee record
     @GetMapping("/employeesadd")
-    public String showAddEmployees(Model model){
+    public String showAddEmployees(Model model, Model model2){
         model.addAttribute("dept", departmentService.findAllDepartments());
-
+        Employees emp = new Employees();
+        model2.addAttribute("employees", emp);
         return"employeesadd";
     }
 
+    //save a new employee record
     @PostMapping("/employeeadd")
-    public String addEmployees(@RequestParam("fname")String fname,
-                               @RequestParam("lname")String lname,
-                               @RequestParam("dob") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dob,
-                               @RequestParam("phone")String phone,
-                               @RequestParam("email")String email,
-                               @RequestParam("hire") @DateTimeFormat(pattern = "yyyy-MM-dd") Date hireDate,
-                               @RequestParam("title")String jobTitle,
-                               @RequestParam("deptId") Long id){
-        Employees e = new Employees();
-        Departments d = departmentService.findById(id);
-        e.setEFirstName(fname);
-        e.setELastName(lname);
-        e.setEDob(dob);
-        e.setEPhoneNumber(phone);
-        e.setEEmail(email);
-        e.setEHireDate(hireDate);
-        e.setEJobTitle(jobTitle);
-        e.setEDepartment(d);
-        employeeService.addEmployees(e);
+    public String addEmployees(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model, @RequestParam("deptId") Long id){
 
-        return"saved";
+        Departments d = departmentService.findById(id);
+        employees.setEDepartment(d);
+
+        employeeService.addEmployees(employees);
+
+        List<Employees> emp = employeeService.findAllEmployees();
+        model.addAttribute("employees", emp);
+
+        return"showemployees";
     }
 
-    //remove an employee
-    @GetMapping("/employeesremove/{eId}")
-    public String removeEmployees(@PathVariable("eId") Long id){
+    //remove an employee record
+    @GetMapping("/remove/{eId}")
+    public String removeEmployees(@PathVariable("eId") Long id, Model model){
         employeeService.removeEmployees(id);
-        return"remove";
+
+        List<Employees> e = employeeService.findAllEmployees();
+        model.addAttribute("employees", e);
+
+        return"showemployees";
     }
 }

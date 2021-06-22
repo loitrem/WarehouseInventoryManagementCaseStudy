@@ -93,7 +93,8 @@ public class InventoryController {
         return "showinventory";
     }
 
-    @GetMapping("/inventoryedit/{iId}")
+    //shows the edit inventory page
+    @GetMapping("/edit/{iId}")
     public String showEditInventory(@PathVariable("iId") Long id, Model model, Model model2, Model model3, Model model4){
 
 
@@ -101,7 +102,7 @@ public class InventoryController {
         List<Employees> e = employeeService.findAllEmployees();
         List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
         List<Status> s = statusService.findAllStatus();
-        model.addAttribute("in", i);
+        model.addAttribute("inv", i);
         model2.addAttribute("emp", e);
         model3.addAttribute("invgroup", ig);
         model4.addAttribute("status", s);
@@ -109,9 +110,9 @@ public class InventoryController {
         return "inventoryedit";
     }
 
-    //edit inventory
+    //saves the changes to inventory
     @PostMapping("/save")
-    public String editInventory(@ModelAttribute("in") @Valid Inventory inventory, BindingResult result, Model model,
+    public String editInventory(@ModelAttribute("inv") @Valid Inventory inventory, BindingResult result, Model model,
                                 @RequestParam("movedby") Long eId, @RequestParam("invgroup") Long gId, @RequestParam("status") Long sId){
         Employees e = employeeService.findById(eId);
         InventoryGroup ig = inventoryGroupService.findById(gId);
@@ -123,14 +124,22 @@ public class InventoryController {
 
         inventoryService.updateInventory(inventory);
 
-        return"saved";
+        List<Inventory> i = inventoryService.findAllInventory();
+        model.addAttribute("inventory", i);
+
+        return"showinventory";
     }
 
     //remove an inventory
-    @GetMapping("/inventoryremove/{iId}")
-    public String removeinventgory(@PathVariable("iId") Long id){
-       inventoryService.removeInventory(id);
-        return"remove";
+    @GetMapping("/remove/{iId}")
+    public String removeInventory(@PathVariable("iId") Long id, Model model){
+
+        inventoryService.removeInventory(id);
+
+        List<Inventory> i = inventoryService.findAllInventory();
+        model.addAttribute("inventory", i);
+
+        return"showinventory";
     }
 
 }

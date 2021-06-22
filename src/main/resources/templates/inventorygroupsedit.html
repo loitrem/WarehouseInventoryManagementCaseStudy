@@ -22,41 +22,36 @@
 <!-- Page content-->
 <div class="container">
     <h3> Employees </h3>
-    <form th:action="@{/employees/employeeadd}" method="post" th:object="${employees}">
+    <form th:action="@{/inventorygroups/save}" method="post">
         <table class="table table-dark table-striped table-hover fs-4">
             <tr>
-                <td scope="col">First Name</td>
-                <td><input type="text" name="fname" class="form-control fs-4" id="fname" th:field="*{eFirstName}"></td>
+                <td scope="col">Company Name</td>
+                <td><input type="text" name="company" class="form-control fs-4" id="company" th:field="*{ig.gCompanyName}" th:value="${ig.gCompanyName}">
+                    <input type="hidden" name="id" class="form-control fs-4" id="id" th:field="*{ig.gId}" th:value="${ig.gId}"></td>
             </tr>
             <tr>
-                <td scope="col">Last Name</td>
-                <td><input type="text" name="lname" class="form-control fs-4" id="lname" th:field="*{eLastName}"></td>
+                <td scope="col">Contact First Name</td>
+                <td><input type="text" name="fname" class="form-control fs-4" id="fname" th:field="*{ig.gContactFirstName}" th:value="${ig.gContactFirstName}"></td>
             </tr>
             <tr>
-                <td scope="col">Date of Birth</td>
-                <td><input type="date" name="dob" class="form-control fs-4" id="dob" th:field="*{eDob}"></td>
+                <td scope="col">Contact Last Name</td>
+                <td><input type="text" name="lname" class="form-control fs-4" id="lname" th:field="*{ig.gContactLastName}" th:value="${ig.gContactLastName}"></td>
             </tr>
             <tr>
-                <td scope="col">Phone Number</td>
-                <td><input type="text" name="phone" class="form-control fs-4" id="phone" th:field="*{ePhoneNumber}"></td>
+                <td scope="col">Contact Email</td>
+                <td><input type="text" name="email" class="form-control fs-4" id="email" th:field="*{ig.gContactEmail}" th:value="${ig.gContactEmail}"></td>
             </tr>
             <tr>
-                <td scope="col">Email</td>
-                <td><input type="text" name="email" class="form-control fs-4" id="email" th:field="*{eEmail}"></td>
+                <td scope="col">Contact Phone Number</td>
+                <td><input type="text" name="phone" class="form-control fs-4" id="phone" th:field="*{ig.gContactPhone}" th:value="${ig.gContactPhone}"></td>
             </tr>
             <tr>
-                <td scope="col">Hire Date</td>
-                <td><input type="date" name="hire" class="form-control fs-4" id="hire" th:field="*{eHireDate}"></td>
+                <td scope="col">Contract Start Date</td>
+                <td><input type="date" name="start" class="form-control fs-4" id="start" th:field="*{ig.gContractStartDate}" th:value="${ig.gContractStartDate}"></td>
             </tr>
             <tr>
-                <td scope="col">Job Title</td>
-                <td><input type="text" name="title" class="form-control fs-4" id="title" th:field="*{eJobTitle}"></td>
-            </tr>
-            <tr>
-                <td scope="col">Department</td>
-                <td><select class="form-select fs-4" id="deptId" name="deptId">
-                    <option th:each="d : ${dept}" th:value="${d.dId}" th:text="${d.dName}"></option>
-                </select></td>
+                <td scope="col">Contract End Date</td>
+                <td><input type="date" name="end" class="form-control fs-4" id="end" th:field="*{ig.gContractEndDate}" th:value="${ig.gContractEndDate}"></td>
             </tr>
             <tr>
                 <td scope="col"><button type="save" class="btn btn-success">Save</button></td>

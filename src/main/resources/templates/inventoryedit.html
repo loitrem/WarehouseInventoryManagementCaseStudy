@@ -26,45 +26,45 @@
         <table class="table table-dark table-striped table-hover fs-4">
             <tr>
                 <td scope="col">Item Number</td>
-                <td><input type="text" name="item" class="form-control fs-4" id="item" th:field="*{in.iItemNumber}" th:value="${in.iItemNumber}">
-                    <input type="hidden" name="id" class="form-control fs-4" id="id" th:field="*{in.iId}" th:value="${in.iId}"></td>
+                <td><input type="text" name="item" class="form-control fs-4" id="item" th:field="*{inv.iItemNumber}" th:value="${inv.iItemNumber}">
+                    <input type="hidden" name="id" class="form-control fs-4" id="id" th:field="*{inv.iId}" th:value="${inv.iId}"></td>
             </tr>
             <tr>
                 <td scope="col">Item Description</td>
-                <td><input type="text" name="desc" class="form-control fs-4" id="desc" th:field="*{in.iDescription}" th:value="${in.iDescription}"></td>
+                <td><input type="text" name="desc" class="form-control fs-4" id="desc" th:field="*{inv.iDescription}" th:value="${inv.iDescription}"></td>
             </tr>
             <tr>
                 <td scope="col">Item Location</td>
-                <td><input type="text" name="location" class="form-control fs-4" id="location" th:field="*{in.iLocation}" th:value="${in.iLocation}"></td>
+                <td><input type="text" name="location" class="form-control fs-4" id="location" th:field="*{inv.iLocation}" th:value="${inv.iLocation}"></td>
             </tr>
             <tr>
                 <td scope="col">Item Quantity</td>
-                <td><input type="text" name="qty" class="form-control fs-4" id="qty" th:field="*{in.iQuantity}" th:value="${in.iQuantity}"></td>
+                <td><input type="text" name="qty" class="form-control fs-4" id="qty" th:field="*{inv.iQuantity}" th:value="${inv.iQuantity}"></td>
             </tr>
             <tr>
                 <td scope="col">Date Received</td>
-                <td><input type="date" name="received" class="form-control fs-4" id="received" th:field="*{in.iDateReceived}" th:value="${in.iDateReceived}"></td>
+                <td><input type="date" name="received" class="form-control fs-4" id="received" th:field="*{inv.iDateReceived}" th:value="${inv.iDateReceived}"></td>
             </tr>
             <tr>
                 <td scope="col">Last Date Moved</td>
-                <td><input type="date" name="moved" class="form-control fs-4" id="moved" th:field="*{in.iLastDateMoved}" th:value="${in.iLastDateMoved}"></td>
+                <td><input type="date" name="moved" class="form-control fs-4" id="moved" th:field="*{inv.iLastDateMoved}" th:value="${inv.iLastDateMoved}"></td>
             </tr>
             <tr>
                 <td scope="col">Moved By</td>
                 <td><select class="form-select fs-4" id="movedby" name="movedby">
-                    <option th:each="e : ${emp}" th:value="${e.eId}" th:text="${e.eFirstName} + ' ' + ${e.eLastName}" th:selected="${e.eId} == ${in.iMovedBy.eId}"></option>
+                    <option th:each="e : ${emp}" th:value="${e.eId}" th:text="${e.eFirstName} + ' ' + ${e.eLastName}" th:selected="${e.eId} == ${inv.iMovedBy.eId}"></option>
                 </select></td>
             </tr>
             <tr>
                 <td scope="col">inentory Group</td>
                 <td><select class="form-select fs-4" id="invgroup" name="invgroup">
-                    <option th:each="ig : ${invgroup}" th:value="${ig.gId}" th:text="${ig.gCompanyName}" th:selected="${ig.gId} == ${in.iInventoryGroup.gId}"></option>
+                    <option th:each="ig : ${invgroup}" th:value="${ig.gId}" th:text="${ig.gCompanyName}" th:selected="${ig.gId} == ${inv.iInventoryGroup.gId}"></option>
                 </select></td>
             </tr>
             <tr>
                 <td scope="col">inentory Status</td>
                 <td><select class="form-select fs-4" id="status" name="status">
-                    <option th:each="s : ${status}" th:value="${s.sId}" th:text="${s.sStatus}" th:selected="${s.sId} == ${in.iStatus.sId}"></option>
+                    <option th:each="s : ${status}" th:value="${s.sId}" th:text="${s.sStatus}" th:selected="${s.sId} == ${inv.iStatus.sId}"></option>
                 </select></td>
             </tr>
             <tr>

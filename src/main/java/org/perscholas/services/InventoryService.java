@@ -75,6 +75,7 @@ public class InventoryService {
     }
 
     // updates inventory record
+    @Transactional
     public void updateInventory(Inventory i){
         inventoryRepo.save(i);
     }
