@@ -114,14 +114,14 @@ public class EmployeeController {
         return "employeesedit";
     }
 
-    @PostMapping("/employeesave")
+    @PostMapping("/save")
     public String editEmployees(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model, @RequestParam("deptId") Long id){
         log.warn("object in POST " + employees.toString());
         Departments d = departmentService.findById(id);
         employees.setEDepartment(d);
         employeeService.updateEmployees(employees);
 
-        return"employeesaved";
+        return"saved";
     }
 
     @GetMapping("/employeesadd")
@@ -152,13 +152,13 @@ public class EmployeeController {
         e.setEDepartment(d);
         employeeService.addEmployees(e);
 
-        return"employeesaved";
+        return"saved";
     }
 
     //remove an employee
     @GetMapping("/employeesremove/{eId}")
     public String removeEmployees(@PathVariable("eId") Long id){
         employeeService.removeEmployees(id);
-        return"employeesremove";
+        return"remove";
     }
 }

@@ -2,6 +2,7 @@ package org.perscholas.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -57,6 +58,7 @@ public class Inventory implements Serializable {
     InventoryGroup iInventoryGroup;
     @Temporal(TemporalType.DATE)
     @NonNull @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date iDateReceived;
     //joining inventory to status table
     @ToString.Exclude
@@ -70,6 +72,7 @@ public class Inventory implements Serializable {
     Employees iMovedBy;
     @Temporal(TemporalType.DATE)
     @NonNull @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date iLastDateMoved;
 
 

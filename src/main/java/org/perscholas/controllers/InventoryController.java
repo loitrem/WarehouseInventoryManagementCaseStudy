@@ -1,8 +1,10 @@
 package org.perscholas.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.perscholas.models.*;
 import org.perscholas.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,7 @@ import javax.validation.Valid;
 import java.util.*;
 
 @Controller
+@Slf4j
 @RequestMapping("inventory")
 public class InventoryController {
 
@@ -50,7 +53,7 @@ public class InventoryController {
         return "inventorysearch";
     }
 
-    @PostMapping("/{iId}")
+    @GetMapping("/{iId}")
     public String inventoryDisplay(Model model, @PathVariable("iId") Long id){
 
         Inventory i = inventoryService.findById(id);
@@ -90,22 +93,37 @@ public class InventoryController {
         return "showinventory";
     }
 
-//    @PostMapping("/inventorysave/{iId}")
-//    public String editEmployees(@PathVariable("iId") Long id,
-//                                @RequestParam("fname") String fname,
-//                                @RequestParam("lname") String lname,
-//                                @RequestParam("dob") String dob,
-//                                @RequestParam("phone") String phone,
-//                                @RequestParam("email") String email,
-//                                @RequestParam("hire") String hireDate,
-//                                @RequestParam("title") String jobTitle,
-//                                @RequestParam("dept") Departments dept){
-//
-//        //converts from string to Date
-//        Date hire = dateService.changeToDate(hireDate);
-//        Date birth = dateService.changeToDate(dob);
-//        employeeService.updateEmployees(id, fname, lname, birth, phone, email, hire, jobTitle, dept);
-//
-//        return"employeesaved";
-//    }
+    @GetMapping("/inventoryedit/{iId}")
+    public String showEditInventory(@PathVariable("iId") Long id, Model model, Model model2, Model model3, Model model4){
+
+
+        Inventory i = inventoryService.findById(id);
+        List<Employees> e = employeeService.findAllEmployees();
+        List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+        List<Status> s = statusService.findAllStatus();
+        model.addAttribute("in", i);
+        model2.addAttribute("emp", e);
+        model3.addAttribute("invgroup", ig);
+        model4.addAttribute("status", s);
+
+        return "inventoryedit";
+    }
+
+    //edit inventory
+    @PostMapping("/save")
+    public String editInventory(@ModelAttribute("in") @Valid Inventory inventory, BindingResult result, Model model,
+                                @RequestParam("movedby") Long eId, @RequestParam("invgroup") Long gId, @RequestParam("status") Long sId){
+        Employees e = employeeService.findById(eId);
+        InventoryGroup ig = inventoryGroupService.findById(gId);
+        Status s = statusService.findBysId(sId);
+
+        inventory.setIMovedBy(e);
+        inventory.setIInventoryGroup(ig);
+        inventory.setIStatus(s);
+
+        inventoryService.updateInventory(inventory);
+
+        return"saved";
+    }
+
 }

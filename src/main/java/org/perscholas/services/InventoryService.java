@@ -74,21 +74,7 @@ public class InventoryService {
     }
 
     // updates inventory record
-    public void updateInventory(Long id, Date dateReceived, String desc, String item, String location,
-                                int qty, InventoryGroup invGroup, Date dateMoved, Employees movedBy, Status status){
-
-        Inventory i = inventoryRepo.findByiId(id);
-        i.setIDateReceived(dateReceived);
-        i.setIDescription(desc);
-        i.setIItemNumber(item);
-        i.setILocation(location);
-        i.setIQuantity(qty);
-        i.setIInventoryGroup(invGroup);
-        i.setILastDateMoved(dateMoved);
-        i.setIMovedBy(movedBy);
-        i.setIStatus(status);
-
+    public void updateInventory(Inventory i){
         inventoryRepo.save(i);
-
     }
 }
