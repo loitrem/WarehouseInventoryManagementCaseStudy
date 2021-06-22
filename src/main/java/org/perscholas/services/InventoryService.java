@@ -74,6 +74,12 @@ public class InventoryService {
         return null;
     }
 
+    //add inventory
+    @Transactional
+    public void addinventory(Inventory i){
+        inventoryRepo.save(i);
+    }
+
     // updates inventory record
     @Transactional
     public void updateInventory(Inventory i){

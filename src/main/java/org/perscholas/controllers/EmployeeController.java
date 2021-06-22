@@ -127,7 +127,7 @@ public class EmployeeController {
         return"showemployees";
     }
 
-    //add new employee record
+    //show add new employee record page
     @GetMapping("/employeesadd")
     public String showAddEmployees(Model model, Model model2){
         model.addAttribute("dept", departmentService.findAllDepartments());

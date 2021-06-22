@@ -93,6 +93,39 @@ public class InventoryController {
         return "showinventory";
     }
 
+    //shows add new inventory page
+    @GetMapping("/inventoryadd")
+    public String showAddInventory(Model model, Model model2, Model model3, Model model4){
+        Inventory inventory = new Inventory();
+        List<Employees> e = employeeService.findAllEmployees();
+        List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+        List<Status> s = statusService.findAllStatus();
+
+        model.addAttribute("inventory", inventory);
+        model2.addAttribute("emp", e);
+        model3.addAttribute("invgroup", ig);
+        model4.addAttribute("status", s);
+
+        return "inventoryadd";
+    }
+
+    //save a new inventory record
+    @PostMapping("/inventoryadd")
+    public String addInventory(@ModelAttribute("inventory") @Valid Inventory inventory, BindingResult result,
+                               @RequestParam("movedby") Long eId, @RequestParam("invgroup") Long gId, @RequestParam("status") Long sId){
+
+        Employees e = employeeService.findById(eId);
+        InventoryGroup ig = inventoryGroupService.findById(gId);
+        Status s = statusService.findBysId(sId);
+        inventory.setIMovedBy(e);
+        inventory.setIInventoryGroup(ig);
+        inventory.setIStatus(s);
+
+        inventoryService.addinventory(inventory);
+
+        return"showinventory";
+    }
+
     //shows the edit inventory page
     @GetMapping("/edit/{iId}")
     public String showEditInventory(@PathVariable("iId") Long id, Model model, Model model2, Model model3, Model model4){

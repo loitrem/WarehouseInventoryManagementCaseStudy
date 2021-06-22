@@ -72,6 +72,4 @@ public class Employees implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Departments_Id")
     Departments eDepartment;
-
-
 }
