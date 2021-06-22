@@ -126,4 +126,11 @@ public class InventoryController {
         return"saved";
     }
 
+    //remove an inventory
+    @GetMapping("/inventoryremove/{iId}")
+    public String removeinventgory(@PathVariable("iId") Long id){
+       inventoryService.removeInventory(id);
+        return"remove";
+    }
+
 }

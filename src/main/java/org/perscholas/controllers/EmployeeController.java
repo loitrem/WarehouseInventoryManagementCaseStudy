@@ -52,7 +52,7 @@ public class EmployeeController {
 
         Employees e = employeeService.findById(id);
         Departments d = e.getEDepartment();
-        model.addAttribute("emp", e);
+        model.addAttribute("e", e);
         model2.addAttribute("dept", d);
         return "profile";
     }
@@ -62,7 +62,7 @@ public class EmployeeController {
 
         Employees e = employeeService.findById(id);
         Departments d = e.getEDepartment();
-        model.addAttribute("emp", e);
+        model.addAttribute("e", e);
         model2.addAttribute("dept", d);
         return "profile";
     }
