@@ -64,4 +64,10 @@ public class EmployeeService {
     public void addEmployees(Employees e){
         iEmployeesRepo.save(e);
     }
+
+    //Remove employees
+    @Transactional
+    public void removeEmployees(Long id){
+        iEmployeesRepo.deleteById(id);
+    }
 }

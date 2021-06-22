@@ -141,8 +141,6 @@ public class EmployeeController {
                                @RequestParam("title")String jobTitle,
                                @RequestParam("deptId") Long id){
         Employees e = new Employees();
-//        Date birth = dateService.changeToDate(dob);
-//        Date hire = dateService.changeToDate(hireDate);
         Departments d = departmentService.findById(id);
         e.setEFirstName(fname);
         e.setELastName(lname);
@@ -155,5 +153,12 @@ public class EmployeeController {
         employeeService.addEmployees(e);
 
         return"employeesaved";
+    }
+
+    //remove an employee
+    @GetMapping("/employeesremove/{eId}")
+    public String removeEmployees(@PathVariable("eId") Long id){
+        employeeService.removeEmployees(id);
+        return"employeesremove";
     }
 }
