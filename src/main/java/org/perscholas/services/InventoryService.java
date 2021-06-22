@@ -74,6 +74,14 @@ public class InventoryService {
         return null;
     }
 
+    //find inventory by moved by
+    public Inventory findByIMovedBy(Employees e){
+        if (e!=null){
+            return inventoryRepo.findByiMovedBy(e);
+        }
+        return null;
+    }
+
     //add inventory
     @Transactional
     public void addinventory(Inventory i){

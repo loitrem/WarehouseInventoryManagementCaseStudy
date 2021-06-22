@@ -22,4 +22,5 @@ public interface IInventoryRepo extends JpaRepository<Inventory, Long> {
     List<Inventory> findByiInventoryGroup(InventoryGroup group);
     List<Inventory> findByiStatus(Status status);
     List<Inventory> findByiItemNumber(String itemNumber);
+    Inventory findByiMovedBy(Employees e);
 }

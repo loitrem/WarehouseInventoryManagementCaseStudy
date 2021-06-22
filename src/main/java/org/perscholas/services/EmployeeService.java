@@ -3,6 +3,7 @@ package org.perscholas.services;
 import org.perscholas.dao.IEmployeesRepo;
 import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
+import org.perscholas.models.Inventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +18,13 @@ public class EmployeeService {
 
     IEmployeesRepo iEmployeesRepo;
     DepartmentService departmentService;
+    InventoryService inventoryService;
 
     @Autowired
-    public EmployeeService(IEmployeesRepo iEmployeesRepo) {
+    public EmployeeService(IEmployeesRepo iEmployeesRepo, DepartmentService departmentService, InventoryService inventoryService) {
         this.iEmployeesRepo = iEmployeesRepo;
+        this.departmentService = departmentService;
+        this.inventoryService = inventoryService;
     }
 
     //find all employees
@@ -67,7 +71,11 @@ public class EmployeeService {
 
     //Remove employees
     @Transactional
-    public void removeEmployees(Long id){
-        iEmployeesRepo.deleteById(id);
+    public void removeEmployees(Employees e){
+
+        Inventory i = inventoryService.findByIMovedBy(e);
+        i.setIMovedBy(null);
+        inventoryService.updateInventory(i);
+        iEmployeesRepo.delete(e);
     }
 }

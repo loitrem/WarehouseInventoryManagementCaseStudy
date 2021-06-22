@@ -154,7 +154,9 @@ public class EmployeeController {
     //remove an employee record
     @GetMapping("/remove/{eId}")
     public String removeEmployees(@PathVariable("eId") Long id, Model model){
-        employeeService.removeEmployees(id);
+
+        Employees emp = employeeService.findById(id);
+        employeeService.removeEmployees(emp);
 
         List<Employees> e = employeeService.findAllEmployees();
         model.addAttribute("employees", e);
