@@ -24,48 +24,40 @@
 <div class="container">
     <div class="raw">
         <div class="col">
-        </div>
-        <div class="col">
-            <div  th:if="${param.error}" class="error">
-                Invalid username and password.
-            </div>
-            <div  th:if="${param.logout}" class="error">
-                You have been logged out.
-            </div>
             <!-- Login Form -->
             <form th:action="@{/register}" method="post" th:object="${users}">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
-                        <td class="bg-dark center h5 text-white pb-2">Register</td>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Register</td>
                     </tr>
                     <tr>
-                        <td><label for="id" class="form-label">Name</label></td>
+                        <td><label for="id" class="form-label fs-4">Name</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="id" name="id">
+                        <td><select class="form-select fs-4" id="id" name="id">
                             <option th:each="emp : ${employees}" th:value="${emp.eId}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option></td>
                     </tr>
                     <tr>
-                        <td><label for="username" class="form-label">Username</label></td>
+                        <td><label for="username" class="form-label fs-4">Username</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="username" class="form-control" id="username" th:field="*{uUsername}"
+                        <td><input type="text" name="username" class="form-control fs-4" id="username" th:field="*{uUsername}"
                                    aria-describedby="usernamehelp"></td>
                     </tr>
                     <tr>
-                        <td><label for="password" class="form-label">Password</label></td>
+                        <td><label for="password" class="form-label fs-4">Password</label></td>
                     </tr>
                     <tr>
-                        <td><input type="password" name="password" class="form-control" id="password" th:field="*{uPassword}"></td>
+                        <td><input type="password" name="password" class="form-control fs-4" id="password" th:field="*{uPassword}"></td>
                     </tr>
                     <tr>
-                        <td><label for="password2" class="form-label">Re-Enter Password</label></td>
+                        <td><label for="password2" class="form-label fs-4">Re-Enter Password</label></td>
                     </tr>
                     <tr>
-                        <td><input type="password" name="password2" class="form-control" id="password2"></td>
+                        <td><input type="password" name="password2" class="form-control fs-4" id="password2"></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" class="btn btn-primary">Submit</button></td>
+                        <td><button type="submit" class="btn btn-primary fs-4">Submit</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -73,6 +65,12 @@
 
                 </table>
             </form>
+            <div class="mx-auto mt-5 fs-4 fw-bold text-danger error"  th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div class="mx-auto mt-5 fs-4 fw-bold text-danger error"  th:if="${param.logout}">
+                You have been logged out.
+            </div>
         </div>
     </div>
 </div>
