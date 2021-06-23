@@ -1,10 +1,15 @@
 package org.perscholas.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.perscholas.models.*;
-import org.perscholas.services.*;
+import org.perscholas.models.Employees;
+import org.perscholas.models.Inventory;
+import org.perscholas.models.InventoryGroup;
+import org.perscholas.models.Status;
+import org.perscholas.services.EmployeeService;
+import org.perscholas.services.InventoryGroupService;
+import org.perscholas.services.InventoryService;
+import org.perscholas.services.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -34,9 +39,11 @@ public class InventoryController {
         this.statusService = statusService;
     }
 
+    //sets model attribute for inventory
     @ModelAttribute("inventory")
     public Inventory initInventory(){ return new Inventory(); }
 
+    //shows all inventory
     @GetMapping("/show")
     public String showInventory(Model model){
 
@@ -45,6 +52,7 @@ public class InventoryController {
         return "showinventory";
     }
 
+    //displays inventory search page
     @GetMapping("/search")
     public String inventorySearch(Model model, Model model2){
 
@@ -56,6 +64,7 @@ public class InventoryController {
         return "inventorysearch";
     }
 
+    //displays all information for 1 inventory record
     @GetMapping("/{iId}")
     public String inventoryDisplay(Model model, @PathVariable("iId") Long id){
 
@@ -82,6 +91,7 @@ public class InventoryController {
         return "inventory";
     }
 
+    //shows all inventory by item number
     @PostMapping("/showinventoryitemnumber")
     public String findByItemNumber(Model model, @RequestParam("number") String itemNumber){
 
@@ -90,6 +100,7 @@ public class InventoryController {
         return "showinventory";
     }
 
+    //shows all inventory by description
     @PostMapping("/showinventorydesc")
     public String findByDescription(Model model, @RequestParam("desc") String desc){
         List<Inventory> i = inventoryService.findByDescription(desc);
@@ -97,6 +108,7 @@ public class InventoryController {
         return "showinventory";
     }
 
+    //shows all inventory by status
     @PostMapping("/showinventorystatus")
     public String findByStatus(Model model, @RequestParam("status") String status){
         Status s = statusService.findBysStatus(status);
@@ -105,6 +117,7 @@ public class InventoryController {
         return "showinventory";
     }
 
+    //shows all inventory by inventory group
     @PostMapping("/showinventorygroup")
     public String findByGroup(Model model, @RequestParam("group") Long id){
         InventoryGroup ig = inventoryGroupService.findById(id);

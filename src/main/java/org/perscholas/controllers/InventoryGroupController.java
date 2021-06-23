@@ -1,10 +1,6 @@
 package org.perscholas.controllers;
 
-import org.perscholas.dao.IInventoryGroupRepo;
-import org.perscholas.models.Employees;
-import org.perscholas.models.Inventory;
 import org.perscholas.models.InventoryGroup;
-import org.perscholas.models.Status;
 import org.perscholas.services.InventoryGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +22,11 @@ public class InventoryGroupController {
         this.inventoryGroupService = inventoryGroupService;
     }
 
+    //sets model attribute for inventory group
     @ModelAttribute("inventorygroups")
     public InventoryGroup initInventoryGroup(){ return new InventoryGroup(); }
 
+    //shows all inventory groups
     @GetMapping("/show")
     public String showInventoryGroups(Model model){
 
@@ -37,6 +35,7 @@ public class InventoryGroupController {
         return "showinventorygroups";
     }
 
+    //displays search inventory groups page
     @GetMapping("/search")
     public String inventoryGroupSearch(Model model){
 
@@ -46,6 +45,7 @@ public class InventoryGroupController {
         return "inventorygroupsearch";
     }
 
+    //show all fields for 1 inventory group record
     @GetMapping("/{gId}")
     public String inventoryGroupsDisplay(Model model, @PathVariable("gId") Long id){
 
@@ -55,6 +55,7 @@ public class InventoryGroupController {
         return "inventorygroups";
     }
 
+    //shows all inventory groups by company name
     @PostMapping("/showinventorygroupcompanyname")
     public String findByCompanyName(Model model, @RequestParam("company") String name) {
         List<InventoryGroup> ig = inventoryGroupService.findByCompanyName(name);
@@ -62,6 +63,7 @@ public class InventoryGroupController {
         return "showinventorygroups";
     }
 
+    //shows all inventory groups by contact name
     @PostMapping("/showinventorygroupcontactname")
     public String findByContactName(Model model, @RequestParam("contact") Long id) {
         InventoryGroup ig = inventoryGroupService.findById(id);

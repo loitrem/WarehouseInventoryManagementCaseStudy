@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -35,9 +34,11 @@ public class Departments implements Serializable {
     )
     @Column(name = "Departments_Id")
     Long dId;
+
     //cannot be null/blank and must be unique
     @NonNull @NotBlank @Column(unique = true)
     String dName;
+
     //joining employees to departments table
     @ToString.Exclude
     @OneToMany(mappedBy = "eDepartment", fetch = FetchType.LAZY)

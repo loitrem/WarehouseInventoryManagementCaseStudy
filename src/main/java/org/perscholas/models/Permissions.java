@@ -34,8 +34,10 @@ public class Permissions implements Serializable {
     )
     @Column(name = "Permissions_Id")
     Long pId;
+
     @NonNull @NotBlank
     String pName;
+
     //joining permissions to userType table
     @ToString.Exclude
     @OneToMany(mappedBy = "userTypePermissions", fetch = FetchType.LAZY)

@@ -7,17 +7,12 @@ import org.perscholas.services.DateService;
 import org.perscholas.services.DepartmentService;
 import org.perscholas.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,9 +31,11 @@ public class EmployeeController {
         this.dateService = dateService;
     }
 
+    //model attribute for employees
     @ModelAttribute("employees")
     public Employees initEmployees(){ return new Employees(); }
 
+    //displays a list of all employees
     @GetMapping("/show")
     public String showEmployees(Model model){
 
@@ -47,16 +44,7 @@ public class EmployeeController {
         return "showemployees";
     }
 
-    @GetMapping("/userprofile/{eId}")
-    public String userProfile(Model model, Model model2, @PathVariable("eId") Long id){
-
-        Employees e = employeeService.findById(id);
-        Departments d = e.getEDepartment();
-        model.addAttribute("e", e);
-        model2.addAttribute("dept", d);
-        return "profile";
-    }
-
+    //displays a user profile using employee id
     @GetMapping("/profile/{eId}")
     public String profile(Model model, Model model2, @PathVariable("eId") Long id){
 
@@ -67,6 +55,7 @@ public class EmployeeController {
         return "profile";
     }
 
+    //displays search page
     @GetMapping("/search")
             public String employeeSearch(Model model, Model model2){
 
@@ -77,6 +66,7 @@ public class EmployeeController {
         return "employeesearch";
     }
 
+    //shows profile of selected employee by name
     @PostMapping("/employeebyname")
     public String employeeByName(Model model, @RequestParam("id") Long id){
 
@@ -85,6 +75,7 @@ public class EmployeeController {
         return "profile";
     }
 
+    //shows all employees by selected department
     @PostMapping("/employeebydept")
     public String employeeByDept(Model model, @RequestParam("dept") Long id){
 
@@ -95,6 +86,7 @@ public class EmployeeController {
         return "showemployees";
     }
 
+    //show all employees by job title
     @PostMapping("/employeebytitle")
     public String employeeByJobTitle(Model model, @RequestParam("title") String title){
         List<Employees> e = employeeService.findByeJobTitle(title);
@@ -103,6 +95,7 @@ public class EmployeeController {
         return "showemployees";
     }
 
+    //edit employees by id
     @GetMapping("/edit/{eId}")
     public String employeesEdit(Model model, Model model2, @PathVariable("eId") Long id){
 
@@ -114,6 +107,7 @@ public class EmployeeController {
         return "employeesedit";
     }
 
+    //save edited employee
     @PostMapping("/save")
     public String editEmployees(@ModelAttribute("emp") @Valid Employees employees, BindingResult result, Model model, @RequestParam("deptId") Long id){
         log.warn("object in POST " + employees.toString());

@@ -34,8 +34,10 @@ public class Status implements Serializable {
     )
     @Column(name = "Status_Id")
     Long sId;
+
     @NonNull @NotBlank
     String sStatus;
+
     //joining status to inventory table
     @ToString.Exclude
     @OneToMany(mappedBy = "iStatus",fetch = FetchType.LAZY)

@@ -38,36 +38,47 @@ public class Employees implements Serializable {
     )
     @Column(name = "Employees_Id")
     Long eId;
+
     //cannot be null/blank
     @NonNull @NotBlank
     String eFirstName;
+
     @NonNull @NotBlank
     String eLastName;
+
     @NonNull @NotBlank
     String eJobTitle;
+
     @NonNull @NotBlank
     String ePhoneNumber;
+
     //cannot be null/blank and must be unique
     @NonNull @NotBlank @Column(unique = true)
     String eEmail;
+
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NonNull @NotNull
     Date eDob;
+
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NonNull @NotNull
     Date eHireDate;
+
     String eProfileImage;
+
     //joining employees to users table
     @ToString.Exclude
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Users_Id")
     Users eUser_Id;
+
     //joining employees to inventory table
     @ToString.Exclude
     @OneToMany(mappedBy = "iMovedBy", fetch = FetchType.LAZY)
     List<Inventory> eInventoryMovedBy;
+
     //joining employees to departments table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

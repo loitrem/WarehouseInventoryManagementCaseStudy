@@ -9,12 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-
-
-import java.time.LocalDate;
-
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -41,35 +36,44 @@ public class Inventory implements Serializable {
     )
     @Column(name = "Inventory_Id")
     Long iId;
+
     //cannot be null/blank and must be unique
     @NonNull @NotBlank @Column(unique = true)
     //cannot be null/blank
     String iLocation;
+
     @NonNull @NotNull
     String iItemNumber;
+
     @NonNull @NotBlank
     String iDescription;
+
     @NonNull @NotNull
     int iQuantity;
+
     //joining inventory to group table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Inv_Group_Id")
     InventoryGroup iInventoryGroup;
+
     @Temporal(TemporalType.DATE)
     @NonNull @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date iDateReceived;
+
     //joining inventory to status table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Status_Id")
     Status iStatus;
+
     //joining inventory to employees table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Moved_By_Id")
     Employees iMovedBy;
+
     @Temporal(TemporalType.DATE)
     @NonNull @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")

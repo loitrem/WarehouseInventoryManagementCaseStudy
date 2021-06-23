@@ -4,13 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.perscholas.models.Employees;
 import org.perscholas.models.UserType;
 import org.perscholas.models.Users;
-import org.perscholas.security.AppSecurityConfiguration;
 import org.perscholas.services.EmployeeService;
 import org.perscholas.services.UserService;
 import org.perscholas.services.UserTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,16 +34,19 @@ public class HomeController {
         this.userService = userService;
     }
 
+    //display index page
     @GetMapping({"/","index"})
     public String index(){
         return "index";
     }
 
+    //display login page
     @GetMapping({"/login"})
     public String login(){
         return "login";
     }
 
+    //displays register user page
     @GetMapping("/register")
     public String showEmployees(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model, Model model2){
 

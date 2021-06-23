@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -38,26 +37,34 @@ public class InventoryGroup implements Serializable {
     )
     @Column(name = "Inv_Group_Id")
     Long gId;
+
     //cannot be null/blank and must be unique
     @NonNull @NotBlank @Column(unique = true)
     String gCompanyName;
+
     //cannot be null/blank
     @NonNull @NotBlank
     String gContactFirstName;
+
     @NonNull @NotBlank
     String gContactLastName;
+
     @NonNull @NotBlank @Column(unique = true)
     String gContactEmail;
+
     @NonNull @NotBlank @Column(unique = true)
     String gContactPhone;
+
     @NonNull @NotNull
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date gContractStartDate;
+
     @NonNull @NotNull
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date gContractEndDate;
+
     //joining group to inventory table
     @ToString.Exclude
     @OneToMany(mappedBy = "iInventoryGroup", fetch = FetchType.LAZY)

@@ -34,12 +34,15 @@ public class UserType implements Serializable {
     )
     @Column(name = "User_Type_Id")
     Long userTypeId;
+
     @NonNull @NotBlank @Column(unique = true)//cannot be null/blank and must be unique
     String userTypeName;
+
     //joining userType to users table
     @ToString.Exclude
     @OneToMany(mappedBy = "uUserType",fetch = FetchType.LAZY)
     List<Users> userTypeToUsers;
+
     //joining userType to Permissions table
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
