@@ -29,10 +29,10 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**")
-                .hasAuthority("ROLE_ADMIN")
-                .antMatchers("/**")
+                .antMatchers("/access/**", "/employees/**", "/inventory/**", "/inventorygroups/**")
                 .hasAnyAuthority("ROLE_USER", "ROLE_AUTH_USER", "ROLE_ADMIN")
+                .antMatchers("/", "/register")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -58,7 +58,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //allows anyone to access these urls
     @Override
     public void configure(final WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/imgs/**");
+        web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/assets/**");
     }
 
 

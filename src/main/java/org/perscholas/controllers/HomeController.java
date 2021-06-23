@@ -22,23 +22,11 @@ public class HomeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/template")
-    public String template(){
-        return "template";
-    }
-
     @GetMapping({"/","index"})
     public String index(){
         return "index";
     }
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
-    @GetMapping("/home")
-    public String home(){
-        return "home";
-    }
+
     @GetMapping("/register")
     public String showEmployees(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model){
 
