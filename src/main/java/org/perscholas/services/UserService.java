@@ -55,13 +55,14 @@ public class UserService {
     public void addUser(Users users, Employees employees){
 
         // throws exception is employee
-        if (employees.getEUser_Id()!=null){
+        if (iUserRepo.findByuUsername(users.getUUsername())!=null){
             throw new IllegalStateException("Employee already a user");
         }
         // encode the password with BCrypt
         users.setUPassword(AppSecurityConfiguration.getPasswordEncoder().encode(users.getUPassword()));
 
-        iEmployeesRepo.save(employees);
         iUserRepo.save(users);
+        iEmployeesRepo.save(employees);
+
     }
 }

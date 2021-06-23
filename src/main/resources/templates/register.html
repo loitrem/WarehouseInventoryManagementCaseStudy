@@ -33,30 +33,30 @@
                 You have been logged out.
             </div>
             <!-- Login Form -->
-            <form th:action="@{/users/authenticate}" method="post" th:object="${users}">
+            <form th:action="@{/register}" method="post" th:object="${users}">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
                         <td class="bg-dark center h5 text-white pb-2">Register</td>
                     </tr>
                     <tr>
-                        <td><label for="name" class="form-label">Name</label></td>
+                        <td><label for="id" class="form-label">Name</label></td>
                     </tr>
                     <tr>
-                        <td><select class="form-select" id="name">
+                        <td><select class="form-select" id="id" name="id">
                             <option th:each="emp : ${employees}" th:value="${emp.eId}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option></td>
                     </tr>
                     <tr>
                         <td><label for="username" class="form-label">Username</label></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="username" class="form-control" id="username"
+                        <td><input type="text" name="username" class="form-control" id="username" th:field="*{uUsername}"
                                    aria-describedby="usernamehelp"></td>
                     </tr>
                     <tr>
                         <td><label for="password" class="form-label">Password</label></td>
                     </tr>
                     <tr>
-                        <td><input type="password" name="password" class="form-control" id="password"></td>
+                        <td><input type="password" name="password" class="form-control" id="password" th:field="*{uPassword}"></td>
                     </tr>
                     <tr>
                         <td><label for="password2" class="form-label">Re-Enter Password</label></td>
