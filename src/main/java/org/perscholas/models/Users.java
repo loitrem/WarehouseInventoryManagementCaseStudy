@@ -56,8 +56,8 @@ public class Users implements Serializable {
 
     //joining users to employees table
     @ToString.Exclude
-    @OneToOne(mappedBy = "eUser_Id", fetch = FetchType.LAZY)
-    Employees uEmployee_Username;
+    @OneToOne(mappedBy = "eUserId", fetch = FetchType.LAZY)
+    Employees uEmployeeUsername;
     //add permissions table and link it
 
 

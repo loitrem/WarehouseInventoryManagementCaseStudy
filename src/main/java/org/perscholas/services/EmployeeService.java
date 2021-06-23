@@ -78,4 +78,9 @@ public class EmployeeService {
         inventoryService.updateInventory(i);
         iEmployeesRepo.delete(e);
     }
+
+    //find all employees by UserId if exists
+    public List<Employees> findByeUserId(){
+        return  iEmployeesRepo.findByeUserId();
+    }
 }

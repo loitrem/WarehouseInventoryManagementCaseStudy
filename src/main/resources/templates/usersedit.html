@@ -21,14 +21,13 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3> Employees </h3>
+    <h3> Users </h3>
     <form th:action="@{/users/save}" method="post">
         <table class="table table-dark table-striped table-hover fs-4">
             <tr>
-                <td scope="col">Employee Name</td>
-                <td><td><select class="form-select fs-4" id="employee" name="employee">
-                <option th:each="e : ${emp}" th:value="${e.eId}" th:text="${e.eFirstName} +  ' ' + ${e.eLastName}" th:selected="${u.uEmployee_Username.eId} == ${e.eId}"></option>
-            </select><input type="hidden" name="uId" class="form-control fs-4" id="uId" th:field="${u.uId}" th:value="${u.uId}"></td>
+                <td scope="col">Employee Name
+                    <input type="hidden" name="id" class="form-control fs-4" id="id" th:field="${u.uId}" th:value="${u.uId}"></td>
+                <td th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></td>
             </tr>
             <tr>
                 <td scope="col">User Type</td>
@@ -37,7 +36,7 @@
                 </select></td>
             </tr>
             <tr>
-                <td scope="col"><button type="save" class="btn btn-success">Save</button></td>
+                <td scope="col"><button type="submit" class="btn btn-success">Save</button></td>
                 <td></td>
             </tr>
         </table>

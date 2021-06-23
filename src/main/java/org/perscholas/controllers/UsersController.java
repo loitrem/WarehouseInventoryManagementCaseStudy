@@ -53,27 +53,66 @@ public class UsersController {
     @GetMapping("edit/{uId}")
     public String editUsers(@PathVariable("uId") Long uId, Model model, Model model2, Model model3){
         Users users = userService.findById(uId);
-        Employees employees = employeeService.findById(users.getUEmployee_Username().getEId());
-        UserType userType = userTypeService.findByUserTypeId(users.getUUserType().getUserTypeId());
+        Employees employees = employeeService.findById(users.getUEmployeeUsername().getEId());
+        List<UserType> userType = userTypeService.findAllUserTypes();
 
-        model.addAttribute("users", users);
-        model.addAttribute("emp", employees);
-        model.addAttribute("usertype", userType);
-        return "showusers";
+        model.addAttribute("u", users);
+        model2.addAttribute("emp", employees);
+        model3.addAttribute("usertype", userType);
+        return "usersedit";
     }
 
     //save edited employee
     @PostMapping("/save")
-    public String saveUsers(@ModelAttribute("users") @Valid Users users, BindingResult result, Model model,
-                            @RequestParam("uId") Long id, @RequestParam("employee") Long eId, @RequestParam("usertype") Long userTypeId){
+    public String saveUsers(Model model, @RequestParam("uId") Long uId, @RequestParam("usertype") Long userTypeId){
 
-        Employees e = employeeService.findById(eId);
-        users.setUEmployee_Username(e);
         UserType ut = userTypeService.findByUserTypeId(userTypeId);
-        users.setUUserType(ut);
-        userService.updateUsers(users);
+        Users updateUser = userService.findById(uId);
+        updateUser.setUUserType(ut);
+        userService.updateUsers(updateUser);
 
         List<Users> u = userService.findAllUsers();
+        model.addAttribute("users", u);
+
+        return "showusers";
+    }
+
+    //displays edit user
+    @GetMapping("search")
+    public String searchUsers(Model model, Model model2, Model model3){
+        List<Users> users = userService.findAllUsers();
+        List<Employees> employees = employeeService.findByeUserId();
+        List<UserType> userType = userTypeService.findAllUserTypes();
+        model.addAttribute("users", users);
+        model2.addAttribute("employees", employees);
+        model3.addAttribute("usertype", userType);
+        return "usersearch";
+    }
+
+    //show all users by employee name
+    @PostMapping("/userbyemployeename")
+    public String userByEmployeeName(Model model, @RequestParam("employee") Long eId){
+        Employees e = employeeService.findById(eId);
+        Users u = userService.findById(e.getEUserId().getUId());
+        model.addAttribute("users", u);
+
+        return "showusers";
+    }
+
+    //show all users by user type
+    @PostMapping("/userbyusertype")
+    public String userByUserType(Model model, @RequestParam("usertype") Long userTypeId){
+        UserType ut = userTypeService.findByUserTypeId(userTypeId);
+        List<Users> u = userService.findByuUserType(ut);
+        model.addAttribute("users", u);
+
+        return "showusers";
+    }
+
+    //show all users by username
+    @PostMapping("/userbyusername")
+    public String userByUsername(Model model, @RequestParam("username") Long uId){
+        Users u = userService.findById(uId);
         model.addAttribute("users", u);
 
         return "showusers";

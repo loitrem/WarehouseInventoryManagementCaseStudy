@@ -16,5 +16,8 @@ public interface IEmployeesRepo extends JpaRepository<Employees, Long> {
     //custom query
     @Query("SELECT e FROM Employees e WHERE e.eJobTitle LIKE %:title%")
     List<Employees> findByeJobTitle(@Param("title") String title);
+    //custom query
+    @Query("SELECT e FROM Employees e WHERE e.eUserId IS NOT NULL")
+    List<Employees> findByeUserId();
 
 }

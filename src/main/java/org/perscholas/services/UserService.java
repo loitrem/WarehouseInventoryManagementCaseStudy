@@ -52,6 +52,14 @@ public class UserService {
         return null;
     }
 
+    //find users by usertype
+    public Users findByuEmployee(Employees e){
+        if (e!= null){
+            return iUserRepo.findByuEmployeeUsername(e);
+        }
+        return null;
+    }
+
     //register an employee as a user
     public void addUser(Users users, Employees employees){
 

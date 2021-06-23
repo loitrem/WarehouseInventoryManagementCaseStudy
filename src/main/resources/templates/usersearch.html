@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <div th:replace="fragments/css"></div>
+</head>
+<body>
+<div th:replace="fragments/navbaruser"></div>
+<!-- Page content-->
+<div class="container">
+    <div class="row row-cols-2">
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/users/userbyemployeename}" method="post">
+                <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Employee Name</td>
+                    </tr>
+                    <tr>
+                        <td><label for="employee" class="form-label fs-4">Name</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select fs-4" id="employee" name="employee">
+                            <option th:each="emp : ${employees}" th:value=${emp.eId} th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/users/userbyusertype}" method="post">
+                <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By User Type</td>
+                    </tr>
+                    <tr>
+                        <td><label for="usertype" class="form-label fs-4">User Type</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select fs-4" id="usertype" name="usertype">
+                            <option th:each="ut : ${usertype}" th:value=${ut.userTypeId} th:text="${ut.userTypeName}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="col">
+            <!-- Search Form -->
+            <form th:action="@{/users/userbyusername}" method="post">
+                <table class="shadow w-75 bg-white mx-auto mt-5 fs-4">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Find By Username</td>
+                    </tr>
+                    <tr>
+                        <td><label for="username" class="form-label fs-4">Username</label></td>
+                    </tr>
+                    <tr>
+                        <td><select class="form-select fs-4" id="username" name="username">
+                            <option th:each="u : ${users}" th:value="${u.uId}" th:text="${u.uUsername}"></option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>

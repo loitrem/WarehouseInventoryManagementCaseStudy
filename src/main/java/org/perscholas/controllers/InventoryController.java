@@ -163,7 +163,6 @@ public class InventoryController {
     @GetMapping("/edit/{iId}")
     public String showEditInventory(@PathVariable("iId") Long id, Model model, Model model2, Model model3, Model model4){
 
-
         Inventory i = inventoryService.findById(id);
         List<Employees> e = employeeService.findAllEmployees();
         List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();

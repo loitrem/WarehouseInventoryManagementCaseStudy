@@ -72,7 +72,7 @@ public class Employees implements Serializable {
     @ToString.Exclude
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Users_Id")
-    Users eUser_Id;
+    Users eUserId;
 
     //joining employees to inventory table
     @ToString.Exclude

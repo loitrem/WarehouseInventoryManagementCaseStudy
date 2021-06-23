@@ -70,7 +70,7 @@ public class HomeController {
 
         // sets user object into employee object, sets usertype object of user into user object, and sends user obj and employee obj to user service to save
         Employees e = employeeService.findById(eId);
-        e.setEUser_Id(users);
+        e.setEUserId(users);
         UserType ut = userTypeService.findByUserTypeName("ROLE_USER");
         users.setUUserType(ut);
 
