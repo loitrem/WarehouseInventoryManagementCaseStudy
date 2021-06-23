@@ -38,6 +38,15 @@
                             </ul>
                         </li>
                     </div>
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownUsers" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownEmployees">
+                                <li><a class="dropdown-item" th:href="@{/employees/show}">Show All Users</a></li>
+                                <li><a class="dropdown-item" th:href="@{/employees/search}">Search Users</a></li>
+                            </ul>
+                        </li>
+                    </div>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">

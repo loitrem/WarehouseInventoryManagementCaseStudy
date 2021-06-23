@@ -8,6 +8,7 @@ import org.perscholas.models.Users;
 import org.perscholas.security.AppSecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +64,11 @@ public class UserService {
 
         iUserRepo.save(users);
         iEmployeesRepo.save(employees);
+    }
 
+    //edit users
+    @Transactional
+    public void updateUsers(Users u){
+        iUserRepo.save(u);
     }
 }
