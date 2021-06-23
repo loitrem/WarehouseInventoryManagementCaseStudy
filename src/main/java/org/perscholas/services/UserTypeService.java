@@ -28,4 +28,12 @@ public class UserTypeService {
         }
         return null;
     }
+
+    //find user types by userTypeName
+    public UserType findByUserTypeName(String name){
+        if (name!=null){
+            return iUserTypeRepo.findByuserTypeName(name);
+        }
+        return null;
+    }
 }

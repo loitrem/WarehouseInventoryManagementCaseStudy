@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository //makes this a repository
 public interface IUserRepo extends JpaRepository<Users, Long> {
-    Optional<Users> findByuId(Long id);
+    Users findByuId(Long id);
     Users findByuUsername(String username);
-    Optional<Users> findByuUserType(UserType userType);
+    List<Users> findByuUserType(UserType userType);
 }

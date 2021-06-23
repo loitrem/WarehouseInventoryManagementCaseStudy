@@ -33,7 +33,7 @@
                 You have been logged out.
             </div>
             <!-- Login Form -->
-            <form th:action="@{/login/authenticate}" method="post">
+            <form th:action="@{/users/authenticate}" method="post" th:object="${users}">
                 <table class="shadow form-width bg-white mx-auto mt-3">
                     <tr>
                         <td class="bg-dark center h5 text-white pb-2">Register</td>
@@ -43,8 +43,7 @@
                     </tr>
                     <tr>
                         <td><select class="form-select" id="name">
-                            <option th:each="emp : ${employees}" th:value="${emp.eFirstName} + ' ' + ${emp.eLastName}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option>
-                        </select></td>
+                            <option th:each="emp : ${employees}" th:value="${emp.eId}" th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></option></td>
                     </tr>
                     <tr>
                         <td><label for="username" class="form-label">Username</label></td>

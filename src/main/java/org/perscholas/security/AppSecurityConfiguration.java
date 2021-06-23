@@ -29,7 +29,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/access/**", "/employees/**", "/inventory/**", "/inventorygroups/**")
+                .antMatchers("/users/**", "/employees/**", "/inventory/**", "/inventorygroups/**")
                 .hasAnyAuthority("ROLE_USER", "ROLE_AUTH_USER", "ROLE_ADMIN")
                 .antMatchers("/", "/register")
                 .permitAll()
