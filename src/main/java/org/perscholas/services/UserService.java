@@ -31,11 +31,11 @@ public class UserService {
     }
 
     //find users by username
-    public Optional<Users> findByuUsername(String username){
+    public Users findByuUsername(String username){
         if (username != null){
             return iUserRepo.findByuUsername(username);
         }
-        return Optional.empty();
+        return null;
     }
 
     //find users by usertype
