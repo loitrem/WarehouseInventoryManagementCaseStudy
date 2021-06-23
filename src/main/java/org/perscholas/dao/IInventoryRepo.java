@@ -15,6 +15,7 @@ import java.util.List;
 public interface IInventoryRepo extends JpaRepository<Inventory, Long> {
     Inventory findByiId(Long id);
     Inventory findByiLocation(String location);
+    //custom query
     @Query("SELECT i FROM Inventory i WHERE i.iDescription LIKE %:desc%")
     List<Inventory> findByiDescription(@Param("desc") String description);
     List<Inventory> findByiInventoryGroup(InventoryGroup group);

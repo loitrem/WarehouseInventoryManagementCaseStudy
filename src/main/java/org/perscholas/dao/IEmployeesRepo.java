@@ -13,6 +13,7 @@ import java.util.List;
 public interface IEmployeesRepo extends JpaRepository<Employees, Long> {
     Employees findByeId(Long id);
     List<Employees> findByeDepartment(Departments department);
+    //custom query
     @Query("SELECT e FROM Employees e WHERE e.eJobTitle LIKE %:title%")
     List<Employees> findByeJobTitle(@Param("title") String title);
 
