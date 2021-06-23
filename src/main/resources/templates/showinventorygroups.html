@@ -45,7 +45,7 @@
             <td th:text="${ig.gContactPhone}"></td>
 
             <td><a th:href="@{'/inventorygroups/' + ${ig.gId}}"><button type="submit" class="btn btn-success">View</button></a></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/inventorygroups/edit/' + ${ig.gId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
+            <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/inventorygroups/edit/' + ${ig.gId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
             <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/inventorygroups/remove/' + ${ig.gId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
         </tr>
         </tbody>

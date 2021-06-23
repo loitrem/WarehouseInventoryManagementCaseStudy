@@ -3,22 +3,23 @@
         <div class="container">
             <img th:src="@{/assets/InOut.png}" style="width: 200px;"/>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div sec:authorize="isAuthenticated()" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/users/home}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" th:href="@{/employees/userprofile/1}">Profile</a></li>
-                    <div sec:authorize="hasAnyRole('ROLES_ADMIN')">
+                    <div sec:authorize="isAuthenticated()">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownInventoryAdmin" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inventory</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownInventoryAdmin">
                                 <li><a class="dropdown-item" th:href="@{/inventory/show}">Show All Inventory</a></li>
                                 <li><a class="dropdown-item" th:href="@{/inventory/search}">Search Inventory</a></li>
+                                <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')">
                                 <li><a class="dropdown-item" th:href="@{/inventory/add}">Add Inventory</a></li>
-
+                    </div>
                             </ul>
                         </li>
                     </div>
-                    <div sec:authorize="hasAnyRole('ADMIN')">
+                    <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownInventoryGroups" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inventory Groups</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownInventoryGroups">
@@ -28,7 +29,7 @@
                             </ul>
                         </li>
                     </div>
-                    <div sec:authorize="hasAnyRole('ADMIN')">
+                    <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownEmployees" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employees</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownEmployees">

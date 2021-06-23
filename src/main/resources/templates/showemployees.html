@@ -44,7 +44,7 @@
             <td th:text="${emp.eEmail}"></td>
             <td th:text="${emp.eJobTitle}"></td>
             <td><a th:href="@{'/employees/profile/' + ${emp.eId}}"><button type="submit" class="btn btn-success">View</button></a></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/employees/edit/' + ${emp.eId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
+            <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/employees/edit/' + ${emp.eId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
             <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/employees/remove/' + ${emp.eId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
         </tr>
         </tbody>

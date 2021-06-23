@@ -47,14 +47,6 @@ public class HomeController {
         return "login";
     }
 
-//    @PostMapping({"/login"})
-//    public String loginPost(@RequestParam("username") String username, @RequestParam("Password") String password){
-//        PasswordEncoder encoder = new BCryptPasswordEncoder(4);
-//        encoder.encode(password);
-//
-//        return "login";
-//    }
-
     @GetMapping("/register")
     public String showEmployees(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model, Model model2){
 
