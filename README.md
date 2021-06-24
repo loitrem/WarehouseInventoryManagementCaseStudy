@@ -14,10 +14,19 @@ I created a warhouse Inventory manager I named that has the ability to
 
 <hr>
 
+### Features to Add
+ - User Profiles
+ - User Image upload
+ - ability to edit / add / delete status
+ - ability to edit / add / delete user types
+ - permissions table available and ready for future growth.
+
+<hr>
+
 ### Trello Board Link
 https://trello.com/b/tjFtolAj/in-out-asset-management
 <hr>
 
 ### ER Diagram
-
+![alt text](src/main/resources/static/assets/diagram.png "ER Diagram")
 
