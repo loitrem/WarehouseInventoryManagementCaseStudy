@@ -3,6 +3,7 @@ package org.perscholas.services;
 import org.perscholas.dao.IEmployeesRepo;
 import org.perscholas.dao.IUserRepo;
 import org.perscholas.models.Employees;
+import org.perscholas.models.Inventory;
 import org.perscholas.models.UserType;
 import org.perscholas.models.Users;
 import org.perscholas.security.AppSecurityConfiguration;
@@ -78,5 +79,12 @@ public class UserService {
     @Transactional
     public void updateUsers(Users u){
         iUserRepo.save(u);
+    }
+
+    //Remove employees
+    @Transactional
+    public void removeUsers(Users u){
+
+        iUserRepo.delete(u);
     }
 }

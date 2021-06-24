@@ -4,6 +4,7 @@ import org.perscholas.dao.IEmployeesRepo;
 import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
 import org.perscholas.models.Inventory;
+import org.perscholas.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,7 +81,12 @@ public class EmployeeService {
     }
 
     //find all employees by UserId if exists
-    public List<Employees> findByeUserId(){
-        return  iEmployeesRepo.findByeUserId();
+    public List<Employees> findAllUserIdIfNotNull(){
+        return  iEmployeesRepo.findAllUserIdIfNotNull();
+    }
+
+    //find employees by UserId
+    public Employees findByeUserId(Users u){
+        return  iEmployeesRepo.findByeUserId(u);
     }
 }

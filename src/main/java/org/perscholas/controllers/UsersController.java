@@ -50,7 +50,7 @@ public class UsersController {
     }
 
     //displays edit user
-    @GetMapping("edit/{uId}")
+    @GetMapping("/edit/{uId}")
     public String editUsers(@PathVariable("uId") Long uId, Model model, Model model2, Model model3){
         Users users = userService.findById(uId);
         Employees employees = employeeService.findById(users.getUEmployeeUsername().getEId());
@@ -81,7 +81,7 @@ public class UsersController {
     @GetMapping("search")
     public String searchUsers(Model model, Model model2, Model model3){
         List<Users> users = userService.findAllUsers();
-        List<Employees> employees = employeeService.findByeUserId();
+        List<Employees> employees = employeeService.findAllUserIdIfNotNull();
         List<UserType> userType = userTypeService.findAllUserTypes();
         model.addAttribute("users", users);
         model2.addAttribute("employees", employees);
@@ -115,6 +115,22 @@ public class UsersController {
         Users u = userService.findById(uId);
         model.addAttribute("users", u);
 
+        return "showusers";
+    }
+
+    //displays remove user
+    @GetMapping("/remove/{uId}")
+    public String removeUsers(@PathVariable("uId") Long uId, Model model){
+
+        // get user by id, get employee by user obj, set user obj inside employee to null, update employee, then remove user
+        Users u = userService.findById(uId);
+        Employees e = employeeService.findByeUserId(u);
+        e.setEUserId(null);
+        employeeService.updateEmployees(e);
+        userService.removeUsers(u);
+
+        List<Users> users = userService.findAllUsers();
+        model.addAttribute("users", users);
         return "showusers";
     }
 }

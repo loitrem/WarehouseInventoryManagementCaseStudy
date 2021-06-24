@@ -2,6 +2,7 @@ package org.perscholas.dao;
 
 import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
+import org.perscholas.models.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +19,7 @@ public interface IEmployeesRepo extends JpaRepository<Employees, Long> {
     List<Employees> findByeJobTitle(@Param("title") String title);
     //custom query
     @Query("SELECT e FROM Employees e WHERE e.eUserId IS NOT NULL")
-    List<Employees> findByeUserId();
+    List<Employees> findAllUserIdIfNotNull();
+    Employees findByeUserId(Users u);
 
 }
