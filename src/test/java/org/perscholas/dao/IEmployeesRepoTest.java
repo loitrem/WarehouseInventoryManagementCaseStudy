@@ -48,19 +48,19 @@ public class IEmployeesRepoTest {
         }
     }
 
-    @Test
-    public void getFindByeId(){
-
-        log.info("IEmployeesRepoTest:getFindByeId()");
-
-        Employees emp = iEmployeesRepo.findByeId(100L);
-        Assertions.assertFalse(emp.getEFirstName().isBlank());
-        Assertions.assertFalse(emp.getELastName().isBlank());
-        Assertions.assertFalse(emp.getEEmail().isBlank());
-        Assertions.assertFalse(emp.getEPhoneNumber().isBlank());
-        Assertions.assertFalse(emp.getEJobTitle().isBlank());
-
-    }
+//    @Test
+//    public void getFindByeId(){
+//
+//        log.info("IEmployeesRepoTest:getFindByeId()");
+//
+//        Employees emp = iEmployeesRepo.findByeId(100L);
+//        Assertions.assertFalse(emp.getEFirstName().isBlank());
+//        Assertions.assertFalse(emp.getELastName().isBlank());
+//        Assertions.assertFalse(emp.getEEmail().isBlank());
+//        Assertions.assertFalse(emp.getEPhoneNumber().isBlank());
+//        Assertions.assertFalse(emp.getEJobTitle().isBlank());
+//
+//    }
 
     @AfterEach
     void tearDown() {

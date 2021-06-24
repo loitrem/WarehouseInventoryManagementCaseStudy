@@ -35,12 +35,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="u : ${users}">
-            <td th:text="${u.uEmployeeUsername.eFirstName} + ' ' + ${u.uEmployeeUsername.eLastName}"></td>
-            <td th:text="${u.uUsername}"></td>
-            <td th:text="${u.uUserType.userTypeName}"></td>
-            <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/users/edit/' + ${u.uId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/users/remove/' + ${u.uId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
+        <tr th:each="e : ${employees}">
+            <td th:text="${e.eFirstName} + ' ' + ${e.eLastName}"></td>
+            <td th:text="${e.eUserId.uUsername}"></td>
+            <td th:text="${e.eUserId.uUserType.userTypeName}"></td>
+            <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/users/edit/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
+            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/users/remove/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
         </tr>
         </tbody>
     </table>

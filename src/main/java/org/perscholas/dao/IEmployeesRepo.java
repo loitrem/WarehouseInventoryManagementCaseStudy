@@ -22,4 +22,5 @@ public interface IEmployeesRepo extends JpaRepository<Employees, Long> {
     List<Employees> findAllUserIdIfNotNull();
     Employees findByeUserId(Users u);
 
+
 }

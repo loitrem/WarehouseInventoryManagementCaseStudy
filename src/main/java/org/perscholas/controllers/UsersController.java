@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -44,8 +45,8 @@ public class UsersController {
     //displays all users
     @GetMapping("show")
     public String showUsers(Model model){
-        List<Users> users = userService.findAllUsers();
-        model.addAttribute("users", users);
+        List<Employees> emp = employeeService.findAllUserIdIfNotNull();
+        model.addAttribute("employees", emp);
         return "showusers";
     }
 
@@ -71,8 +72,8 @@ public class UsersController {
         updateUser.setUUserType(ut);
         userService.updateUsers(updateUser);
 
-        List<Users> u = userService.findAllUsers();
-        model.addAttribute("users", u);
+        List<Employees> emp = employeeService.findAllUserIdIfNotNull();
+        model.addAttribute("employees", emp);
 
         return "showusers";
     }
@@ -93,27 +94,36 @@ public class UsersController {
     @PostMapping("/userbyemployeename")
     public String userByEmployeeName(Model model, @RequestParam("employee") Long eId){
         Employees e = employeeService.findById(eId);
-        Users u = userService.findById(e.getEUserId().getUId());
-        model.addAttribute("users", u);
+
+        model.addAttribute("employees", e);
 
         return "showusers";
     }
 
     //show all users by user type
     @PostMapping("/userbyusertype")
-    public String userByUserType(Model model, @RequestParam("usertype") Long userTypeId){
+    public String userByUserType(Model model,Model model2, @RequestParam("usertype") Long userTypeId){
         UserType ut = userTypeService.findByUserTypeId(userTypeId);
         List<Users> u = userService.findByuUserType(ut);
+        List<Employees> e = new ArrayList<>();
+        for (Users user : u){
+            if (employeeService.findByeUserId(user)!=null){
+                e.add(employeeService.findByeUserId(user));
+            }
+        }
         model.addAttribute("users", u);
+        model.addAttribute("employees", e);
 
         return "showusers";
     }
 
     //show all users by username
     @PostMapping("/userbyusername")
-    public String userByUsername(Model model, @RequestParam("username") Long uId){
+    public String userByUsername(Model model, Model model2, @RequestParam("username") Long uId){
         Users u = userService.findById(uId);
+        Employees e = employeeService.findByeUserId(u);
         model.addAttribute("users", u);
+        model2.addAttribute("employees", e);
 
         return "showusers";
     }
@@ -129,8 +139,8 @@ public class UsersController {
         employeeService.updateEmployees(e);
         userService.removeUsers(u);
 
-        List<Users> users = userService.findAllUsers();
-        model.addAttribute("users", users);
+        List<Employees> emp = employeeService.findAllUserIdIfNotNull();
+        model.addAttribute("employees", emp);
         return "showusers";
     }
 }
