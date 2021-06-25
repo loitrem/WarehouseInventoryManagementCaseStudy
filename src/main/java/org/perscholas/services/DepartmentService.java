@@ -25,6 +25,7 @@ public class DepartmentService {
 
     //find department by id
     public Departments findById(Long id){
+
         if (id!=0){
             return iDepartmentsRepo.findBydId(id);
         }

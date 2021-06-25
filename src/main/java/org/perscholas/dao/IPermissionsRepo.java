@@ -8,5 +8,6 @@ import java.util.Optional;
 
 @Repository //makes this a repository
 public interface IPermissionsRepo extends JpaRepository<Permissions, Long> {
+
     Optional<Permissions> findBypId(Long id);
 }

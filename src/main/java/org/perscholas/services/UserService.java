@@ -3,7 +3,6 @@ package org.perscholas.services;
 import org.perscholas.dao.IEmployeesRepo;
 import org.perscholas.dao.IUserRepo;
 import org.perscholas.models.Employees;
-import org.perscholas.models.Inventory;
 import org.perscholas.models.UserType;
 import org.perscholas.models.Users;
 import org.perscholas.security.AppSecurityConfiguration;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

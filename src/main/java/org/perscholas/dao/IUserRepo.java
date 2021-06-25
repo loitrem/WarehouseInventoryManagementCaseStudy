@@ -11,8 +11,11 @@ import java.util.List;
 
 @Repository //makes this a repository
 public interface IUserRepo extends JpaRepository<Users, Long> {
+
     Users findByuId(Long id);
     Users findByuUsername(String username);
+
     Users findByuEmployeeUsername(Employees employees);
+
     List<Users> findByuUserType(UserType userType);
 }

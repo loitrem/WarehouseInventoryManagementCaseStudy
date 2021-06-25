@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository //makes this a repository
 public interface IInventoryGroupRepo extends JpaRepository<InventoryGroup, Long> {
+
     InventoryGroup findBygId(Long id);
+
     @Query("SELECT i FROM InventoryGroup i WHERE i.gCompanyName LIKE %:name%")
     List<InventoryGroup> findBygCompanyName(@Param("name") String companyName);
 }

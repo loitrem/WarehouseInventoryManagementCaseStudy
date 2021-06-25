@@ -1,17 +1,15 @@
 package org.perscholas.services;
 
 import org.perscholas.dao.IInventoryRepo;
-import org.perscholas.models.*;
+import org.perscholas.models.Employees;
+import org.perscholas.models.Inventory;
+import org.perscholas.models.InventoryGroup;
+import org.perscholas.models.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InventoryService {

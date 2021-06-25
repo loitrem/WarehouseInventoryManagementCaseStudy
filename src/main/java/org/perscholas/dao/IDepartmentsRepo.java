@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository //makes this a repository
 public interface IDepartmentsRepo extends JpaRepository<Departments, Long> {
+
     Departments findBydId(Long id);
 }

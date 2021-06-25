@@ -22,13 +22,11 @@ public class EmployeeController {
 
     EmployeeService employeeService;
     DepartmentService departmentService;
-    DateService dateService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService, DepartmentService departmentService, DateService dateService) {
+    public EmployeeController(EmployeeService employeeService, DepartmentService departmentService) {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
-        this.dateService = dateService;
     }
 
     //model attribute for employees
