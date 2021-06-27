@@ -48,9 +48,9 @@ public class HomeController {
 
     //displays register user page
     @GetMapping("/register")
-    public String showEmployees(@ModelAttribute("employees") @Valid Employees employees, BindingResult result, Model model, Model model2){
+    public String register(Model model, Model model2){
 
-        List<Employees> e = employeeService.findAllEmployees();
+        List<Employees> e = employeeService.findAllUserIdIfNull();
         model.addAttribute("employees", e);
         Users u = new Users();
         model2.addAttribute("users", u);
@@ -59,13 +59,30 @@ public class HomeController {
 
     // register employee as a user
     @PostMapping("/register")
-    public String authenticate(@ModelAttribute("users") @Valid Users users, BindingResult result, Model model,
+    public String authenticate(@ModelAttribute("users") @Valid Users users, BindingResult result, Model model, Model model2, Model model3,
                                @RequestParam("id") Long eId,  @RequestParam("password2") String pass2){
 
+        //cehcks if password and re-entered password match
         if (!users.getUPassword().equals(pass2)){
             log.warn(users.getUPassword());
             log.warn(pass2);
-            throw new IllegalStateException("Passwords Do not Match");
+            model.addAttribute("error", "Passwords do not match");
+            List<Employees> e = employeeService.findAllUserIdIfNull();
+            model2.addAttribute("employees", e);
+            Users u = new Users();
+            model3.addAttribute("users", u);
+            return "register";
+        }
+
+        //checks if username is already taken
+        if (userService.findByuUsername(users.getUUsername())!=null){
+            log.warn(users.getUUsername());
+            model.addAttribute("error", "Username is already taken");
+            List<Employees> e = employeeService.findAllUserIdIfNull();
+            model2.addAttribute("employees", e);
+            Users u = new Users();
+            model3.addAttribute("users", u);
+            return "register";
         }
 
         // sets user object into employee object, sets usertype object of user into user object, and sends user obj and employee obj to user service to save
@@ -76,6 +93,6 @@ public class HomeController {
 
         userService.addUser(users, e);
 
-        return "/login";
+        return "login";
     }
 }

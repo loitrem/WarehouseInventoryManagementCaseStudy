@@ -83,6 +83,11 @@ public class EmployeeService {
         return  iEmployeesRepo.findAllUserIdIfNotNull();
     }
 
+    //find all employees by UserId if exists
+    public List<Employees> findAllUserIdIfNull(){
+        return  iEmployeesRepo.findAllUserIdIfNull();
+    }
+
     //find employees by UserId
     public Employees findByeUserId(Users u){
         return  iEmployeesRepo.findByeUserId(u);

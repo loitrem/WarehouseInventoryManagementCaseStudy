@@ -25,6 +25,10 @@ public interface IEmployeesRepo extends JpaRepository<Employees, Long> {
     @Query("SELECT e FROM Employees e WHERE e.eUserId IS NOT NULL")
     List<Employees> findAllUserIdIfNotNull();
 
+    //custom query
+    @Query("SELECT e FROM Employees e WHERE e.eUserId IS NULL")
+    List<Employees> findAllUserIdIfNull();
+
     Employees findByeUserId(Users u);
 
 
