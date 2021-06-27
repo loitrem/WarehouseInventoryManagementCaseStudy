@@ -70,9 +70,11 @@ public class EmployeeService {
     @Transactional
     public void removeEmployees(Employees e){
 
-        Inventory i = inventoryService.findByIMovedBy(e);
-        i.setIMovedBy(null);
-        inventoryService.updateInventory(i);
+        if (inventoryService.findByIMovedBy(e)!=null) {
+            Inventory i = inventoryService.findByIMovedBy(e);
+            i.setIMovedBy(null);
+            inventoryService.updateInventory(i);
+        }
         iEmployeesRepo.delete(e);
     }
 

@@ -1,9 +1,12 @@
 package org.perscholas.services;
 
 import org.perscholas.dao.IStatusRepo;
+import org.perscholas.models.Employees;
+import org.perscholas.models.Inventory;
 import org.perscholas.models.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,4 +40,20 @@ public class StatusService {
         }
         return null;
     }
+
+    //add status
+    @Transactional
+    public void addStatus(Status s){
+        iStatusRepo.save(s);
+    }
+
+    //Remove status
+    @Transactional
+    public void removeStatus(Status s){
+
+        if (iStatusRepo.findBysStatus(s.getSStatus())!=null) {
+            iStatusRepo.delete(s);
+        }
+    }
+
 }

@@ -13,8 +13,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Bare - Start Bootstrap Template</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <div th:replace="fragments/css"></div>
 </head>
@@ -22,28 +21,20 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3 class="mt-5"> Show All Users </h3>
-
-    <table class="table table-primary table-striped table-hover fs-4 shadow">
-        <thead>
-        <tr>
-            <th scope="col">Employee Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">User Type</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="e : ${employees}">
-            <td th:text="${e.eFirstName} + ' ' + ${e.eLastName}"></td>
-            <td th:text="${e.eUserId.uUsername}"></td>
-            <td th:text="${e.eUserId.uUserType.userTypeName}"></td>
-            <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/users/edit/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/users/remove/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
-        </tr>
-        </tbody>
-    </table>
+    <h3 class="mt-5"> Add Status </h3>
+    <div><a th:href="@{/status/show}"><button type="save" class="btn btn-primary">Back to Show All</button></a></div>
+    <form th:action="@{/status/add}" method="post" th:object="${status}">
+        <table class="table table-primary table-striped table-hover fs-4 shadow mt-3">
+            <tr>
+                <td scope="col">Status</td>
+                <td><input type="text" name="status" class="form-control fs-4" id="status" th:field="*{sStatus}"></td>
+            </tr>
+            <tr>
+                <td scope="col"><button type="save" class="btn btn-success">Save</button></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
 </div>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

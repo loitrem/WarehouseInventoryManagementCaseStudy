@@ -121,6 +121,6 @@ public class InventoryGroupController {
         List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
         model.addAttribute("inventorygroups", ig);
 
-        return"showinventory";
+        return "showinventorygroups";
     }
 }

@@ -22,25 +22,19 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3 class="mt-5"> Show All Users </h3>
+    <h3 class="mt-5"> Show All Status </h3>
 
     <table class="table table-primary table-striped table-hover fs-4 shadow">
         <thead>
         <tr>
-            <th scope="col">Employee Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">User Type</th>
-            <th scope="col"></th>
+            <th scope="col">Status</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="e : ${employees}">
-            <td th:text="${e.eFirstName} + ' ' + ${e.eLastName}"></td>
-            <td th:text="${e.eUserId.uUsername}"></td>
-            <td th:text="${e.eUserId.uUserType.userTypeName}"></td>
-            <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/users/edit/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/users/remove/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
+        <tr th:each="s : ${status}">
+            <td th:text="${s.sStatus}"></td>
+            <td align="right"><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/status/remove/' + ${s.sId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
         </tr>
         </tbody>
     </table>

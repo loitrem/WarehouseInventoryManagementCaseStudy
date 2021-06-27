@@ -144,7 +144,7 @@ public class InventoryController {
 
     //save a new inventory record
     @PostMapping("/add")
-    public String addInventory(@ModelAttribute("inventory") @Valid Inventory inventory, BindingResult result,
+    public String addInventory(@ModelAttribute("inventory") @Valid Inventory inventory, BindingResult result, Model model,
                                @RequestParam("movedby") Long eId, @RequestParam("invgroup") Long gId, @RequestParam("status") Long sId){
 
         Employees e = employeeService.findById(eId);
@@ -155,6 +155,9 @@ public class InventoryController {
         inventory.setIStatus(s);
 
         inventoryService.addinventory(inventory);
+
+        List<Inventory> i = inventoryService.findAllInventory();
+        model.addAttribute("inventory", i);
 
         return"showinventory";
     }

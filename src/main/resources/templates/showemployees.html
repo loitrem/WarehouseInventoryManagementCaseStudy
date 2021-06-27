@@ -22,9 +22,9 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3> Employees </h3>
+    <h3 class="mt-5"> Show All Employees </h3>
 
-    <table class="table table-dark table-striped table-hover fs-4">
+    <table class="table table-primary table-striped table-hover fs-4 shadow">
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -43,7 +43,7 @@
             <td th:text="${emp.eFirstName} + ' ' + ${emp.eLastName}"></td>
             <td th:text="${emp.eEmail}"></td>
             <td th:text="${emp.eJobTitle}"></td>
-            <td><a th:href="@{'/employees/profile/' + ${emp.eId}}"><button type="submit" class="btn btn-success">View</button></a></td>
+            <td><a th:href="@{'/employees/employees/' + ${emp.eId}}"><button type="submit" class="btn btn-success">View</button></a></td>
             <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/employees/edit/' + ${emp.eId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
             <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/employees/remove/' + ${emp.eId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
         </tr>

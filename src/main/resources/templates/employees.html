@@ -22,27 +22,42 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3 class="mt-5"> Show All Users </h3>
+    <h3 class="mt-5"> Employees </h3>
+    <div><a th:href="@{/employees/show}"><button type="save" class="btn btn-primary">Back to Show All</button></a></div>
 
-    <table class="table table-primary table-striped table-hover fs-4 shadow">
-        <thead>
+    <table class="table table-primary table-striped table-hover fs-4 shadow mt-3">
         <tr>
-            <th scope="col">Employee Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">User Type</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <td class="fw-bold fs-4">First Name:</td>
+            <td class="fs-4" th:text="${e.eFirstName}"></td>
         </tr>
-        </thead>
-        <tbody>
-        <tr th:each="e : ${employees}">
-            <td th:text="${e.eFirstName} + ' ' + ${e.eLastName}"></td>
-            <td th:text="${e.eUserId.uUsername}"></td>
-            <td th:text="${e.eUserId.uUserType.userTypeName}"></td>
-            <td><div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')"><a th:href="@{'/users/edit/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-primary">Edit</button></a></div></td>
-            <td><div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/users/remove/' + ${e.eUserId.uId}}"><button type="submit" class="btn btn-danger">Remove</button></a></div></td>
+        <tr>
+            <td class="fw-bold fs-4">Last Name:</td>
+            <td class="fs-4" th:text="${e.eLastName}"></td>
         </tr>
-        </tbody>
+        <tr>
+            <td class="fw-bold fs-4">Date of Birth:</td>
+            <td class="fs-4" th:text="${e.eDob}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Phone:</td>
+            <td class="fs-4" th:text="${e.ePhoneNumber}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Email:</td>
+            <td class="fs-4" th:text="${e.eEmail}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Hire Date:</td>
+            <td class="fs-4" th:text="${e.eHireDate}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Job Title:</td>
+            <td class="fs-4" th:text="${e.eJobTitle}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Department:</td>
+            <td class="fs-4" th:text="${e.eDepartment.dName}"></td>
+        </tr>
     </table>
 </div>
 <!-- Bootstrap core JS-->

@@ -41,9 +41,18 @@
                     <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownUsers" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownEmployees">
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUsers">
                                 <li><a class="dropdown-item" th:href="@{/users/show}">Show All Users</a></li>
                                 <li><a class="dropdown-item" th:href="@{/users/search}">Search Users</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownStatus" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Status</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownStatus">
+                                <li><a class="dropdown-item" th:href="@{/status/show}">Show All Status</a></li>
+                                <li><a class="dropdown-item" th:href="@{/status/add}">Add Status</a></li>
                             </ul>
                         </li>
                     </div>

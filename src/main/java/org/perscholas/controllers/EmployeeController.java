@@ -3,7 +3,6 @@ package org.perscholas.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.models.Departments;
 import org.perscholas.models.Employees;
-import org.perscholas.services.DateService;
 import org.perscholas.services.DepartmentService;
 import org.perscholas.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +41,15 @@ public class EmployeeController {
         return "showemployees";
     }
 
-    //displays a user profile using employee id
-    @GetMapping("/profile/{eId}")
-    public String profile(Model model, Model model2, @PathVariable("eId") Long id){
+    //displays a user employees using employee id
+    @GetMapping("/employees/{eId}")
+    public String employeesProfile(Model model, Model model2, @PathVariable("eId") Long id){
 
         Employees e = employeeService.findById(id);
         Departments d = e.getEDepartment();
         model.addAttribute("e", e);
         model2.addAttribute("dept", d);
-        return "profile";
+        return "employees";
     }
 
     //displays search page
@@ -64,13 +63,13 @@ public class EmployeeController {
         return "employeesearch";
     }
 
-    //shows profile of selected employee by name
+    //shows employees of selected employee by name
     @PostMapping("/employeebyname")
     public String employeeByName(Model model, @RequestParam("id") Long id){
 
         Employees e = employeeService.findById(id);
         model.addAttribute("e", e);
-        return "profile";
+        return "employees";
     }
 
     //shows all employees by selected department
@@ -148,6 +147,7 @@ public class EmployeeController {
     public String removeEmployees(@PathVariable("eId") Long id, Model model){
 
         Employees emp = employeeService.findById(id);
+        log.warn(emp.toString());
         employeeService.removeEmployees(emp);
 
         List<Employees> e = employeeService.findAllEmployees();

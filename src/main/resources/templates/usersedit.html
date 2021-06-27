@@ -21,9 +21,10 @@
 <div th:replace="fragments/navbaruser"></div>
 <!-- Page content-->
 <div class="container">
-    <h3> Users </h3>
+    <h3 class="mt-5"> Edit User </h3>
+    <div><a th:href="@{/users/show}"><button type="save" class="btn btn-primary">Back to Show All</button></a></div>
     <form th:action="@{/users/save}" method="post">
-        <table class="table table-dark table-striped table-hover fs-4">
+        <table class="table table-primary table-striped table-hover fs-4 shadow mt-3">
             <tr>
                 <td scope="col">Employee Name
                     <input type="hidden" name="id" class="form-control fs-4" id="id" th:field="${u.uId}" th:value="${u.uId}"></td>
