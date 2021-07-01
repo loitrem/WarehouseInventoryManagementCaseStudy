@@ -85,13 +85,20 @@ public class EmployeeController {
 
     //show all employees by job title
     @PostMapping("/employeebytitle")
-    public String employeeByJobTitle(Model model, Model model2, @RequestParam("title") String title){
-        List<Employees> e = employeeService.findByeJobTitle(title);
+    public String employeeByJobTitle(Model model, Model model2, Model model3, @RequestParam("title") String title){
 
-        if (title.matches("^[A-Za-z ]+$")){
-            model.addAttribute("error", "You may only user upper or lowe case letters in your search.");
+        if (!title.matches("^[A-Za-z ]+$")){
+            List<Employees> emp = employeeService.findAllEmployees();
+            List<Departments> d = departmentService.findAllDepartments();
+
+            model.addAttribute("employees", emp);
+            model2.addAttribute("departments", d);
+            model2.addAttribute("error", "You may only use upper/lower case letters in your search");
+
+            return "employeesearch";
         }
 
+        List<Employees> e = employeeService.findByeJobTitle(title);
         model.addAttribute("employees", e);
 
         return "showemployees";

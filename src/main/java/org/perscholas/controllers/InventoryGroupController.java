@@ -57,7 +57,17 @@ public class InventoryGroupController {
 
     //shows all inventory groups by company name
     @PostMapping("/showinventorygroupcompanyname")
-    public String findByCompanyName(Model model, @RequestParam("company") String name) {
+    public String findByCompanyName(Model model,Model model2, @RequestParam("company") String name) {
+
+        if (!name.matches("^[A-Za-z ]+$")){
+            List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+
+            model.addAttribute("error", "You may only use upper/lower case letters in your search");
+            model2.addAttribute("invgroup", ig);
+
+            return "inventorygroupsearch";
+        }
+
         List<InventoryGroup> ig = inventoryGroupService.findByCompanyName(name);
         model.addAttribute("inventorygroups", ig);
         return "showinventorygroups";

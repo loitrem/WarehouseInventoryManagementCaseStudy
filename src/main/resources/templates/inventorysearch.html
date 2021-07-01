@@ -40,7 +40,7 @@
                         <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td th:if="${error != 'null'}" th:text="${itemnumerror}" class="text-danger fs-6 text-center"></td>
                     </tr>
 
                 </table>
@@ -63,7 +63,7 @@
                         <td><button type="submit" class="btn btn-primary fs-4">Search</button></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td th:if="${error != 'null'}" th:text="${descerror}" class="text-danger fs-6 text-center"></td>
                     </tr>
 
                 </table>

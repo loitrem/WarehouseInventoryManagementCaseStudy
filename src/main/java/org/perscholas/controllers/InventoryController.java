@@ -48,7 +48,9 @@ public class InventoryController {
     public String showInventory(Model model){
 
         List<Inventory> i = inventoryService.findAllInventory();
+
         model.addAttribute("inventory", i);
+
         return "showinventory";
     }
 
@@ -61,6 +63,7 @@ public class InventoryController {
 
         model.addAttribute("inventory", i);
         model2.addAttribute("inventorygroup", ig);
+
         return "inventorysearch";
     }
 
@@ -93,7 +96,19 @@ public class InventoryController {
 
     //shows all inventory by item number
     @PostMapping("/showinventoryitemnumber")
-    public String findByItemNumber(Model model, @RequestParam("number") String itemNumber){
+    public String findByItemNumber(Model model,Model model2, Model model3, @RequestParam("number") String itemNumber){
+
+        if (!itemNumber.matches("^[A-Za-z0-9 ]+$")){
+
+            List<Inventory> i = inventoryService.findAllInventory();
+            List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+
+            model.addAttribute("itemnumerror", "You may only use upper/lower case letters, or numbers in your search");
+            model2.addAttribute("inventory", i);
+            model3.addAttribute("inventorygroup", ig);
+
+            return "inventorysearch";
+        }
 
         List<Inventory> i = inventoryService.findByItemNumber(itemNumber);
         model.addAttribute("inventory", i);
@@ -102,9 +117,23 @@ public class InventoryController {
 
     //shows all inventory by description
     @PostMapping("/showinventorydesc")
-    public String findByDescription(Model model, @RequestParam("desc") String desc){
+    public String findByDescription(Model model,Model model2, Model model3, @RequestParam("desc") String desc){
+
+        if (!desc.matches("^[A-Za-z ]+$")){
+
+            List<Inventory> i = inventoryService.findAllInventory();
+            List<InventoryGroup> ig = inventoryGroupService.findAllInventoryGroup();
+
+            model.addAttribute("descerror", "You may only use upper/lower case letters in your search");
+            model2.addAttribute("inventory", i);
+            model3.addAttribute("inventorygroup", ig);
+
+            return "inventorysearch";
+        }
+
         List<Inventory> i = inventoryService.findByDescription(desc);
         model.addAttribute("inventory", i);
+
         return "showinventory";
     }
 
