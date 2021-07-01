@@ -11,6 +11,7 @@
 	<groupId>org.perscholas</groupId>
 	<artifactId>CaseStudy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>CaseStudy</name>
 	<description>Case Study</description>
 	<properties>
@@ -94,6 +95,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>CaseStudy</finalName>
 	</build>
-
 </project>

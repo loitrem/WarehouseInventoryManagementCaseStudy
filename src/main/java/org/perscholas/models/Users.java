@@ -36,7 +36,7 @@ public class Users implements Serializable {
     Long uId;
 
     @NonNull @NotBlank @Column(unique = true) //cannot be null/blank and must be unique
-    @Pattern(regexp = "^[A-Za-z]\\w{6,}$", message = "Must contain at least 6 characters\n" +
+    @Pattern(regexp = "^[A-Za-z0-9]\\w{5,}$", message = "Must contain at least 6 characters\n" +
             "Must only contain letters or numbers")
     String uUsername;
 
@@ -61,4 +61,9 @@ public class Users implements Serializable {
     //add permissions table and link it
 
 
+    public Users(@NonNull String uUsername, @NonNull String uPassword, UserType uUserType) {
+        this.uUsername = uUsername;
+        this.uPassword = uPassword;
+        this.uUserType = uUserType;
+    }
 }

@@ -71,4 +71,6 @@ public class InventoryGroup implements Serializable {
     List<Inventory> gInventory;
 
 
+
+
 }

@@ -66,8 +66,6 @@ public class Employees implements Serializable {
     @NonNull @NotNull
     Date eHireDate;
 
-    String eProfileImage;
-
     //joining employees to users table
     @ToString.Exclude
     @OneToOne(fetch = FetchType.LAZY)
@@ -85,5 +83,15 @@ public class Employees implements Serializable {
     @JoinColumn(name = "Departments_Id")
     Departments eDepartment;
 
-
+    public Employees( String eFirstName, String eLastName, String eJobTitle, String ePhoneNumber, String eEmail, Date eDob, Date eHireDate, Users eUserId, Departments eDepartment) {
+        this.eFirstName = eFirstName;
+        this.eLastName = eLastName;
+        this.eJobTitle = eJobTitle;
+        this.ePhoneNumber = ePhoneNumber;
+        this.eEmail = eEmail;
+        this.eDob = eDob;
+        this.eHireDate = eHireDate;
+        this.eUserId = eUserId;
+        this.eDepartment = eDepartment;
+    }
 }

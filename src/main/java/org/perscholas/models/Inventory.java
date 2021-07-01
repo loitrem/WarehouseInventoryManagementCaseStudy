@@ -79,6 +79,15 @@ public class Inventory implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date iLastDateMoved;
 
-
-
+    public Inventory(@NonNull String iLocation, @NonNull String iItemNumber, @NonNull String iDescription, @NonNull int iQuantity, InventoryGroup iInventoryGroup, @NonNull Date iDateReceived, Status iStatus, Employees iMovedBy, @NonNull Date iLastDateMoved) {
+        this.iLocation = iLocation;
+        this.iItemNumber = iItemNumber;
+        this.iDescription = iDescription;
+        this.iQuantity = iQuantity;
+        this.iInventoryGroup = iInventoryGroup;
+        this.iDateReceived = iDateReceived;
+        this.iStatus = iStatus;
+        this.iMovedBy = iMovedBy;
+        this.iLastDateMoved = iLastDateMoved;
+    }
 }

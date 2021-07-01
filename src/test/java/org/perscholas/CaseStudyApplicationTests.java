@@ -10,16 +10,4 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 class CaseStudyApplicationTests {
 
-	//test DAO classes
-
-
-	@BeforeAll
-	public void beforeAll(){
-
-	}
-
-	@Test
-	void contextLoads() {
-	}
-
 }
